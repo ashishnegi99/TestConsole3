@@ -1,0 +1,9 @@
+coverage==4.2
+Django==1.8
+Pillow==2.3.0
+pyflakes==1.2.3
+python-jenkins==0.4.13
+six==1.10.0
+multi-key-dict==2.0.3
+django_chartit
+django-import-export
