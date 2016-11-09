@@ -356,3 +356,9 @@ input.input-validation-error {
 input[type="checkbox"].input-validation-error {
     border: 0 none;
 }
+
+.graph-container {
+  width: 600px;
+  height: 400px;
+  margin: 20px; 
+}

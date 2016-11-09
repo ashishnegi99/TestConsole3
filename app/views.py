@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from app.forms import UserForm, NameForm, BootstrapAuthenticationForm
 from app.models import Storm, Appium, Revo, Set_Top_Box, racktestresult
 from django.contrib.auth.decorators import login_required
@@ -27,7 +27,6 @@ import json as simplejson
 from chartit import DataPool, Chart
 from django.db.models import Avg
 from chartit import PivotDataPool, PivotChart
-import datetime
 from django.db.models import Sum, Avg, Count
 from chartit import PivotChart, PivotDataPool
 from django.shortcuts import render_to_response
@@ -617,32 +616,63 @@ def Appium(request):
 ## Graphs Views ##
 ##################
 def reports_chart_view(request):
-    error = False
-    print "hello1"
+    date_from_str = None
+    date_to_str = None
+
+    #import pdb; pdb.set_trace()
+
     if 'q1' and 'q2' in request.GET:
-        print "hello2"
-        q1 = request.GET['q1']
-        q2 = request.GET['q2']
+        date_from_str = request.GET['q1']
+        date_to_str = request.GET['q2']
 
-        # date_from_2 = datetime.datetime.strptime(request.GET['q1'], '%Y-%m-%d')
-        # print "a", date_from_2
-        # date_to_2 = datetime.datetime.strptime(request.GET['q2'], '%Y-%m-%d')
-        # print "b", date_to_2
-        if not q1:
-            error = True
-        elif not q2:
-            error = True
-        else:
-            date_from_1 = datetime.date(2016, 9, 21)
-            date_to_1 = datetime.date(2016, 9, 23)
-            print "STATIC DATE FROM", q1
-            print "STATIC DATE TO",q2
+    date_to = datetime.now() if not date_from_str else datetime.strptime(date_to_str, "%Y-%m-%d") 
+    date_from = date_to + timedelta(days=-90) if not date_from_str else datetime.strptime(date_from_str, "%Y-%m-%d")
+    
+    
+    db_response = racktestresult.objects.filter(Date__range = (date_from, date_to))
+        
+    total_pass = db_response.filter(Result = "PASS").count()
+    total_fail = db_response.filter(Result = "FAIL").count()
+    total_total = db_response.count()
 
-    date_from = '2016-09-01'#request.GET['q1']
-    date_to =  '2016-10-30'#request.GET['q2']
+    stripped_db_response = db_response.values_list('PassNumbers','FailNumbers', 'TestJobName', 'Date')
+    pass_num = [x[0] for x in stripped_db_response]
+    fail_num = [x[1] for x in stripped_db_response]
+    job_name = json.dumps([x[2] for x in stripped_db_response])
+    dates = [x[3].strftime('%m/%d/%Y') for x in stripped_db_response]
 
-    # date_from = request.GET['q1']
-    # date_to = request.GET['q2']
+    date_from_str = json.dumps(str(date_from))
+    date_to_str = json.dumps(str(date_to))
+
+    return render(
+        request,
+        "app/reports_skeleton.html",
+        {
+            "totalPass" : total_pass,
+            "totalFail" : total_fail, 
+            "totalTotal": total_total,
+            "passNums"  : pass_num,
+            "failNums"  : fail_num,
+            "jobNames"  : job_name,
+            "dates"     : dates,
+            "from"      : date_from_str,
+            "to"        : date_to_str
+        }
+    )
+
+
+def rreports_chart_view(request):
+    date_from = None
+    date_to = None
+
+    if 'q1' and 'q2' in request.GET:
+        date_from = request.GET['q1']
+        date_to = request.GET['q2']
+
+    if not date_from or not date_to: #ideally return an error and enabke a warning in HTML
+        date_from = datetime.date(2016, 9, 21)
+        date_to = datetime.date(2016, 9, 23)
+
 
     #Column Chart 1   
     ds = DataPool(
@@ -770,8 +800,11 @@ def reports_chart_view(request):
                     'type': 'pie',
                     'stacking': False,
                     'options3d': {'enabled': True, 'alpha': 45, 'beta': 0}
-                }, 'terms': {
-                'PassNumbers':['FailNumbers']}}]
+                }, 
+                'terms': {
+                    'PassNumbers':['FailNumbers']
+                }
+            }]
         ,
         chart_options={
             'title': {'text': 'Pass/Date - Pie Chart'}
