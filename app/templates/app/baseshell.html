@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles%}
+<head> 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content=""> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="{% static 'app/images/smallicon.png' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" /> 
+    <link href="{% static 'app/content/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'app/content/jquery-ui.css' %}" rel="stylesheet"/>
+    <script src="{% static 'app/scripts/jquery.min.js' %}"></script>
+    <script src="{% static 'app/scripts/jquery-ui.js' %}"></script>
+
+    <title>Verizon</title> 
+	{% block head %} {% endblock %}
+</head> 
+
+<body>
+	<div class="container mainpage">
+	    <a href="{% url 'home' %}">
+	      <img src="{% static 'app/images/Console.png' %}" > 
+	    </a>
+	    <a href="{% url 'Reports' %}">
+	      <img src="{% static 'app/images/Reports.png' %}">
+	    </a>
+	    <div></div>
+	    <img src="{% static 'app/images/verizon.png' %}" class="pull-right verizonicon">
+	
+		{% include 'app/loginpartial.html' %}
+	</div>
+
+	{% block body %} {% endblock %}
+	
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                     Powered by <img src="{% static 'app/images/hcl.png' %}"> 
+                </div> 
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
