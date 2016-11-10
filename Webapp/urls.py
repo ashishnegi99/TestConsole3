@@ -75,7 +75,7 @@ urlpatterns = patterns("",
     url(r"^Appium", "app.views.Appium", name="Appium"),
 
 ## Report's
-    url(r"^Reports", "app.views.reports_chart_view", name="Reports"),
+    url(r"^Reports", "reports.views.reports_home", name="Reports"),
 
 ## Report's
     url(r"^ReportsLink", "app.views.reportslink", name="ReportsLink"),
