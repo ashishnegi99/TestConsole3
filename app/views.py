@@ -21,14 +21,9 @@ import os
 import io
 import csv
 import json
-from chartit import DataPool, Chart
-from chartit.chartdata import DataPool
 import json as simplejson
-from chartit import DataPool, Chart
 from django.db.models import Avg
-from chartit import PivotDataPool, PivotChart
 from django.db.models import Sum, Avg, Count
-from chartit import PivotChart, PivotDataPool
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 
@@ -619,8 +614,6 @@ def reports_chart_view(request):
     date_from_str = None
     date_to_str = None
 
-    #import pdb; pdb.set_trace()
-
     if 'q1' and 'q2' in request.GET:
         date_from_str = request.GET['q1']
         date_to_str = request.GET['q2']
@@ -659,182 +652,6 @@ def reports_chart_view(request):
             "to"        : date_to_str
         }
     )
-
-
-def rreports_chart_view(request):
-    date_from = None
-    date_to = None
-
-    if 'q1' and 'q2' in request.GET:
-        date_from = request.GET['q1']
-        date_to = request.GET['q2']
-
-    if not date_from or not date_to: #ideally return an error and enabke a warning in HTML
-        date_from = datetime.date(2016, 9, 21)
-        date_to = datetime.date(2016, 9, 23)
-
-
-    #Column Chart 1   
-    ds = DataPool(
-       series=
-        [{'options': {
-            'source': racktestresult.objects.filter(Date__range = (date_from, date_to))},
-          'terms': [
-            'TotalConditions',
-            'BoxType',
-            'Result',
-            'PassNumbers',
-            'idTestResult',
-            'ExecutionTime',
-            'TestCaseID', 
-            'FailNumbers']}
-         ])
-
-    cht= Chart(
-        datasource = ds, 
-        series_options = 
-          [{'options':{
-              'type': 'column',
-              'stacking': True},
-            'terms':{
-              'TestCaseID': [
-                'PassNumbers',
-                'FailNumbers']
-              }}],
-        chart_options = 
-          {'title': {
-               'text': 'Test Cases (Pass/Fail)'},
-           'xAxis': {
-                'title': {
-                   'text': 'Test Case Name'}}})
-
-    
-    #Column Chart 2
-    ds1 = DataPool(
-       series=
-        [{'options': {
-            'source': racktestresult.objects.filter(Date__range = (date_from, date_to))},
-          'terms': [
-            'TotalConditions',
-            'BoxType',
-            'Result',
-            'PassNumbers',
-            'idTestResult',
-            'ExecutionTime',
-            'TestCaseID', 
-            'FailNumbers']}
-         ])
-
-    cht2= Chart(
-        datasource = ds1, 
-        series_options = 
-          [{'options':{
-              'type': 'column',
-              'stacking': True},
-            'terms':{
-              'TestCaseID': [
-                'ExecutionTime']
-              }}],
-        chart_options = 
-          {'title': {
-               'text': 'Test Execution Time'},
-           'xAxis': {
-                'title': {
-                   'text': 'Test Case Name'}}})
-
-    #Pie Chart
-    revodata = DataPool(
-       series=
-        [{'options': {
-            'source': racktestresult.objects.filter(Date__range=(date_from, date_to))},
-          'terms': [
-            'TotalConditions',
-            'Date',
-            'Author',
-            'Result',
-            'BoxType',
-            'PassNumbers',
-            'TestCaseID',
-            'idTestResult',
-            'ExecutionTime',
-            'ProjectName',
-            'SuiteName',
-            'FailNumbers']}
-         ])
-
-    cht3 = Chart(
-            datasource = revodata, 
-            series_options = 
-              [{'options':{
-                  'type': 'pie',
-                  'stacking': False},
-                'terms':{
-                  'SuiteName': [
-                    'FailNumbers',]
-                  }}],
-            chart_options = 
-              {'title': {
-               'text': 'Test Suite Failures'},
-                   })
-
-
-############New chart#############
-    # Pie Chart4
-    ds = DataPool(
-        series=[
-            {
-                'options': {
-                'source': racktestresult.objects.filter(Date__range = (date_from, date_to))},
-                'terms': [
-                    'PassNumbers','FailNumbers']},
-                ]
-
-
-    )
-
-    cht4 = Chart(
-        datasource=ds,
-        series_options=[
-            {
-                'options': {
-                    'type': 'pie',
-                    'stacking': False,
-                    'options3d': {'enabled': True, 'alpha': 45, 'beta': 0}
-                }, 
-                'terms': {
-                    'PassNumbers':['FailNumbers']
-                }
-            }]
-        ,
-        chart_options={
-            'title': {'text': 'Pass/Date - Pie Chart'}
-        }
-    )
-
-
-
-
-    return render(
-        request,
-        "app/reports.html",
-        {
-            'revochart': [cht, cht2, cht3, cht4],
-        }
-    )
-# def search(request):
-#     error = False
-#     if 'q1' and 'q2'in request.GET:
-#         q1 = request.GET['q1']
-#         q2 = request.GET['q2']
-#         if not q1:
-#             error = True
-#         elif not q2:
-#             error = True
-#         else:
-#             books = racktestresult.objects.filter(Date__range=(q1,q2))
-#             return render(request, 'app/reports.html',
-#                 {'books': books })
-#     return render(request, 'app/reports.html', {'error': error})
 
 
 def Json(request):

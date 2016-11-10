@@ -129,7 +129,7 @@ INSTALLED_APPS = (
     "app",
     "django.contrib.admin",
     "import_export",
-    "chartit"
+    "reports"
 )
 
 # A sample logging configuration. The only tangible logging
