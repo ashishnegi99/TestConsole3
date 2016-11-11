@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Welcome To Verizon</title>
+    <!-- Favicon-->
+    <link rel="icon" href="images/smallicon.png" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.css' %}" />
+
+    <!-- Waves Effect Css -->
+     <link rel="stylesheet" type="text/css" href="{% static 'app/content/waves.css' %}" />
+    <!-- Animation Css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/animate.css' %}" />
+
+    <!-- Preloader Css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/md-preloader.css' %}" />
+ 
+    <!-- Custom Css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/my_style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/dataTables.bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/responsive_datatable.css' %}" />
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+     <link rel="stylesheet" type="text/css" href="{% static 'app/content/theme-red.css' %}" />
+     <script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+
+</head>
+
+<body class="theme-red">
+
+<div class="">
+                <ul class="nav">
+
+                    <li>
+                        <img src="{% static 'app/images/verizon.png' %}" class="img-reponsive pull-right">
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4 col-md-offset-4">
+                            <section id="loginForm">
+                            <h1 class="text-center login-title"><img class="img-reponsive" img src="{% static 'app/images/Console.png' %}"></h1>
+                            <div class="account-wall">
+                                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                                    alt="">
+                                <form action="." method="post" class="form-horizontal">
+                                    {% csrf_token %}
+                                
+                                {{ form.username }}
+
+                                {{ form.password }}
+
+                                <button class="btn btn-lg login-button btn-block" type="submit">
+                                    Submit
+                                </button>
+                               
+<!--                                 <div class="form-group">
+                                    <div class="btn btn-lg login-button btn-block">
+                                        <input type="hidden" name="next" value="/" />
+                                        <input type="submit"  class="btn btn-default" />
+                                    </div>
+                                </div> -->
+
+                                <p>
+                                    <input type="checkbox" class="pull-left need-help" value="remember-me">
+                                    Remember me
+                                </p>
+
+
+                                
+                                <a href="#" class="pull-left need-help">Forgot Password</a><span class="clearfix"></span>
+
+                                {% if form.errors %}
+                                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+                                 {% endif %}
+                                
+                                </form>
+                            </section>
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
+        <!-- Footer -->
+            <div class="legal col-sm-12 text-center powered">   
+                   Powered by <img src="{% static 'app/images/hcl.png' %}"> 
+            </div>
+            <!-- #Footer -->
+     <script src="{% static 'app/scripts/jquery.min.js' %}"></script>
+      <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+       <script src="{% static 'app/scripts/waves.js' %}"></script>
+        <script src="{% static 'app/scripts/admin.js' %}"></script>
+    
+    
+</body>
+
+
+</html>
+
+
+
+          <!--   <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4 col-md-offset-4">
+                            <h1 class="text-center login-title"><img class="img-reponsive" src="images/Console.png"></h1>
+                            <div class="account-wall">
+                                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                                    alt="">
+                                <form class="form-signin">
+                                <p><input type="text" class="form-control" placeholder="UserID" required autofocus></p>
+                                <p><input type="password" class="form-control" placeholder="Password" required></p>
+                                <p>
+                                    <input type="checkbox" value="remember-me">
+                                    Remember me
+                                </p>
+                                <button class="btn btn-lg login-button btn-block" type="submit">
+                                    Submit
+                                </button>
+                                <a href="#" class="pull-right need-help">Forgot Password</a><span class="clearfix"></span>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+
+ -->
+

@@ -1,5 +1,5 @@
 ﻿.theme-red .navbar {
-  background:url(../../images/bg.png); }
+  background: url("../images/bg.png") no-repeat no-repeat; }
   .navbar-brand{
     padding: 0px !important;
   }

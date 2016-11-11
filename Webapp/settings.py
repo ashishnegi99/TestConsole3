@@ -130,7 +130,6 @@ INSTALLED_APPS = (
     "django.contrib.admin",
     "import_export",
     "reports",
-    "testconsole",
 )
 
 # A sample logging configuration. The only tangible logging

@@ -28,38 +28,38 @@ urlpatterns = patterns("",
         name="logout"),
 
 ##Test Console
-    url(r"^home", "testconsole.views.home", name="home"),
-    url(r"^$", "testconsole.views.home", name="home"),
+    url(r"^home", "app.views.home", name="home"),
+    url(r"^$", "app.views.home", name="home"),
 
 ## StopMultipleJobs's
-    url(r"^StopMultipleJobs", "testconsole.views.StopMultipleJobs", name="StopMultipleJobs"),
+    url(r"^StopMultipleJobs", "app.views.StopMultipleJobs", name="StopMultipleJobs"),
 
 ## JobStatus's
-    url(r"^JobStatus", "testconsole.views.getJobStatus", name="JobStatus"),
+    url(r"^JobStatus", "app.views.getJobStatus", name="JobStatus"),
 
 ## StopStatus's
-    url(r"^stopJob", "testconsole.views.stopJob", name="stopJob"),
+    url(r"^stopJob", "app.views.stopJob", name="stopJob"),
 
 
 
 ## Revo's
-    url(r"^Revo", "testconsole.views.Revo_view", name="Revo"),
+    url(r"^Revo", "app.views.Revo_view", name="Revo"),
+    url(r"^revo123", "app.views.revohtml", name="revo123"),
 
 ## Appium's
-    url(r"^Appium", "testconsole.views.Appium", name="Appium"),
+    url(r"^Appium", "app.views.Appium", name="Appium"),
 	
 ## Storm's
-    url(r"^Storm", "testconsole.views.Storm", name="Storm"),
+    url(r"^Storm", "app.views.Storm", name="Storm"),
 
 ## Json's
-    url(r"^Json", "testconsole.views.Json", name="Json"),
+    url(r"^Json", "app.views.Json", name="Json"),
 
 ## Json2's
-    url(r"^Json2", "testconsole.views.Json2", name="Json2"),
+   # url(r"^Json2", "app.views.Json2", name="Json2"),
 
 #SetTopBox
-    url(r"^Set_Top_Box", "testconsole.views.GetSerialNum", name="Set_Top_Box"),
-
+    url(r"^Set_Top_Box", "app.views.GetSerialNum", name="Set_Top_Box"),
 
 
 
@@ -67,7 +67,7 @@ urlpatterns = patterns("",
     url(r"^Reports", "reports.views.reports_home", name="Reports"),
 
 ## Report's
-    url(r"^ReportsLink", "testconsole.views.reportslink", name="ReportsLink"),
+#    url(r"^ReportsLink", "app.views.reportslink", name="ReportsLink"),
 
 ##Admin
     url(r"^admin/", include(admin.site.urls)),

@@ -1,10 +1,31 @@
+{% load staticfiles %}
+
 {% if user.is_authenticated %}
 <form id="logoutForm" action="/logout" method="post" class="navbar-right">
-    {% csrf_token %}
-    <ul class="nav navbar-nav navbar-right">
-        <li><span class="navbar-brand">Hello {{ user.username }}!</span></li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    
+
+ {% csrf_token %}
+
+<aside id="leftsidebar" class="sidebar">
+    <!-- User Info -->
+    <div class="user-info">
+    	                <div class="image">
+                    <img src="{% static 'app/images/user1.png' %}" width="48" height="48" alt="User" />
+                </div>
+        <div class="info-container">
+
+
+<div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hello {{ user.username }}</div>
+<div class="email">{{ user.email }}</div>
+<div class="btn-group user-helper-dropdown">
+    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+    <ul class="dropdown-menu pull-right">
+        <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li> 
+        <li role="seperator" class="divider"></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="material-icons">input</i>Log off</a></li>
     </ul>
+</div>
+
 
 </form>
 
