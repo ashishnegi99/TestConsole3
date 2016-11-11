@@ -1,0 +1,78 @@
+{% extends "app/baseshell.html" %}
+{% load staticfiles%}
+
+{% block head %}
+	<link href="{% static 'reports/css/home.css' %}" rel="stylesheet"/>
+    <script src="{% static 'reports/scripts/highcharts.js' %}" type="text/javascript"></script>
+	<script src="{% static 'reports/scripts/highcharts-more.js' %}"></script>
+	<script src="{% static 'reports/scripts/solid-gauge.js' %}"></script>
+
+	<script src="{% static 'reports/scripts/progress_chart.js' %}"></script>
+	<script src="{% static 'reports/scripts/pass_trend_chart.js' %}"></script>
+	<script src="{% static 'reports/scripts/pie_chart.js' %}"></script>
+	<script src="{% static 'reports/scripts/column_chart.js' %}"></script>
+{% endblock %}
+
+{% block body %} 
+	<script type="text/javascript">
+		var chartData = {};
+		chartData["totalPass"]  = {{ totalPass }};
+        chartData["totalFail"]  = {{ totalFail }}; 
+        chartData["totalTotal"] = {{ totalTotal }};
+        chartData["passNums"]   = {{ passNums | safe }};
+        chartData["failNums"]   = {{ failNums | safe }};
+        chartData["jobNames"]   = {{ jobNames | safe }};
+        chartData["dates"]      = {{ dates | safe }};
+        chartData["from"]       = {{ from | safe }};
+        chartData["to"]         = {{ to | safe }};
+
+	    $(function() {
+            $("#datepicker-from").datepicker({ dateFormat: 'yy-mm-dd' }).val();
+            $("#datepicker-from").datepicker('setDate', new Date(chartData['from']));
+
+            $("#datepicker-to").datepicker({ dateFormat: 'yy-mm-dd' }).val();
+            $("#datepicker-to").datepicker('setDate', new Date(chartData['to']));
+        });
+	</script>
+
+	<form action="{% url 'Reports' %}" method="get">
+	{% csrf_token %}
+
+		<div class="row">
+	        <div class="col-md-12">
+	            <div class="col-md-4 report_title"></div>
+		        <table>
+			        <tr>
+			     	   <td> From </td>
+			        	<td><input type="text" id="datepicker-from" class="datepicker" name="q1" placeholder="yyyy-mm-dd"> </td>
+			        	<td> To </td>
+			        	<td><input type="text" id="datepicker-to" class="datepicker" name="q2" placeholder="yyyy-mm-dd"></td>
+			        	<td><input type="submit" value="Search"></td>
+			        </tr>
+		        </table>      
+	        </div>
+		</div>
+	    <div class="row">
+	        <div class="col-md-12">
+	            <div class="panel with-nav-tabs  ">
+	                <div class="panel-heading">
+	                    <ul class="nav nav-tabs">
+	                        <li class="">
+	                        	<div class="graph-container" id="container2"></div>
+							</li>
+	                        <li>
+	                        	<div class="graph-container" id="container1"></div>
+							</li>
+	                        <li>
+	                        	<div class="graph-container" id="container3"></div>
+	                        </li>
+	                        <li>
+	                        	<div class="graph-container" id="container4"></div>
+							</li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div> 
+	    </div>
+	</form>
+{% endblock %}
