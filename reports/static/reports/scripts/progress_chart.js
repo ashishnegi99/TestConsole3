@@ -8,7 +8,7 @@ $(function () {
             marginTop: 50
         },
         title: {
-            text: 'Progress Chart',
+            text: "Today's Progress Chart",
             style: {
                 fontSize: '24px'
             }
@@ -45,7 +45,7 @@ $(function () {
             lineWidth: 0,
             tickPositions: [],
             title: {
-                text: chartData.totalTotal,
+                text: chartData.todayTotal,
                 style: {
                     fontSize: '72px'
                 },
@@ -72,7 +72,7 @@ $(function () {
                 color: Highcharts.getOptions().colors[0],
                 radius: '100%',
                 innerRadius: '100%',
-                y: Math.round((chartData.totalPass / chartData.totalTotal) * 100)
+                y: Math.round((chartData.todayPass / chartData.todayTotal) * 100)
             }]
         }]
     },

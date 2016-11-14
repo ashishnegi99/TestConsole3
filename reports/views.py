@@ -14,11 +14,15 @@ def reports_home(request):
         date_from_str = request.GET['q1']
         date_to_str = request.GET['q2']
 
-    date_to = datetime.now() if not date_from_str else datetime.strptime(date_to_str, "%Y-%m-%d") 
+    today = datetime.now()    
+    date_to = today if not date_from_str else datetime.strptime(date_to_str, "%Y-%m-%d") 
     date_from = date_to + timedelta(days=-90) if not date_from_str else datetime.strptime(date_from_str, "%Y-%m-%d")
     
     
     db_response = racktestresult.objects.filter(Date__range = (date_from, date_to))
+    db_resp_today = racktestresult.objects.filter(Date__range = (today + timedelta(days=-1), today))
+    today_pass = db_resp_today.filter(Result = "PASS").count()
+    today_total = db_resp_today.count()
         
     total_pass = db_response.filter(Result = "PASS").count()
     total_fail = db_response.filter(Result = "FAIL").count()
@@ -37,6 +41,8 @@ def reports_home(request):
         request,
         "reports/home.html",
         {
+            "todayPass" : today_pass,
+            "todayTotal": today_total,
             "totalPass" : total_pass,
             "totalFail" : total_fail, 
             "totalTotal": total_total,

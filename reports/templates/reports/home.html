@@ -20,6 +20,8 @@
 {% block body %} 
 	<script type="text/javascript">
 		var chartData = {};
+		chartData["todayPass"]  = {{ todayPass }};
+        chartData["todayTotal"] = {{ todayTotal }};
 		chartData["totalPass"]  = {{ totalPass }};
         chartData["totalFail"]  = {{ totalFail }}; 
         chartData["totalTotal"] = {{ totalTotal }};
