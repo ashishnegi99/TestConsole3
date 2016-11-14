@@ -61,7 +61,6 @@ urlpatterns = patterns("",
     url(r"^Set_Top_Box", "app.views.GetSerialNum", name="Set_Top_Box"),
 
 
-
 ## Reports
     url(r"^Reports", "reports.views.reports_home", name="Reports"),
 
