@@ -43,8 +43,7 @@ urlpatterns = patterns("",
 
 
 ## Revo's
-    url(r"^Revo", "app.views.Revo_view", name="Revo"),
-    url(r"^revo123", "app.views.revohtml", name="revo123"),
+    url(r"^revo", "revo.views.home", name="revo"),
 
 ## Appium's
     url(r"^Appium", "app.views.Appium", name="Appium"),
