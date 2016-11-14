@@ -1,10 +1,10 @@
-$(document).ready(function(){
-$('input[type=checkbox]').click(function() {  
-	if(this.checked == true) { 
-		$(this).parent().addClass('activetab');
-	} else {
-		$(this).parent().removeClass('activetab');
-	}
+$(document).ready(function() {
+	$('input[type=checkbox]').click(function() {  
+		if(this.checked == true) { 
+			$(this).parent().addClass('activetab');
+		} else {
+			$(this).parent().removeClass('activetab');
+		}
 }); 
 
 $(':radio').change(function () {
