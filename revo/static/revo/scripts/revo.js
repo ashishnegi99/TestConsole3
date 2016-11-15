@@ -123,7 +123,7 @@ function stbststus1(){
           colorclass = "aborted";
 		      status = 'disabled';
         }
-            $("#testdataid").append("<tr><td><label class='checkbox'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' >"+item["Job No"]+" </label></td><td>"+item["Suite Name"]+"</td><td>"+item["Build No"]+"</td><td><p class = " + colorclass + ">" + item.Result + "</p></td><td>" + item.StartTime + "</td><td>" + item.EndTime + "</td><td>" + item.Duration +" </td><td data-editable=\"true\"><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td data-editable=\"true\"><a href=\"ReportsLink\">REPORT LINK</a></td></tr>");
+            $("#testdataid").append("<tr><td><label class='checkbox'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' >"+item["Job No"]+" </label></td><td>"+item["Suite Name"]+"</td><td>"+item["Build No"]+"</td><td><p class = " + colorclass + ">" + item.Result + "</p></td><td>" + item.StartTime + "</td><td>" + item.EndTime + "</td><td>" + item.Duration +" </td><td data-editable=\"true\"><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td data-editable=\"true\"><a href=\"ConsoleLink\">Console Output</a></td></tr>");
         });
     }); 
 }

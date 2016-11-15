@@ -48,6 +48,8 @@ urlpatterns = patterns("",
     url(r"^Json2", "revo.views.Json2", name="Json2"),
 #SetTopBox
     url(r"^Set_Top_Box", "revo.views.GetSerialNum", name="Set_Top_Box"),
+#Console output
+    url(r"^ConsoleLink", "revo.views.consolelink", name="ConsoleLink"),
 
 
 
@@ -61,7 +63,7 @@ urlpatterns = patterns("",
 ## Reports
     url(r"^Reports", "reports.views.reports_home", name="Reports"),
 ## Report's
-#    url(r"^ReportsLink", "app.views.reportslink", name="ReportsLink"),
+#    
 
 ##Admin
     url(r"^admin/", include(admin.site.urls)),

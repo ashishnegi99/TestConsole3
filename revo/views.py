@@ -36,11 +36,12 @@ def home(request):
         })
     )
 
-def reportslink(request):
+def  consolelink(request):
+    print "REVO LINK"
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        "testconsole/index.html",
+        "revo/revo.html",
         RequestContext(request, {
         })
     )   
@@ -53,21 +54,9 @@ def Revo_view(request):
         form = NameForm(request.POST)
     else:
         form = NameForm()
-    # print request.POST.getlist('check1')
-    # print request.POST.getlist('checks')
-    # ###start: passing username
-    # if request.method == 'POST':
-        # form = BootstrapAuthenticationForm(request.POST)
-    # else:
-        # form = BootstrapAuthenticationForm()
-
-    # username = request.POST.getlist('username')
-    # print username
-    ###end: passing username    
+    
     cd1 = "<command>"
     cd2 = "</command>"
-    # test_runner_path2 = "cd C:\git_new\evo_automation\ tests\TestRunner"
-    # report_location = "C:\git_new\evo_automation\ tests\TestRunner\ReportFile C:\git_new\evo_automation\ reports"
     mycommand2 = cd1 + "import time"+"\n" + "time.sleep(500)" + cd2
     myXML_1 = "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties><hudson.model.ParametersDefinitionProperty><parameterDefinitions><hudson.model.StringParameterDefinition><name>param1</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition><hudson.model.StringParameterDefinition><name>param2</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition></parameterDefinitions></hudson.model.ParametersDefinitionProperty></properties><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.plugins.python.Python plugin='python@1.3'><command>i am a new job</command></hudson.plugins.python.Python></builders><publishers/><buildWrappers/></project>"
     myXML = "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties/><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.plugins.python.Python plugin='python@1.3'><command>RawComamnd</command></hudson.plugins.python.Python></builders><publishers/><buildWrappers/></project>"
@@ -136,7 +125,7 @@ def Revo_view(request):
         count1 = count1+1
   
  
-    return HttpResponseRedirect("home")
+    return HttpResponseRedirect("revo")
  
     return render(request, 'revo/revo.html', {'form': form})
 ########################
@@ -308,16 +297,6 @@ def getJobStatus(request):
                 TestSuite = '...'
             Duration = '...'
             current_build_number = build_num
-#             if str(build_info['result']) == 'SUCCESS':
-#                 print"+++++    BUILD COMPLETED"
-#                 status = "JOB COMPLETED"
-#                 start_time = time.strftime('%m/%d/%Y %H:%M:%S',time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
-#                 end_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000)))
-#             elif str(build_info['result']) == 'FAILURE':
-#                 print"XXXXX    BUILD FAILED"
-#                 status = "JOB FAILED"
-#                 start_time = time.strftime('%m/%d/%Y %H:%M:%S',time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
-#                 end_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000))
             if str(build_info['result']) == 'None':
                 print"......   JOB IN PROGRESS"
                 status = "IN PROGRESS"
@@ -328,17 +307,7 @@ def getJobStatus(request):
                 start_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
                 end_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000)))
                 Duration= int(build_info['duration'])/1000
-#             else:
-#                 print "HOLA"
-#                 status = "HOLA"
-#                 print build_info['displayName']
-#                 start_time = '---------'
-#                 end_time = '---------'
-                
-#                 start_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
-#                 end_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000)))
             abc = (str(STB) + "," + str(TestSuite) + "," + str(current_build_number) + "," + str(status) + "," + start_time + "," + end_time + "," + str(Duration))
-#             if start_time < str(date.today()):
             m.write(abc + "\n")
     
     
@@ -361,7 +330,6 @@ def getJobStatus(request):
             counter_3 = counter_3+1
             
             abc = (str(STB) + "," + str(TestSuite) + "," + str(current_build_number) + "," + str(status) + "," + start_time + "," + end_time + "," + str(Duration))
-#             if start_time < str(date.today()):
             m.write(abc + "\n")
     
     
@@ -403,9 +371,8 @@ def stopJob(request):
     return render(
         request,
         "app/JobStatusFile.json",
-        RequestContext(request,
-                       {
-                       })
+        RequestContext(request,{
+        })
     )
 
 def StopMultipleJobs(request):
@@ -432,7 +399,7 @@ def StopMultipleJobs(request):
         counter_4 = counter_4+1
     assert isinstance(request, HttpRequest)
     
-    return HttpResponseRedirect("home")
+    return HttpResponseRedirect("revo")
  
     return render(
         request,
