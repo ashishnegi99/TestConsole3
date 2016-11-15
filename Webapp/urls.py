@@ -31,19 +31,25 @@ urlpatterns = patterns("",
     url(r"^home", "app.views.home", name="home"),
     url(r"^$", "app.views.home", name="home"),
 
-## StopMultipleJobs's
-    url(r"^StopMultipleJobs", "app.views.StopMultipleJobs", name="StopMultipleJobs"),
-
-## JobStatus's
-    url(r"^JobStatus", "app.views.getJobStatus", name="JobStatus"),
-
-## StopStatus's
-    url(r"^stopJob", "app.views.stopJob", name="stopJob"),
 
 
 
 ## Revo's
     url(r"^revo", "revo.views.home", name="revo"),
+## StopMultipleJobs's
+    url(r"^StopMultipleJobs", "revo.views.StopMultipleJobs", name="StopMultipleJobs"),
+## JobStatus's
+    url(r"^JobStatus", "revo.views.getJobStatus", name="JobStatus"),
+## StopStatus's
+    url(r"^stopJob", "revo.views.stopJob", name="stopJob"),
+## Json's
+    url(r"^Json", "revo.views.Json", name="Json"),
+## Json2's
+    url(r"^Json2", "revo.views.Json2", name="Json2"),
+#SetTopBox
+    url(r"^Set_Top_Box", "revo.views.GetSerialNum", name="Set_Top_Box"),
+
+
 
 ## Appium's
     url(r"^Appium", "app.views.Appium", name="Appium"),
@@ -51,19 +57,9 @@ urlpatterns = patterns("",
 ## Storm's
     url(r"^Storm", "app.views.Storm", name="Storm"),
 
-## Json's
-    url(r"^Json", "app.views.Json", name="Json"),
-
-## Json2's
-   # url(r"^Json2", "app.views.Json2", name="Json2"),
-
-#SetTopBox
-    url(r"^Set_Top_Box", "app.views.GetSerialNum", name="Set_Top_Box"),
-
 
 ## Reports
     url(r"^Reports", "reports.views.reports_home", name="Reports"),
-
 ## Report's
 #    url(r"^ReportsLink", "app.views.reportslink", name="ReportsLink"),
 

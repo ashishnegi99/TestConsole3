@@ -3,14 +3,16 @@
 
 {% block head %}
     <script src="{% static 'revo/scripts/revo.js' %}"></script>
+    <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>
     
     <script src="{% static 'app/scripts/footable-components.latest/footable.core.js'%}"></script>
     <script src="{% static 'app/scripts/footable-components.latest/footable.sorting.js'%}"></script>    
-    <link rel="stylesheet" href="{% static 'app/content/footable-components.latest/footable.core.bootstrap.css'%}">
-
+    <!-- <link rel="stylesheet" href="{% static 'app/content/footable-components.latest/footable.core.bootstrap.css'%}"> -->
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"/> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+     
     <style>
-        .scrollingBody{
+/*        .scrollingBody{
             position:absolute;
             overflow:auto;
             height:350px;
@@ -19,286 +21,119 @@
         .progress.active .progress-bar {
             -webkit-transition: none !important;
             transition: none !important;
-        }
+        }*/
     </style>
 
+    <!-- <script src="{% static 'revo/scripts/layout.js' %}"></script> -->
+    
 {% endblock %}
 
 {% block body %} 
-    <form action="{% url 'revo' %}" method="post">
-    {% csrf_token %}
+<div class=" subdiv">
+        <div class="row">
 
-		<div class="revo-page">
-				<div class="row">
-					<div class="col-md-12">
-            <div class="col-md-3">
-					<p class="revo_title">Device</p>
-							<form>
-								<div class="multiselect center-block form-control">
-									<div class="selectBox" class="selection">
-										<div class="overSelect"></div>
-									</div>
-									<div id="checkboxes">
-										<label for="roundedOne" class="revo_checkbox "><input type="checkbox" value="VMS1100-1" id="roundedOne" name="check" onclick="checkStatus(this)"/>&nbsp;VMS1100-1<i aria-hidden="true" class="fa fa-circle pull-right  available"></i></label>
-										<label for="VMS1100-1" class="revo_checkbox"><input type="checkbox" value="VMS1100-1" id="VMS1100-1"  onclick="checkStatus(this)"/>&nbsp;VMS1100-1<i aria-hidden="true" class="fa fa-circle pull-right  available"></i></label>
-										<label for="IPC-1" class="revo_checkbox"><input type="checkbox" value="IPC-1" id="IPC-1"  onclick="checkStatus(this)"/>&nbsp;IPC-1<i aria-hidden="true" class="fa fa-circle pull-right  ready"></i></label>
-										<label for="IPC-2" class="revo_checkbox"><input type="checkbox" value="IPC-2" id="IPC-2"  onclick="checkStatus(this)"/>&nbsp;IPC-2<i aria-hidden="true" class="fa fa-circle pull-right  offline"></i></label>
-									</div>
-								</div>
-							</form>
-						</div>
+            <form action="{% url 'revo' %}" method="post">
+                {% csrf_token %}
 
-            <div class="col-md-3">
-							<p class="revo_title">Test Suites|Case</p>
-							<form> 
-								<div class="multiselect center-block form-control">
-									<div class="selectBox" class="selection">
-										<div class="overSelect"></div>
-									</div>
-									
-									<div id="checkboxes" class="dropdown">
-										<nav>
-											<label for="Suite_1" class="revo_dropdown">
-												<input type="checkbox" id="Suite_1" onclick="checkStatus(this)"/>&nbsp; Test Suite 1
-											</label>		
-											<label for="Suite_2" class="revo_dropdown">
-												<a id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false"><input type="checkbox" id="Suite_2" onclick="checkStatus(this)"/></a>
-												+ Test Suite 2
-												<ul class="nav collapse revo_testcase" id="submenu1" role="menu" aria-labelledby="btn-1">
-													<li>
-														<label class="checkbox">
-															<input type="checkbox" id="Case_1" class="case" onclick="checkStatus(this)"/>&nbsp; Test Case 1
-														</label>
-													</li>
-													<li>
-														<label class="checkbox">
-															<input type="checkbox" id="Case_2" class="case" onclick="checkStatus(this)"/>&nbsp; Test Case 2
-														</label>
-													</li>
-													<li>
-														<label class="checkbox">
-															<input type="checkbox" id="Case_3" class="case" onclick="checkStatus(this)"/>&nbsp; Test Case 3
-														</label>
-													</li>
-													<li>
-														<label class="checkbox">
-															<input type="checkbox" id="Case_4" class="case" onclick="checkStatus(this)"/>&nbsp; Test Case 4
-														</label>
-													</li>
-												</ul>
-											</label>
-											<label for="Suite_3" class="revo_dropdown"><input type="checkbox" id="Suite_3" onclick="checkStatus(this)"/>
-												 Test Suite 3
-											</label>
-											<label for="Suite_4" class="revo_dropdown"><input type="checkbox" id="Suite_4" onclick="checkStatus(this)"/>
-												 Test Suite 4
-											</label>
-										</nav>
-									</div>
-								</div>
-							</form>
-						</div>
-						 <div class="col-md-3">
-                <div class="runquote">
-                    <input type="image" name="submit" img src="{% static 'app/images/run.png' %}" alt="Submit" />
+                <div class="col-md-3">
+                    <div class="quote-box">
+                        <p class="quotation-mark">
+                            Set Top Box
+                            <span class="pull-right"><img src="{% static 'app/images/settopbox.png' %}"></span>
+                        </p>
+                        <hr>
+
+                        <Div class="quote-text scroller" id="STBStatus">
+                        </Div>
+
+                        <div class="">
+                            <div class="buttonHolder" onclick="stbststus()">
+                                <p><a href="Set_Top_Box" class="btn btn-primary btn-large">Get Settopbox Status &raquo;</a></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-					</div>
-				</div>
-			</div>	           
-		
-			<div class="col-md-12 divsub">
-				<div class="quote-box scroller-text scroller">
-					<table class="table job-status_table scrollingTable" data-sorting="true">
-						<thead class="scrollingHead">
-							<tr>
-								<th data-sortable="false" style="text-align:center;padding:10px;width:30px">
-									
-								</th>
-								<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB NAME</th>
-								<th data-breakpoints="xs" style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">SUITE NAME</th>
-								<th data-breakpoints="xs sm md" style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">BUILD #</th>
-								<th data-breakpoints="xs sm md" style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">RESULT</th>
-								<th data-breakpoints="xs sm md" style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB START TIME</th>
-								<th data-breakpoints="xs sm" style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB END TIME</th>
-								<th data-breakpoints="xs sm md" style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">DURATION</th>
-								<th data-breakpoints="xs sm md" style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">STOP JOB</th>
-								<th data-sortable="false" style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">
-								REPORTS &nbsp; &nbsp;<i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer"></i>
-								</th>
-							</tr>
-						</thead>
-						<tbody class="scrollingBody" id="testdataid" >
+
+                <div class="col-md-3">
+                    <div class="quote-box">
+                        <p class="quotation-mark">
+                            Test Suite
+                            <span class="pull-right"><img src="{% static 'app/images/suite.png' %}"></span>
+                        </p>
+                        <hr>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE01">REG_AGREED_SUITE01
+                        </label>
+                        <hr>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE02">REG_AGREED_SUITE02
+                        </label>
+                        <hr>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE03">REG_AGREED_SUITE03
+                        </label>
+                        <hr>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE04">REG_AGREED_SUITE04
+                        </label>
+                        <hr>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE05">REG_AGREED_SUITE05
+                        </label>
+                        <hr>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE06">REG_AGREED_SUITE06
+                        </label>
+                        <hr>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE07">REG_AGREED_SUITE07
+                        </label>
+                        <hr>
+                        <label class="checkbox">
+                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE08">REG_AGREED_SUITE08
+                        </label>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="quote-box runquote">
+                        <input type="image" name="submit" img src="{% static 'app/images/run.png' %}" alt="Submit" />
+                    </div>
+                </div>
+            </form>
+
+    		<form action="{% url 'StopMultipleJobs' %}" method="post">
+                {% csrf_token %}	
+                <div class="col-md-12 divsub">
+                    <div class="quote-box">
+                        <div class="quote-text scroller">
+                            <table class="table job-status_table" data-sorting="true">
+                                <thead>
+                                    <tr>        
+            							<th ><p class = "quotation-mark"> JOB NAME</p></th>
+                                        <th ><p class = "quotation-mark"> SUITE NAME</p></th>
+                                        <th ><p class = "quotation-mark"> BUILD #</p></th>
+                                        <th ><p class = "quotation-mark"> RESULT</p></th>
+                                        <th ><p class=  "quotation-mark"> JOB START TIME</p></th>
+                                        <th ><p class = "quotation-mark"> JOB END TIME</p></th>
+                                        <th ><p class = "quotation-mark" data-sortable="false">DURATION</p></th>
+                                        <!-- <th ><p class = "quotation-mark" data-sortable="false">USER</p></th> -->
+                                        <th ><p class = "quotation-mark" data-sortable="false">STOP JOB</p></th>
+                                        <th ><p class = "quotation-mark" data-sortable="false">
+                                            REPORTS &nbsp; &nbsp;<i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
+                                        </p></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="quote-text scroller" id="testdataid"/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+        		<div class="col-md-4 divsub"></div>
+        		<div class="col-md-2 divsub"><input type="image" name="submit" img="" src="/static/app/images/Stop.png" alt="Submit"></div>
+    		</form>
 	
-							<tr>
-								<td class="scroll_td" style="text-align:center;cursor:pointer;padding:10px"><input type="checkbox" name="check[]" class="checkbox" value="" disabled></td>
-								<td style="text-align:center;cursor:pointer;padding:10px">hello_1</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">unknown</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">64</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">IN PROGRESS</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">
-									10/23/2016 12:38:50
-								</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">
-									10/23/2016 13:38:50
-								</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">unknown: Secs</td>
-								<td style="text-align:center;cursor:pointer;padding:10px"><button data-role="button" class="btn_stop btn btn-danger">Stop</button> </td>
-								<td style="text-align:center;cursor:pointer;padding:10px"><a href="#">REPORT LINK</a></td>
-							</tr>
-							<tr>
-								<td class="scroll_td" style="text-align:center;cursor:pointer;padding:10px"><input type="checkbox" name="check[]" class="checkbox" value=""></td>
-								<td style="text-align:center;cursor:pointer;padding:10px">hello_1</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">unknown</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">64</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">ABORTED</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">
-									10/23/2016 22:38:50
-								</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">
-									11/23/2016 02:38:50
-								</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">82 Secs</td>
-								<td style="text-align:center;cursor:pointer;padding:10px"><button data-role="button" class="btn_stop btn btn-danger">Stop</button> </td>
-								<td style="text-align:center;cursor:pointer;padding:10px"><a href="#">REPORT LINK</a></td>
-							</tr>
-							<tr>
-								<td class="scroll_td" style="text-align:center;cursor:pointer;padding:10px"><input type="checkbox" name="check[]" class="checkbox" value="" disabled></td>
-								<td style="text-align:center;cursor:pointer;padding:10px">sample</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">unknown</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">164</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">IN PROGRESS</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">
-									10/23/2016 9:04 AM
-								</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">
-									----
-								</td>
-								<td style="text-align:center;cursor:pointer;padding:10px">76 Secs</td>
-								<td style="text-align:center;cursor:pointer;padding:10px"><button data-role="button" class="btn_stop btn btn-danger">Stop</button> </td>
-								<td style="text-align:center;cursor:pointer;padding:10px"><a href="#">REPORT LINK</a></td>
-							</tr>
-							<tr>
-							<td class="scroll_td" style="text-align:center;cursor:pointer;padding:10px"><input type="checkbox" name="check[]" class="checkbox" value=""></td>
-							<td style="text-align:center;cursor:pointer;padding:10px">hello_1</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">unknown</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">966</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">SUCCESS</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								10/23/2016 9:04 AM
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								----
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">34 Secs</td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><button data-role="button" class="btn_stop btn btn-danger">Stop</button> </td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><a href="#">REPORT LINK</a></td>
-						</tr>
-						<tr>
-							<td class="scroll_td" style="text-align:center;cursor:pointer;padding:10px"><input type="checkbox" name="check[]" class="checkbox" value=""></td>
-							<td style="text-align:center;cursor:pointer;padding:10px">hello_1</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">unknown</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">62</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">SUCCESS</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								10/23/2016 9:04 AM
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								----
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">121 Secs</td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><button data-role="button" class="btn_stop btn btn-danger">Stop</button> </td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><a href="#">REPORT LINK</a></td>
-						</tr>
-						<tr>
-							<td class="scroll_td" style="text-align:center;cursor:pointer;padding:10px"><input type="checkbox" name="check[]" class="checkbox" value=""></td>
-							<td style="text-align:center;cursor:pointer;padding:10px">hello_1</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">unknown</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">64</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">ABORTED</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								10/23/2016 9:04 AM
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								----
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">121 Secs</td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><button data-role="button" class="btn_stop btn btn-danger">Stop</button> </td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><a href="#">REPORT LINK</a></td>
-						</tr>
-						<tr>
-							<td class="scroll_td" style="text-align:center;cursor:pointer;padding:10px"><input type="checkbox" name="check[]" class="checkbox" value=""></td>
-							<td style="text-align:center;cursor:pointer;padding:10px">hello_1</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">unknown</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">61</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">SUCCESS</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								10/23/2016 9:04 AM
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								----
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">56 Secs</td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><button data-role="button" class="btn_stop btn btn-danger">Stop</button> </td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><a href="#">REPORT LINK</a></td>
-						</tr>
-						<tr>
-							<td class="scroll_td" style="text-align:center;cursor:pointer;padding:10px"><input type="checkbox" name="check[]" class="checkbox" value="" disabled></td>
-							<td style="text-align:center;cursor:pointer;padding:10px">hello_1</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">unknown</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">64</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">IN PROGRESS</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								10/23/2016 9:04 AM
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								----
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">123 Secs</td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><button data-role="button" class="btn_stop btn btn-danger">Stop</button> </td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><a href="#">REPORT LINK</a></td>
-						</tr>
-						<tr>
-							<td class="scroll_td" style="text-align:center;cursor:pointer;padding:10px"><input type="checkbox" name="check[]" class="checkbox" value=""></td>
-							<td style="text-align:center;cursor:pointer;padding:10px">hello_2</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">unknown</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">64</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">SUCCESS</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								10/23/2016 9:04 AM
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								----
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">121 Secs</td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><button data-role="button" class="btn_stop btn btn-danger">Stop</button> </td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><a href="#">REPORT LINK</a></td>
-						</tr>
-						<tr>
-							<td class="scroll_td" style="text-align:center;cursor:pointer;padding:10px"><input type="checkbox" name="check[]" class="checkbox" value=""></td>
-							<td style="text-align:center;cursor:pointer;padding:10px">sample</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">unknown</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">64</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">SUCCESS</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								10/23/2016 9:04 AM
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">
-								----
-							</td>
-							<td style="text-align:center;cursor:pointer;padding:10px">121 Secs</td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><button data-role="button" class="btn_stop btn btn-danger">Stop</button> </td>
-							<td style="text-align:center;cursor:pointer;padding:10px"><a href="#">REPORT LINK</a></td>
-						</tr>
-						</tbody>
-					</table>
-				</div>
-				
-			</div>
+	   </div>
     </div>
-</div>
-							
-</div>
-</div>
-</form>
 {% endblock %}
