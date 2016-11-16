@@ -36,16 +36,16 @@
             <form action="{% url 'revo' %}" method="post">
                 {% csrf_token %}
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="quote-box">
                         <p class="quotation-mark">
-                            Set Top Box
+                            SET TOP BOX
                             <span class="pull-right"><img src="{% static 'app/images/settopbox.png' %}"></span>
                         </p>
                         <hr>
 
-                        <Div class="quote-text scroller" id="STBStatus">
-                        </Div>
+                        <div class="quote-text scroller" id="STBStatus">
+                        </div>
 
                         <div class="">
                             <div class="buttonHolder" onclick="stbststus()">
@@ -55,12 +55,13 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="quote-box">
                         <p class="quotation-mark">
-                            Test Suite
+                            TEST SUITE
                             <span class="pull-right"><img src="{% static 'app/images/suite.png' %}"></span>
                         </p>
+                        <div class="quote-text scroller" id="STBStatus">
                         <hr>
                         <label class="checkbox">
                             <input type="checkbox" name="checks" value="REG_AGREED_SUITE01">REG_AGREED_SUITE01
@@ -94,6 +95,7 @@
                             <input type="checkbox" name="checks" value="REG_AGREED_SUITE08">REG_AGREED_SUITE08
                         </label>
                         <hr>
+                        </div>
                     </div>
                 </div>
 
@@ -163,4 +165,26 @@
     		</form>
 	   </div>
     </div>
+
+    <!-- Trigger the modal with a button -->
+<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Jenkins Console Output</h4>
+	      </div>
+	      <div id="revo-modal-content" class="modal-body">
+	        
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
 {% endblock %}

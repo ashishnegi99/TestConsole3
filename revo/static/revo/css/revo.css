@@ -166,7 +166,7 @@ font-weight:bold;
     margin-left: 20px;
 }
  .below-box{ 
-   background-image: url(../images/box1.png);  
+   background-image: url(../../images/box1.png);  
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat; 
@@ -177,13 +177,13 @@ font-weight:bold;
     padding: 10px 0px;
 }
 .activetab{ 
-   background-image: url(../images/highlight.png);  
+   background-image: url(../../images/highlight.png);  
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat; 
 }
 label.radio:hover,label.checkbox:hover{
- background-image: url(../images/highlight.png);  
+ background-image: url(../../images/highlight.png);  
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -191,12 +191,13 @@ label.radio:hover,label.checkbox:hover{
  .quotation-mark{
   color: #cd040b;
   padding: 0px 8px;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: bold;
  }
  .quotation-mark2{
-  color: #cd040b;
-  padding: 0px 8px;
-font-size: 16px;
+  	color: #cd040b;
+  	padding: 0px 8px;
+	font-size: 16px;
  }
  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
   padding: 0px;
@@ -225,18 +226,18 @@ tbody.scroller.testsum>tr>td.col-xs-8>p{
  }
  
 .quote-text{
-   height: 228px;
-        overflow-y: auto;
+   max-height: 228px;
+   overflow-y: auto;
 }
 .runquote{
-  background-image: inherit;
-      text-align: -webkit-center;
+  	background-image: inherit;
+  	text-align: -webkit-center;
     margin-top: 50%;
     border: 0px;
 }
  
 .subhead>.pull-right{
-padding-right:44px;
+	padding-right:44px;
 }
 .subhead{
   background: #cdcdcd;
@@ -252,7 +253,7 @@ padding-right:44px;
 
 }
 input:checked :parent { 
-   background-image: url(../images/highlight.png);  
+   background-image: url(../../images/highlight.png);  
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat; 
@@ -289,10 +290,10 @@ input[type=radio]:checked< div.radio { background: #cdcdcd; }
   cursor: pointer; 
 }
 .runbutton:hover{
-content: url('../images/run-hover.png');
+content: url('../../images/run-hover.png');
 }
 .runbutton:active {
-   content: url('../images/run-press.png');
+   content: url('../../images/run-press.png');
 }
 @media only screen and (max-width: 769px) {
    .runquote{
@@ -329,4 +330,22 @@ input.input-validation-error {
 
 input[type="checkbox"].input-validation-error {
     border: 0 none;
+}
+
+#myModal .modal-dialog {
+  width:50%;
+  height: 100%;
+  padding: 0;
+}
+
+#myModal .modal-content {
+  min-height: 70%;
+  height:auto;
+  border-radius: 0;
+}
+
+#myModal {
+	top:25%;
+	right:0%;
+	outline: none;
 }

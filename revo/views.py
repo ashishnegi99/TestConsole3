@@ -1,30 +1,27 @@
 from django.shortcuts import render
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
+from django.db.models import Avg
+from django.db.models import Sum, Avg, Count
+from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
 from datetime import datetime, date, timedelta
 from app.forms import UserForm, NameForm, BootstrapAuthenticationForm
 from app.models import Storm, Appium, Revo, Set_Top_Box, racktestresult
-from django.contrib.auth.decorators import login_required
+from xml.etree import ElementTree as ET
+from xml.dom.minidom import parse
 import jenkins
 import urllib2
 import urllib
-from xml.etree import ElementTree as ET
-from xml.dom.minidom import parse
 import socket
 import time
 import string
 import re
-from xml.etree import ElementTree as ET
-from xml.dom.minidom import parse
 import os
 import io
 import csv
 import json
 import json as simplejson
-from django.db.models import Avg
-from django.db.models import Sum, Avg, Count
-from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
 
 @login_required
 def home(request):
@@ -37,14 +34,12 @@ def home(request):
     )
 
 def  consolelink(request):
-    print "REVO LINK"
     assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        "revo/revo.html",
-        RequestContext(request, {
-        })
-    )   
+    job = request.GET["job"]
+    build = int(request.GET["build"])
+    server = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
+    output = server.get_build_console_output(job, build)
+    return HttpResponse(output)   
     
 ########################
 ## Start: Revo Views  ##

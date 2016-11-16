@@ -35,21 +35,8 @@ urlpatterns = patterns("",
 
 
 ## Revo's
-    url(r"^revo", "revo.views.home", name="revo"),
-## StopMultipleJobs's
-    url(r"^StopMultipleJobs", "revo.views.StopMultipleJobs", name="StopMultipleJobs"),
-## JobStatus's
-    url(r"^JobStatus", "revo.views.getJobStatus", name="JobStatus"),
-## StopStatus's
-    url(r"^stopJob", "revo.views.stopJob", name="stopJob"),
-## Json's
-    url(r"^Json", "revo.views.Json", name="Json"),
-## Json2's
-    url(r"^Json2", "revo.views.Json2", name="Json2"),
-#SetTopBox
-    url(r"^Set_Top_Box", "revo.views.GetSerialNum", name="Set_Top_Box"),
-#Console output
-    url(r"^ConsoleLink", "revo.views.consolelink", name="ConsoleLink"),
+    url(r'^revo/', include('revo.urls')),
+    # url(r"^revo", "revo.views.home", name="revo"),
 
 
 
