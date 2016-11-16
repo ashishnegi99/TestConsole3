@@ -120,7 +120,7 @@ def Revo_view(request):
         count1 = count1+1
   
  
-    return HttpResponseRedirect("revo")
+    return HttpResponseRedirect("/revo")
  
     return render(request, 'revo/revo.html', {'form': form})
 ########################
@@ -394,7 +394,7 @@ def StopMultipleJobs(request):
         counter_4 = counter_4+1
     assert isinstance(request, HttpRequest)
     
-    return HttpResponseRedirect("revo")
+    return HttpResponseRedirect("/revo")
  
     return render(
         request,
