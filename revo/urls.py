@@ -3,8 +3,10 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', views.home, name='revo'),
-
-	url(r'^console/$', views.consolelink, name='consolelink'),
+    
+    url(r'^revo_view/$', views.revo_view, name='revo_view'),
+	
+    url(r'^console/$', views.consolelink, name='consolelink'),
 	## StopMultipleJobs's
     url(r"^StopMultipleJobs", views.StopMultipleJobs, name="StopMultipleJobs"),
 ## JobStatus's

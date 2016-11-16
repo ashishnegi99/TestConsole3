@@ -44,7 +44,7 @@ def  consolelink(request):
 ########################
 ## Start: Revo Views  ##
 ########################
-def Revo_view(request):
+def revo_view(request):
     if request.method == 'POST':
         form = NameForm(request.POST)
     else:

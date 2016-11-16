@@ -7,33 +7,15 @@
     
     <script src="{% static 'app/scripts/footable-components.latest/footable.core.js'%}"></script>
     <script src="{% static 'app/scripts/footable-components.latest/footable.sorting.js'%}"></script>    
-    <!-- <link rel="stylesheet" href="{% static 'app/content/footable-components.latest/footable.core.bootstrap.css'%}"> -->
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css"/> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
      
-    <style>
-/*        .scrollingBody{
-            position:absolute;
-            overflow:auto;
-            height:350px;
-            width:100%;
-        }
-
-        .progress.active .progress-bar {
-            -webkit-transition: none !important;
-            transition: none !important;
-        }*/
-    </style>
-
-    <!-- <script src="{% static 'revo/scripts/layout.js' %}"></script> -->
-    
 {% endblock %}
 
 {% block body %} 
-<div class=" subdiv">
+    <div class=" subdiv">
         <div class="row">
 
-            <form action="{% url 'revo' %}" method="post">
+            <form action="{% url 'revo_view' %}" method="post">
                 {% csrf_token %}
 
                 <div class="col-md-4">
@@ -138,11 +120,10 @@
 							
 						</table>
 						<script>
-							$( window ).resize(function() {
+							$(window).resize(function() {
 								setTimeout( function(){var count=1;
 									$(".scrollingHead").find('tr>th').each(function( event ) {				
 										var thWdith=$(this).outerWidth();
-										//console.log(count+'dddddd');
 										$(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);				
 										count++;
 									});
@@ -152,7 +133,6 @@
 								var count=1;
 								$(".scrollingHead").find('tr>th').each(function( event ) {				
 									var thWdith=$(this).outerWidth();
-									//console.log(count+'dddddd');
 									$(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);				
 									count++;
 								});
@@ -165,10 +145,6 @@
     		</form>
 	   </div>
     </div>
-
-    <!-- Trigger the modal with a button -->
-<!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
-
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
