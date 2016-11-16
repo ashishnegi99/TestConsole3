@@ -45,7 +45,7 @@ def Storm(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        "app/layout.html",
+        "app/coming_soon.html",
         RequestContext(request,
         {
             "title":"Storm",
@@ -59,12 +59,35 @@ def Appium(request):
     assert isinstance(request, HttpRequest)
     return render(
         request,
-        "app/layout.html",
-        RequestContext(request,
-        {
+        "app/coming_soon.html",
+        RequestContext(request, {
             "title":"Appium",
             "message":"Stuff about Appium goes here.",
             "year":datetime.now().year,
+        })
+    )
+
+
+@login_required
+def device(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        "app/device.html",
+        RequestContext(request, {
+         
+        })
+    )
+
+
+@login_required
+def test_suites(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        "app/test_suites.html",
+        RequestContext(request, {
+            
         })
     )
 

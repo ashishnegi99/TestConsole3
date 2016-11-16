@@ -27,18 +27,16 @@ urlpatterns = patterns("",
         },
         name="logout"),
 
-##Test Console
+##Test Console main app
     url(r"^home", "app.views.home", name="home"),
     url(r"^$", "app.views.home", name="home"),
 
-
-
+## Configurations
+    url(r"^device", "app.views.device", name="device"),
+    url(r"^test_suites", "app.views.test_suites", name="test_suites"),
 
 ## Revo's
     url(r'^revo/', include('revo.urls')),
-    # url(r"^revo", "revo.views.home", name="revo"),
-
-
 
 ## Appium's
     url(r"^Appium", "app.views.Appium", name="Appium"),
@@ -46,11 +44,8 @@ urlpatterns = patterns("",
 ## Storm's
     url(r"^Storm", "app.views.Storm", name="Storm"),
 
-
 ## Reports
     url(r"^Reports", "reports.views.reports_home", name="Reports"),
-## Report's
-#    
 
 ##Admin
     url(r"^admin/", include(admin.site.urls)),
