@@ -47,7 +47,8 @@
 		<div class="reports-page">
 	        <div class="row">
 	            <div class="col-md-12">
-	                <div class="col-md-2 report_title">
+	                
+					<div class="col-md-2 report_title">
 	                    <p>Tool</p>
 	                    <select class="center-block title_dropdown form-control">
 	                      <option>Revo</option>
@@ -55,18 +56,21 @@
 	                      <option>Appium</option>
 	                    </select>
 	                </div>
-	               <div class="col-md-2 report_title">
+	               <div class="col-md-3 report_title">
 						<p>From</p>
 						<input type="text" id="datepicker-from" class="form-control" placeholder="dd/mm/yy">
 					</div>
-					<div class="col-md-2 report_title">
+					<div class="col-md-3 report_title">
 						<p>To</p>
 						<input type="text" id="datepicker-to" class="form-control" placeholder="dd/mm/yy">
+						
 					</div>
-					<div class="col-md-2 report_title">
-						<p> Submit </p>
+					<div class="col-md-1 report_title">
+						<p>&nbsp;</p>
+						
 						<input type="submit" value="Search">
 					</div>
+					
 	            </div>
 	        </div>
 	    </div>
@@ -74,20 +78,26 @@
 	        <div class="col-md-12">
 	            <div class="panel with-nav-tabs  ">
 	                <div class="panel-heading">
-	                    <ul class="nav nav-tabs">
-	                        <li class="">
-	                        	<div class="graph-container" id="container2"></div>
-							</li>
-	                        <li>
-	                        	<div class="graph-container" id="container1"></div>
-							</li>
-	                        <li>
-	                        	<div class="graph-container" id="container3"></div>
-	                        </li>
-	                        <li>
-	                        	<div class="graph-container" id="container4"></div>
-							</li>
-	                    </ul>
+	                    <div class="col-md-6">
+							<ul class="nav nav-tabs">
+								<li class="">
+									<div class="graph-container" id="container2"></div>
+								</li>
+								<li>
+									<div class="graph-container" id="container1"></div>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-6">
+							<ul class="nav nav-tabs">
+								<li>
+									<div class="graph-container" id="container3"></div>
+								</li>
+								<li>
+									<div class="graph-container" id="container4"></div>
+								</li>
+							</ul>
+						</div>
 	                </div>
 	            </div>
 	        </div> 

@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
 {% if user.is_authenticated %}
-    <form id="logoutForm" action="/logout" method="post" class="navbar-right">
+    <form id="logoutForm" action="/logout" method="post">
         {% csrf_token %}
         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hello {{ user.username }}</div>
         <div class="email">{{ user.email }}</div>

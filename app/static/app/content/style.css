@@ -2394,7 +2394,8 @@ a {
   animation: none !important; }
 
 section.content {
-  margin: 100px 15px 0 315px;
+  /*margin: 100px 15px 0 315px;*/
+  margin: 100px 15px 0 260px;
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
   -webkit-transition: 0.5s;
@@ -7178,7 +7179,8 @@ fieldset[disabled] .form-control {
   transition: all 0.5s;
   font-family: "Roboto", sans-serif;
   background: #fdfdfd;
-  width: 300px;
+  /*width: 300px;*/
+  width : 250px;
   overflow: hidden;
   display: inline-block;
   height: calc(100vh - 70px);
@@ -7322,13 +7324,15 @@ fieldset[disabled] .form-control {
         -o-transform: scale(1);
         -webkit-transform: scale(1);
         transform: scale(1); }
-      .sidebar .menu .list a {
+       .sidebar .menu .list a {
         color: #747474;
         position: relative;
         display: inline-flex;
         vertical-align: middle;
         width: 100%;
-        padding: 10px 13px; }
+        /*padding: 10px 13px;*/
+		padding: 10px 13px 0px 5px;
+		}
         .sidebar .menu .list a:hover, .sidebar .menu .list a:active, .sidebar .menu .list a:focus {
           text-decoration: none !important; }
         .sidebar .menu .list a small {

@@ -105,25 +105,30 @@ function stbststus1(){
 		var status;
         if(item.Result == "SUCCESS"){
           colorclass = "available";
+		  linkclass = "";
   		    status = "";
         }
         if(item.Result == "FAILURE"){
           colorclass = "offline";
+		  linkclass = "linkclass";
           status = 'disabled';
 		}
         if(item.Result == "IN PROGRESS"){
          colorclass = "progress";
+		 linkclass = "linkclass";
           status = '';
 		}
         if(item.Result == "IN QUEUE"){
           colorclass = "queue";
+		  linkclass = "linkclass";
 		      status = '';
         }
         if(item.Result == "ABORTED"){
           colorclass = "aborted";
+		  linkclass = "linkclass";
 		      status = 'disabled';
         }
-            $("#testdataid").append("<tr><td><label class='checkbox'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' >"+item["Job No"]+" </label></td><td>"+item["Suite Name"]+"</td><td>"+item["Build No"]+"</td><td><p class = " + colorclass + ">" + item.Result + "</p></td><td>" + item.StartTime + "</td><td>" + item.EndTime + "</td><td>" + item.Duration +" </td><td data-editable=\"true\"><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td data-editable=\"true\"><a href=\"ConsoleLink\">Console Output</a></td></tr>");
+            $("#testdataid").append("<tr><td width='80px' style='vertical-align:middle'><label class='checkbox'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' >"+item["Job No"]+" </label></td><td width='120px' style='vertical-align:middle'>"+item["Suite Name"]+"</td><td width='96px' style='vertical-align:middle'>"+item["Build No"]+"</td><td width='95px'><p class = " + colorclass + " style='vertical-align:middle'>" + item.Result + "</p></td><td width='162px' style='vertical-align:middle'>" + item.StartTime + "</td><td width='147px' style='vertical-align:middle'>" + item.EndTime + "</td><td width='85px' style='vertical-align:middle'>" + item.Duration +" </td><td width='84px' style='vertical-align:middle' data-editable=\"true\"><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td width='125px' data-editable=\"true\" style='vertical-align:middle'><a href=\"ConsoleLink\" class="+ linkclass +">Console Output</a></td></tr>");
         });
     }); 
 }

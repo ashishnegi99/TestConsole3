@@ -1,8 +1,10 @@
 .scrollingBody{
     position:absolute;
     overflow:auto;
-    height:350px;
-    width:100%;
+	
+    /*height:350px;*/
+	height: 170px;
+    width:95%;
 }
 .progress.active .progress-bar {
     -webkit-transition: none !important;
@@ -39,6 +41,10 @@
 }
 .In.use{
   color:#F9FF00;
+}
+
+.linkclass{
+	pointer-events: none;
 }
 
 .job-status_table p,
@@ -148,7 +154,7 @@ font-weight:bold;
   border-bottom: 0px;
 } 
 .quote-box{
-    background-image: url(../images/box1.png);  
+    background-image: url(../../images/box1.png);  
     background-position: center;
     background-size: 100% 100%;
     background-repeat: no-repeat; 

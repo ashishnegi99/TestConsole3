@@ -18,6 +18,7 @@
             height:350px;
             width:100%;
         }
+
         .progress.active .progress-bar {
             -webkit-transition: none !important;
             transition: none !important;
@@ -106,34 +107,60 @@
     		<form action="{% url 'StopMultipleJobs' %}" method="post">
                 {% csrf_token %}	
                 <div class="col-md-12 divsub">
-                    <div class="quote-box">
-                        <div class="quote-text scroller">
-                            <table class="table job-status_table" data-sorting="true">
-                                <thead>
-                                    <tr>        
-            							<th ><p class = "quotation-mark"> JOB NAME</p></th>
-                                        <th ><p class = "quotation-mark"> SUITE NAME</p></th>
-                                        <th ><p class = "quotation-mark"> BUILD #</p></th>
-                                        <th ><p class = "quotation-mark"> RESULT</p></th>
-                                        <th ><p class=  "quotation-mark"> JOB START TIME</p></th>
-                                        <th ><p class = "quotation-mark"> JOB END TIME</p></th>
-                                        <th ><p class = "quotation-mark" data-sortable="false">DURATION</p></th>
-                                        <!-- <th ><p class = "quotation-mark" data-sortable="false">USER</p></th> -->
-                                        <th ><p class = "quotation-mark" data-sortable="false">STOP JOB</p></th>
-                                        <th ><p class = "quotation-mark" data-sortable="false">
-                                            OUTPUT &nbsp; &nbsp;<i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
-                                        </p></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="quote-text scroller" id="testdataid"/>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+					<div class="quote-box scroller-text scroller">
+						<script>
+							 $(function() {
+								$('table').footable();
+							});
+						</script>			
+						<table class="table job-status_table scrollingTable">
+							<thead class="scrollingHead" style="width:100%">
+								<tr>
+									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB NAME</th>
+									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">SUITE NAME</th>
+									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">BUILD #</th>
+									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">RESULT</th>
+									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB START TIME</th>
+									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB END TIME</th>
+									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">DURATION</th>
+									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">STOP JOB</th>
+									<th>
+										<p class = "quotation-mark" data-sortable="false">
+										 OUTPUT &nbsp; &nbsp;<i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
+										</p>
+									</th>
+								</tr>
+							</thead>
+							
+							<tbody class="Result scrollingBody" id="testdataid"/>
+							
+						</table>
+						<script>
+							$( window ).resize(function() {
+								setTimeout( function(){var count=1;
+									$(".scrollingHead").find('tr>th').each(function( event ) {				
+										var thWdith=$(this).outerWidth();
+										//console.log(count+'dddddd');
+										$(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);				
+										count++;
+									});
+								},10);
+							});
+							$(function () {
+								var count=1;
+								$(".scrollingHead").find('tr>th').each(function( event ) {				
+									var thWdith=$(this).outerWidth();
+									//console.log(count+'dddddd');
+									$(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);				
+									count++;
+								});
+							});
+						</script>
+					</div>
+				</div>
         		<div class="col-md-4 divsub"></div>
         		<div class="col-md-2 divsub"><input type="image" name="submit" img="" src="/static/app/images/Stop.png" alt="Submit"></div>
     		</form>
-	
 	   </div>
     </div>
 {% endblock %}
