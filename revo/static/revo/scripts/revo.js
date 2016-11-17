@@ -1,3 +1,24 @@
+$(window).resize(function() {
+  setTimeout( function(){var count=1;
+    $(".scrollingHead").find('tr>th').each(function( event ) {        
+      var thWdith=$(this).outerWidth();
+      $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
+      count++;
+    });
+  },10);
+});
+
+$(function () {
+  $('table').footable();
+  
+  var count=1;
+  $(".scrollingHead").find('tr>th').each(function( event ) {        
+    var thWdith=$(this).outerWidth();
+    $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
+    count++;
+  });
+});
+
 $(document).ready(function() {
 	$('input[type=checkbox]').click(function() {  
 		if(this.checked == true) { 

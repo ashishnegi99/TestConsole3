@@ -19,15 +19,14 @@
             <div class="col-md-4">
                 <div class="quote-box">
                     <p class="quotation-mark">
-                        SET TOP BOX &nbsp; <i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
+                        SET TOP BOX &nbsp;
+                        <a href="Set_Top_Box">
+                            <i class="fa fa-refresh" aria-hidden="true" style="color: #cd040b;cursor: pointer"></i>
+                        </a>
                         <span class="pull-right"><img src="{% static 'app/images/settopbox.png' %}"></span>
                     </p>
+                    <hr>
                     <div class="quote-text scroller" id="STBStatus"></div>
-                    <div class="">
-                        <div class="buttonHolder" onclick="stbststus()">
-                            <p><a href="Set_Top_Box" class="btn btn-primary btn-large">Get Settopbox Status &raquo;</a></p>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -60,11 +59,6 @@
             {% csrf_token %}	
             <div class="col-md-12 divsub">
 				<div class="quote-box scroller-text scroller">
-					<script>
-						 $(function() {
-							$('table').footable();
-						});
-					</script>			
 					<table class="table job-status_table scrollingTable">
 						<thead class="scrollingHead" style="width:100%">
 							<tr>
@@ -85,29 +79,12 @@
 						</thead>						
 						<tbody class="Result scrollingBody" id="testdataid"/>						
 					</table>
-					<script>
-						$(window).resize(function() {
-							setTimeout( function(){var count=1;
-								$(".scrollingHead").find('tr>th').each(function( event ) {				
-									var thWdith=$(this).outerWidth();
-									$(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);				
-									count++;
-								});
-							},10);
-						});
-						$(function () {
-							var count=1;
-							$(".scrollingHead").find('tr>th').each(function( event ) {				
-								var thWdith=$(this).outerWidth();
-								$(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);				
-								count++;
-							});
-						});
-					</script>
 				</div>
 			</div>
     		<div class="col-md-4 divsub"></div>
-    		<div class="col-md-2 divsub"><input type="image" name="submit" img="" src="/static/app/images/Stop.png" alt="Submit"></div>
+    		<div class="col-md-2 divsub">
+                <input type="image" name="submit" img="" src="/static/app/images/Stop.png" alt="Submit">
+            </div>
 		</form>
     </div>
 	<!-- Modal -->
