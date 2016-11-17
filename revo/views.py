@@ -64,6 +64,8 @@ def revo_view(request):
     form = NameForm(request.POST)
     my_stb = request.POST.getlist('check1')
     my_test_suite = request.POST.getlist('checks')
+    user_name = request.user.username
+    print "*****************************", user_name
     count1 = 0
     for s in my_stb:
         count2 = 0
@@ -91,7 +93,7 @@ def revo_view(request):
             
                 shellCommand = jobConfig.replace(prev_command, mycommand2)
                 j.reconfig_job(my_stb[count1], shellCommand)
-                j.build_job(my_stb[count1],{'param1': my_test_suite[count2]})
+                j.build_job(my_stb[count1],{'param1': my_test_suite[count2],'param2': user_name})
                         
             else:
                 j.enable_job(my_stb[count1])
@@ -117,7 +119,7 @@ def revo_view(request):
                 
                 print "RECONFIG"
 #                 print j.get_job_config(my_stb[count1])
-                j.build_job(my_stb[count1],{'param1': my_test_suite[count2]})
+                j.build_job(my_stb[count1],{'param1': my_test_suite[count2],'param2': user_name})
                 count2 = count2+1    
 #                 j.build_job(name, parameters, token)        
         count1 = count1+1
@@ -167,7 +169,6 @@ def GetSerialNum(request):
         count = 0
         try:
             while True:
-                # import pdb; pdb.set_trace()
                 count = count + 1
                 data, addr = s.recvfrom(65507)
 
@@ -293,6 +294,12 @@ def getJobStatus(request):
                  print TestSuite
             except:
                 TestSuite = '...'
+            try:
+                userName = j.get_build_info(job_name, build_num)[u'actions'][0][u'parameters'][1][u'value']
+                print userName
+            except:
+                userName = '...'
+
             Duration = '...'
             current_build_number = build_num
             if str(build_info['result']) == 'None':
@@ -305,7 +312,7 @@ def getJobStatus(request):
                 start_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
                 end_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000)))
                 Duration= int(build_info['duration'])/1000
-            abc = (str(STB) + "," + str(TestSuite) + "," + str(current_build_number) + "," + str(status) + "," + start_time + "," + end_time + "," + str(Duration))
+            abc = (str(STB) + "," + str(TestSuite) + "," + str(current_build_number) + "," + str(status) + "," + start_time + "," + end_time + "," + str(Duration)+ "," + str(userName))
             m.write(abc + "\n")
     
     
@@ -319,6 +326,7 @@ def getJobStatus(request):
             current_build_number = a[counter_3][u'id']
             print 'id/current_build_number: ', a[counter_3][u'id']
             TestSuite = a[counter_3][u'actions'][0][u'parameters'][0][u'value']
+            userName = a[counter_3][u'actions'][0][u'parameters'][1][u'value']
             print 'test suite: ', a[counter_3][u'actions'][0][u'parameters'][0][u'value']
             start_time = '...'
             end_time = '...'
@@ -327,14 +335,14 @@ def getJobStatus(request):
             status = 'IN QUEUE'
             counter_3 = counter_3+1
             
-            abc = (str(STB) + "," + str(TestSuite) + "," + str(current_build_number) + "," + str(status) + "," + start_time + "," + end_time + "," + str(Duration))
+            abc = (str(STB) + "," + str(TestSuite) + "," + str(current_build_number) + "," + str(status) + "," + start_time + "," + end_time + "," + str(Duration)+ "," + str(userName))
             m.write(abc + "\n")
     
     
     m.close()
     f = open(file_name, 'r')
     jsonfile = open('app/templates/app/JobStatusFile.json', 'w')
-    reader = csv.DictReader(f,fieldnames=("Job No", "Suite Name", "Build No", "Result", "StartTime", "EndTime", "Duration"))
+    reader = csv.DictReader(f,fieldnames=("Job No", "Suite Name", "Build No", "Result", "StartTime", "EndTime", "Duration", "UserName"))
     out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in reader]) + "\n]"
     jsonfile.write(out)
     jsonfile.close()
@@ -389,6 +397,7 @@ def StopMultipleJobs(request):
         j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
         try:
             queue_info = j.get_build_info(my_job, my_build)
+            print queue_info
             print "...Job is in progress: "
             j.stop_build(my_job, my_build) 
         except jenkins.NotFoundException:
