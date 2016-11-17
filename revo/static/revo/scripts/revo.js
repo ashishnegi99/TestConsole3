@@ -149,13 +149,15 @@ function stbststus1(){
 		  linkclass = "linkclass";
 		      status = 'disabled';
         }
-            $("#testdataid").append("<tr><td width='130px' style='vertical-align:middle'><label class='checkbox'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' style='margin-top:3px;' >"+item["Job No"]+" </label></td><td width='110px' style='vertical-align:middle'>"+item["Suite Name"]+"</td><td width='80px' style='vertical-align:middle'>"+item["Build No"]+"</td><td width='105px'><p class = " + colorclass + " style='vertical-align:middle'>" + item.Result + "</p></td><td width='160px' style='vertical-align:middle;word-break:break-all'>" + item.StartTime + "</td><td width='160px' style='vertical-align:middle;word-break:break-all'>" + item.EndTime + "</td><td width='45px' style='vertical-align:middle'>" + item.Duration +" </td><td width='45px' style='vertical-align:middle'>" + item.UserName +" </td><td width='84px' style='vertical-align:middle' data-editable=\"true\"><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td width='125px' data-editable=\"true\" style='vertical-align:middle'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");
+            $("#testdataid").append("<tr><td width='130px' style='vertical-align:middle'><label class='checkbox'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' style='margin-top:3px;' >"+item["Job No"]+" </label></td><td class='suite-name' width='110px' style='vertical-align:middle'>"+item["Suite Name"]+"</td><td width='80px' style='vertical-align:middle'>"+item["Build No"]+"</td><td width='105px'><p class = " + colorclass + " style='vertical-align:middle'>" + item.Result + "</p></td><td width='160px' style='vertical-align:middle;word-break:break-all'>" + item.StartTime + "</td><td width='160px' style='vertical-align:middle;word-break:break-all'>" + item.EndTime + "</td><td width='45px' style='vertical-align:middle'>" + item.Duration +" </td><td width='45px' style='vertical-align:middle'>" + item.UserName +" </td><td width='84px' style='vertical-align:middle' data-editable=\"true\"><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td width='125px' data-editable=\"true\" style='vertical-align:middle'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");
         });
     }); 
 }
 
 function showConsole(that) {
   var vals = $(that).closest("tr").find("input").val().split(",");
+  var suite_name = $(that).closest("tr").find("td[class='suite-name']").text();
+  var title = "JOB: " + vals[0] +",    SUITE NAME:  " + suite_name;
 
   $.ajax({
     url: "http://127.0.0.1:8000/revo/console/",
@@ -164,6 +166,7 @@ function showConsole(that) {
     cache: false,
     success: function(data){
       $('#revo-modal-content').text(data);
+      $('#title').text(title);
       $('#myModal').modal();
     }
   });
