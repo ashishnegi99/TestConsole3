@@ -12,139 +12,104 @@
 {% endblock %}
 
 {% block body %} 
-    <!--<div class=" subdiv">-->
-        <div class="row">
+    <div class="row">
+        <form action="{% url 'revo_view' %}" method="post">
+            {% csrf_token %}
 
-            <form action="{% url 'revo_view' %}" method="post">
-                {% csrf_token %}
-
-                <div class="col-md-4">
-                    <div class="quote-box">
-                        <p class="quotation-mark">
-                            SET TOP BOX &nbsp; <i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
-                            <span class="pull-right"><img src="{% static 'app/images/settopbox.png' %}"></span>
-                        </p>
-                        <hr>
-
-                        <div class="quote-text scroller" id="STBStatus">
-                        </div>
-
-                        <div class="">
-                            <div class="buttonHolder" onclick="stbststus()">
-                                <p><a href="Set_Top_Box" class="btn btn-primary btn-large">Get Settopbox Status &raquo;</a></p>
-                            </div>
+            <div class="col-md-4">
+                <div class="quote-box">
+                    <p class="quotation-mark">
+                        SET TOP BOX &nbsp; <i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
+                        <span class="pull-right"><img src="{% static 'app/images/settopbox.png' %}"></span>
+                    </p>
+                    <div class="quote-text scroller" id="STBStatus"></div>
+                    <div class="">
+                        <div class="buttonHolder" onclick="stbststus()">
+                            <p><a href="Set_Top_Box" class="btn btn-primary btn-large">Get Settopbox Status &raquo;</a></p>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="quote-box">
-                        <p class="quotation-mark">
-                            TEST SUITE
-                            <span class="pull-right"><img src="{% static 'app/images/suite.png' %}"></span>
-                        </p>
-                        <div class="quote-text scroller" id="STBStatus">
-                        <hr>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE01">REG_AGREED_SUITE01
-                        </label>
-                        <hr>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE02">REG_AGREED_SUITE02
-                        </label>
-                        <hr>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE03">REG_AGREED_SUITE03
-                        </label>
-                        <hr>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE04">REG_AGREED_SUITE04
-                        </label>
-                        <hr>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE05">REG_AGREED_SUITE05
-                        </label>
-                        <hr>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE06">REG_AGREED_SUITE06
-                        </label>
-                        <hr>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE07">REG_AGREED_SUITE07
-                        </label>
-                        <hr>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checks" value="REG_AGREED_SUITE08">REG_AGREED_SUITE08
-                        </label>
-                        <hr>
-                        </div>
+            <div class="col-md-4">
+                <div class="quote-box">
+                    <p class="quotation-mark">
+                        TEST SUITE
+                        <span class="pull-right"><img src="{% static 'app/images/suite.png' %}"></span>
+                    </p>
+                    <div class="quote-text scroller" id="STBStatus">
+                        {% for test_suite in test_suite_list %}
+                            <hr>
+                            <label class="checkbox">
+                                <input type="checkbox" name="checks" value="REG_AGREED_SUITE01" value={{ test_suite.name }}/>
+                                <span>{{ test_suite | safe }}</span>
+                            </label>
+                        {% endfor %}
                     </div>
                 </div>
+            </div>
 
-                <div class="col-md-3">
-                    <div class="quote-box runquote">
-                        <input type="image" name="submit" img src="{% static 'app/images/run.png' %}" alt="Submit" />
-                    </div>
+            <div class="col-md-3">
+                <div class="quote-box runquote">
+                    <input type="image" name="submit" img src="{% static 'app/images/run.png' %}" alt="Submit" />
                 </div>
-            </form>
+            </div>
+        </form>
 
-    		<form action="{% url 'StopMultipleJobs' %}" method="post">
-                {% csrf_token %}	
-                <div class="col-md-12 divsub">
-					<div class="quote-box scroller-text scroller">
-						<script>
-							 $(function() {
-								$('table').footable();
-							});
-						</script>			
-						<table class="table job-status_table scrollingTable">
-							<thead class="scrollingHead" style="width:100%">
-								<tr>
-									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB NAME</th>
-									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">SUITE NAME</th>
-									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">BUILD #</th>
-									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">RESULT</th>
-									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB START TIME</th>
-									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB END TIME</th>
-									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">DURATION</th>
-									<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">STOP JOB</th>
-									<th>
-										<p class = "quotation-mark" data-sortable="false">
-										 OUTPUT &nbsp; &nbsp;<i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
-										</p>
-									</th>
-								</tr>
-							</thead>
-							
-							<tbody class="Result scrollingBody" id="testdataid"/>
-							
-						</table>
-						<script>
-							$(window).resize(function() {
-								setTimeout( function(){var count=1;
-									$(".scrollingHead").find('tr>th').each(function( event ) {				
-										var thWdith=$(this).outerWidth();
-										$(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);				
-										count++;
-									});
-								},10);
-							});
-							$(function () {
-								var count=1;
+		<form action="{% url 'StopMultipleJobs' %}" method="post">
+            {% csrf_token %}	
+            <div class="col-md-12 divsub">
+				<div class="quote-box scroller-text scroller">
+					<script>
+						 $(function() {
+							$('table').footable();
+						});
+					</script>			
+					<table class="table job-status_table scrollingTable">
+						<thead class="scrollingHead" style="width:100%">
+							<tr>
+								<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB NAME</th>
+								<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">SUITE NAME</th>
+								<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">BUILD #</th>
+								<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">RESULT</th>
+								<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB START TIME</th>
+								<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">JOB END TIME</th>
+								<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">DURATION</th>
+								<th style="text-align:center;cursor:pointer;padding:10px;color: #cd040b;">STOP JOB</th>
+								<th>
+									<p class = "quotation-mark" data-sortable="false">
+									 OUTPUT &nbsp; &nbsp;<i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
+									</p>
+								</th>
+							</tr>
+						</thead>						
+						<tbody class="Result scrollingBody" id="testdataid"/>						
+					</table>
+					<script>
+						$(window).resize(function() {
+							setTimeout( function(){var count=1;
 								$(".scrollingHead").find('tr>th').each(function( event ) {				
 									var thWdith=$(this).outerWidth();
 									$(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);				
 									count++;
 								});
+							},10);
+						});
+						$(function () {
+							var count=1;
+							$(".scrollingHead").find('tr>th').each(function( event ) {				
+								var thWdith=$(this).outerWidth();
+								$(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);				
+								count++;
 							});
-						</script>
-					</div>
+						});
+					</script>
 				</div>
-        		<div class="col-md-4 divsub"></div>
-        		<div class="col-md-2 divsub"><input type="image" name="submit" img="" src="/static/app/images/Stop.png" alt="Submit"></div>
-    		</form>
-	   </div>
-    <!--</div>-->
+			</div>
+    		<div class="col-md-4 divsub"></div>
+    		<div class="col-md-2 divsub"><input type="image" name="submit" img="" src="/static/app/images/Stop.png" alt="Submit"></div>
+		</form>
+    </div>
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
@@ -162,5 +127,5 @@
 	    </div>
 	  </div>
 	</div>
-	
+
 {% endblock %}

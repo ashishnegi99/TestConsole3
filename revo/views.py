@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
-from django.db.models import Avg
 from django.db.models import Sum, Avg, Count
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, date, timedelta
 from app.forms import UserForm, NameForm, BootstrapAuthenticationForm
 from app.models import Storm, Appium, Revo, Set_Top_Box, racktestresult
+from revo.models import testsuite
 from xml.etree import ElementTree as ET
 from xml.dom.minidom import parse
 import jenkins
@@ -26,10 +26,13 @@ import json as simplejson
 @login_required
 def home(request):
     assert isinstance(request, HttpRequest)
+    test_suite_list = [suite.name for suite in testsuite.objects.all()]
+
     return render(
         request,
         "revo/revo.html",
         RequestContext(request, {
+            "test_suite_list" : test_suite_list,
         })
     )
 
