@@ -1,16 +1,13 @@
 [
-	{"Job No": "STB 1", "Result": "IN PROGRESS", "StartTime": "11/09/2016 18:21:27", "Suite Name": "REG_AGREED_SUITE01", "Duration": "...", "EndTime": "---------", "Build No": "28"},
-	{"Job No": "STB 1", "Result": "SUCCESS", "StartTime": "11/04/2016 09:00:53", "Suite Name": "REG_AGREED_SUITE03", "Duration": "502", "EndTime": "11/04/2016 09:09:15", "Build No": "27"},
-	{"Job No": "STB 2", "Result": "SUCCESS", "StartTime": "11/04/2016 09:05:03", "Suite Name": "REG_AGREED_SUITE03", "Duration": "502", "EndTime": "11/04/2016 09:13:25", "Build No": "30"},
-	{"Job No": "STB 2", "Result": "SUCCESS", "StartTime": "11/04/2016 08:56:40", "Suite Name": "REG_AGREED_SUITE02", "Duration": "502", "EndTime": "11/04/2016 09:05:02", "Build No": "29"},
-	{"Job No": "STB 3", "Result": "IN PROGRESS", "StartTime": "11/09/2016 18:21:27", "Suite Name": "REG_AGREED_SUITE01", "Duration": "...", "EndTime": "---------", "Build No": "23"},
-	{"Job No": "STB 3", "Result": "SUCCESS", "StartTime": "11/04/2016 09:05:03", "Suite Name": "REG_AGREED_SUITE03", "Duration": "502", "EndTime": "11/04/2016 09:13:25", "Build No": "22"},
-	{"Job No": "STB 4", "Result": "ABORTED", "StartTime": "11/03/2016 22:15:14", "Suite Name": "REG_AGREED_SUITE01", "Duration": "88", "EndTime": "11/03/2016 22:16:42", "Build No": "12"},
-	{"Job No": "STB 4", "Result": "ABORTED", "StartTime": "11/03/2016 22:05:18", "Suite Name": "REG_AGREED_SUITE04", "Duration": "61", "EndTime": "11/03/2016 22:06:19", "Build No": "11"},
-	{"Job No": "STB 5", "Result": "ABORTED", "StartTime": "11/03/2016 22:15:14", "Suite Name": "REG_AGREED_SUITE01", "Duration": "88", "EndTime": "11/03/2016 22:16:42", "Build No": "8"},
-	{"Job No": "STB 5", "Result": "ABORTED", "StartTime": "11/03/2016 22:05:18", "Suite Name": "REG_AGREED_SUITE04", "Duration": "60", "EndTime": "11/03/2016 22:06:19", "Build No": "7"},
-	{"Job No": "STB 6", "Result": "ABORTED", "StartTime": "11/03/2016 22:17:13", "Suite Name": "REG_AGREED_SUITE06", "Duration": "9", "EndTime": "11/03/2016 22:17:22", "Build No": "3"},
-	{"Job No": "STB 6", "Result": "ABORTED", "StartTime": "11/03/2016 22:16:59", "Suite Name": "REG_AGREED_SUITE04", "Duration": "13", "EndTime": "11/03/2016 22:17:13", "Build No": "2"},
-	{"Job No": "STB 1", "Result": "IN QUEUE", "StartTime": "...", "Suite Name": "REG_AGREED_SUITE02", "Duration": "...", "EndTime": "...", "Build No": "398"},
-	{"Job No": "STB 3", "Result": "IN QUEUE", "StartTime": "...", "Suite Name": "REG_AGREED_SUITE02", "Duration": "...", "EndTime": "...", "Build No": "400"}
+	{"Job No": "job1", "Result": "FAILURE", "StartTime": "11/17/2016 00:09:50", "Suite Name": "...", "Duration": "0", "EndTime": "11/17/2016 00:09:51", "Build No": "16"},
+	{"Job No": "job1", "Result": "FAILURE", "StartTime": "11/16/2016 08:26:58", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 08:26:59", "Build No": "15"},
+	{"Job No": "job2", "Result": "SUCCESS", "StartTime": "11/16/2016 08:29:25", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 08:29:25", "Build No": "7"},
+	{"Job No": "job2", "Result": "SUCCESS", "StartTime": "11/16/2016 08:29:22", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 08:29:22", "Build No": "6"},
+	{"Job No": "job3", "Result": "SUCCESS", "StartTime": "11/16/2016 02:22:41", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 02:22:42", "Build No": "1"},
+	{"Job No": "job4", "Result": "SUCCESS", "StartTime": "11/16/2016 02:24:31", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 02:24:32", "Build No": "1"},
+	{"Job No": "job5", "Result": "SUCCESS", "StartTime": "11/16/2016 02:25:42", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 02:25:43", "Build No": "1"},
+	{"Job No": "job6", "Result": "SUCCESS", "StartTime": "11/16/2016 04:49:05", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 04:49:05", "Build No": "1"},
+	{"Job No": "job7", "Result": "SUCCESS", "StartTime": "11/17/2016 00:56:39", "Suite Name": "...", "Duration": "0", "EndTime": "11/17/2016 00:56:39", "Build No": "2"},
+	{"Job No": "job7", "Result": "SUCCESS", "StartTime": "11/17/2016 00:55:35", "Suite Name": "...", "Duration": "0", "EndTime": "11/17/2016 00:55:35", "Build No": "1"},
+	{"Job No": "job8", "Result": "SUCCESS", "StartTime": "11/17/2016 01:24:19", "Suite Name": "...", "Duration": "0", "EndTime": "11/17/2016 01:24:19", "Build No": "1"}
 ]

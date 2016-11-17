@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block body %} 
-    <div class=" subdiv">
+    <!--<div class=" subdiv">-->
         <div class="row">
 
             <form action="{% url 'revo_view' %}" method="post">
@@ -21,7 +21,7 @@
                 <div class="col-md-4">
                     <div class="quote-box">
                         <p class="quotation-mark">
-                            SET TOP BOX
+                            SET TOP BOX &nbsp; <i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
                             <span class="pull-right"><img src="{% static 'app/images/settopbox.png' %}"></span>
                         </p>
                         <hr>
@@ -144,7 +144,7 @@
         		<div class="col-md-2 divsub"><input type="image" name="submit" img="" src="/static/app/images/Stop.png" alt="Submit"></div>
     		</form>
 	   </div>
-    </div>
+    <!--</div>-->
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">

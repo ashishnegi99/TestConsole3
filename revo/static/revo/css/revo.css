@@ -3,8 +3,9 @@
     overflow:auto;
 	
     /*height:350px;*/
-	height: 170px;
-    width:95%;
+	height: 269px;
+	
+    width:93%;
 }
 .progress.active .progress-bar {
     -webkit-transition: none !important;
@@ -159,11 +160,14 @@ font-weight:bold;
     background-size: 100% 100%;
     background-repeat: no-repeat; 
     margin-top: 20px; 
-    margin-bottom: 20px;
+    margin-right: 20px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	
     border-radius: 7px;
     border: 1px solid #cdcdcd; 
     padding: 10px 0px;
-    margin-left: 20px;
+    
 }
  .below-box{ 
    background-image: url(../../images/box1.png);  
