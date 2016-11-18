@@ -246,15 +246,13 @@ tbody.scroller.testsum>tr>td.col-xs-8>p{
 .subhead{
   background: #cdcdcd;
 }
- 
 .checkbox, .radio{
-      position: relative;
-    display: block;
-    padding: 6px 30px; 
-      margin-top: 0px;
-    margin-bottom: 0px; 
-     cursor: pointer; 
-
+  position: relative;
+  display: block;
+  padding: 6px 30px; 
+  margin-top: 0px;
+  margin-bottom: 0px; 
+  cursor: pointer; 
 }
 input:checked :parent { 
    background-image: url(../../images/highlight.png);  
