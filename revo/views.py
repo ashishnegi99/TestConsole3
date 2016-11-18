@@ -244,16 +244,7 @@ def GetSerialNum(request):
         out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in reader]) + "\n]"
         jsonfile.write(out)
     assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        "revo/revo.html",
-        RequestContext(request,
-        {
-            "title":"Revo",
-            "message":"Stuff about revo goes here.",
-            "year":datetime.now().year,
-        })
-    )
+    return HttpResponseRedirect("/revo")
 
 def createJsonFile(fileName):
     f = open(fileName, 'r')

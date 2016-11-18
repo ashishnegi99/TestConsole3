@@ -126,30 +126,30 @@ function stbststus1(){
 		var status;
         if(item.Result == "SUCCESS"){
           colorclass = "available";
-		  linkclass = "";
-  		    status = "";
+		      linkclass = "";
+  		    status = "disabled";
         }
         if(item.Result == "FAILURE"){
           colorclass = "offline";
-		  linkclass = "linkclass";
+		      linkclass = "linkclass";
           status = 'disabled';
 		}
         if(item.Result == "IN PROGRESS"){
-         colorclass = "progress";
-		 linkclass = "linkclass";
+          colorclass = "progress";
+		      linkclass = "linkclass";
           status = '';
 		}
         if(item.Result == "IN QUEUE"){
           colorclass = "queue";
-		  linkclass = "linkclass";
+		      linkclass = "linkclass";
 		      status = '';
         }
         if(item.Result == "ABORTED"){
           colorclass = "aborted";
-		  linkclass = "linkclass";
+		      linkclass = "linkclass";
 		      status = 'disabled';
         }
-            $("#testdataid").append("<tr><td style='cursor:pointer;padding:10px 15px;'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' style='margin-top:3px;' ></td><td width='70px' style='vertical-align:middle'><label>"+item["Job No"]+" </label></td><td class='suite-name' width='120px' style='vertical-align:middle; padding:0px 0px 0px 30px'>"+item["Suite Name"]+"</td><td width='70px' style='vertical-align:middle'>"+item["Build No"]+"</td><td width='105px'><p class = " + colorclass + " style='vertical-align:middle'>" + item.Result + "</p></td><td width='220px' style='vertical-align:middle;word-break:break-all'>" + item.StartTime + "</td><td width='220px' style='vertical-align:middle;word-break:break-all'>" + item.EndTime + "</td><td width='95px' style='vertical-align:middle'>" + item.Duration +" </td><td width='95px' style='vertical-align:middle'>" + item.UserName +" </td><td width='84px' style='vertical-align:middle' data-editable=\"true\"><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td width='125px' data-editable=\"true\" style='vertical-align:middle'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");
+            $("#testdataid").append("<tr><td style='cursor:pointer;padding:10px 15px;'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' style='margin-top:3px;' ></td><td width='70px' style='vertical-align:middle'><label>"+item["Job No"]+" </label></td><td class='suite-name' width='120px' style='vertical-align:middle; padding:0px 0px 0px 0px'>"+item["Suite Name"]+"</td><td width='70px' style='vertical-align:middle'>"+item["Build No"]+"</td><td width='105px'><p class = " + colorclass + " style='vertical-align:middle'>" + item.Result + "</p></td><td width='220px' style='vertical-align:middle;word-break:break-all'>" + item.StartTime + "</td><td width='220px' style='vertical-align:middle;word-break:break-all'>" + item.EndTime + "</td><td width='95px' style='vertical-align:middle'>" + item.Duration +" </td><td width='95px' style='vertical-align:middle'>" + item.UserName +" </td><td width='84px' style='vertical-align:middle' data-editable=\"true\"><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td width='125px' data-editable=\"true\" style='vertical-align:middle'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");
         });
     }); 
 }
