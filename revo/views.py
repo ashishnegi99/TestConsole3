@@ -427,3 +427,16 @@ def Json2(request):
         {
         })
     )
+
+def add_test_suite(request) :
+    assert isinstance(request, HttpRequest)
+    names = request.POST.getlist('names')
+    mappings = request.POST.getlist('mappings')
+
+    for index in range(0, len(names)):
+        if str(names[index]) and str(mappings[index]):
+            test_suite = testsuite(name = str(names[index]), mapping_name = str(mappings[index]))
+            test_suite.save()
+            print "ADDED TEST SUITE name: " + str(names[index]) + "  mapping_name: " + str(mappings[index])
+
+    return HttpResponseRedirect("/test_suites")
