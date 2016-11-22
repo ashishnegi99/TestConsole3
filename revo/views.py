@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime, date, timedelta
 from app.forms import UserForm, NameForm, BootstrapAuthenticationForm
 from app.models import Storm, Appium, Revo, Set_Top_Box, racktestresult
-from revo.models import testsuite
+from revo.models import testsuite, device
 from xml.etree import ElementTree as ET
 from xml.dom.minidom import parse
 import jenkins
@@ -440,3 +440,20 @@ def add_test_suite(request) :
             print "ADDED TEST SUITE name: " + str(names[index]) + "  mapping_name: " + str(mappings[index])
 
     return HttpResponseRedirect("/test_suites")
+
+
+def add_device(request) :
+    assert isinstance(request, HttpRequest)
+
+    if request.POST.get('device-name') and request.POST.get('device-id') :
+        new_device = device()
+        new_device.name = request.POST.get('device-name')
+        new_device.mac_id = request.POST.get('device-id')
+        new_device.serial_id = request.POST.get('serial-id')
+        new_device.device_type = request.POST.get('device-type')
+        new_device.ip = request.POST.get('ip')
+        new_device.router = request.POST.get('router')
+        new_device.save()
+
+        print "ADDED device name: " + request.POST.get('device-name') + "  Device Id:  " + request.POST.get('device-id')
+    return HttpResponseRedirect("/device")

@@ -21,5 +21,7 @@ urlpatterns = [
     url(r"^Set_Top_Box", views.GetSerialNum, name="Set_Top_Box"),
 # testsuite
     url(r"^testsuite", views.add_test_suite, name="testsuite"),
+# device
+    url(r"^device", views.add_device, name="device"),
 
 ]

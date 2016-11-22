@@ -8,19 +8,20 @@
             <h3 class="device-title">Add Device</h3>
         </div>
         <div class="panel-body">
-            <form>
+            <form  action="{% url 'device' %}" method="post">
+                {% csrf_token %}
                 <div class="col-md-12 col-sm-12">
                     <p>
                         <label for="device-id">Device ID (MAC ID)</label>
-                        <input type="text" class="form-control input-sm" id="device-id" placeholder="Device ID">
+                        <input type="text" class="form-control input-sm" name="device-id" placeholder="Device ID">
                     </p>
                     <p>
                         <label for="device-serial-id">Device Serial ID</label>
-                        <input type="text" class="form-control input-sm" id="text" placeholder="Device Serial ID">
+                        <input type="text" class="form-control input-sm" name="serial-id" placeholder="Device Serial ID">
                     </p>
                     <p>
                         <label for="type">Type</label>  
-                        <select class="form-control input-sm" id="type">
+                        <select name="device-type" class="form-control input-sm">
                             <option>-- Type --</option>
                             <option>VM</option>
                             <option>IPC</option>
@@ -40,16 +41,20 @@
                     </script>
                     <p>
                         <label for="ip">IP Address</label>
-                        <input type="text" class="form-control input-sm" name="ip" id="ipv4">
+                        <input name="ip" type="text" class="form-control input-sm">
                         <!--<input type="text" name="ipv" id="ipv6">-->
                     </p>
                     <p>
                         <label for="device-name">Device Name</label>
-                        <input type="text" class="form-control input-sm" id="device-name" placeholder="Device Name">
+                        <input name="device-name" type="text" class="form-control input-sm" placeholder="Device Name">
+                    </p>
+                    <p>
+                        <label for="router">Home Setup / Router</label>
+                        <input name="router" type="text" class="form-control input-sm" placeholder="Home Setup / Router">
                     </p>
                     <p>
                         <div>
-                            <input type='button' class="btn btn-primary center-block" value="Submit" id="submit"/>
+                            <input type='submit' class="btn btn-primary center-block" value="Submit"  name="submit"/>
                         </div>
                     </p>
                 </div>
