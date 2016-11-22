@@ -40,7 +40,7 @@
                         {% for test_suite in test_suite_list %}
                             <hr>
                             <label class="checkbox">
-                                <input type="checkbox" name="checks" value={{ test_suite | safe }}/>
+                                <input type="checkbox" name="checks" value={{ test_suite | safe }} />
                                 <span>{{ test_suite | safe }}</span>
                             </label>
                         {% endfor %}

@@ -131,7 +131,7 @@ function stbststus1(){
         }
         if(item.Result == "FAILURE"){
           colorclass = "offline";
-		      linkclass = "linkclass";
+		      linkclass = "";
           status = 'disabled';
 		}
         if(item.Result == "IN PROGRESS"){

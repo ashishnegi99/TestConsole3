@@ -357,9 +357,12 @@ def stopJob(request):
     j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
     
     try:
-        queue_info = j.get_build_info(request.GET['job'], int(request.GET['build']))
+        build_info = j.get_build_info(request.GET['job'], int(request.GET['build']))
         print "...Job is in progress: "
-        j.stop_build(request.GET['job'], int(request.GET['build'])) 
+        if str(build_info['result']) == 'None':
+            j.stop_build(request.GET['job'], int(request.GET['build']))
+        else:
+            j.stop_build(request.GET['job'], int(request.GET['build']))
     except jenkins.NotFoundException:
         print "......JOB IN QUEUE"
         j.cancel_queue(request.GET['build'])
@@ -373,39 +376,27 @@ def stopJob(request):
     )
 
 def StopMultipleJobs(request):
-    print "KILL ALL"
     form = NameForm(request.POST)
     my_stb = request.POST.getlist('check2')
-    print len(my_stb)
-    counter_4 =0
+    counter_4 = 0
+    j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
     while counter_4 < len(my_stb):
-        print str(my_stb[counter_4])
         x = str(my_stb[counter_4])
-        print x.split(",")[0]
-        print x.split(",")[1]
         my_job = x.split(",")[0]
         my_build = int(x.split(",")[1])
-        j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
         try:
-            queue_info = j.get_build_info(my_job, my_build)
-            print queue_info
-            print "...Job is in progress: "
-            j.stop_build(my_job, my_build) 
+            build_info = j.get_build_info(my_job, my_build)
+            if str(build_info['result']) == 'None':
+                j.stop_build(my_job, my_build)
+            else:
+                j.cancel_queue(my_build)
         except jenkins.NotFoundException:
-            print "......JOB IN QUEUE"
             j.cancel_queue(my_build)
         counter_4 = counter_4+1
     assert isinstance(request, HttpRequest)
     
     return HttpResponseRedirect("/revo")
- 
-    return render(
-        request,
-        "app/JobStatusFile.json",
-        RequestContext(request,
-                       {
-                       })
-    )
+
 
 def Json(request):
     assert isinstance(request, HttpRequest)
