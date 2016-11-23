@@ -260,45 +260,49 @@ def createJsonFile(fileName):
 
 ########Ashish(Start): new func to get job status##############
 def getJobStatus(request):
-    import jenkins
-    import time
-    import csv
-    import json
-    
+    assert isinstance(request, HttpRequest)
+    logger.debug("Start")
     j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
-    file_name = "JobStatusFile.csv"
-    m = open(file_name, "w")
-    ######'per_job_build_limit' defines the maximum number of build that can be displayed in
-    ######for  a particular job.
+    
+    ######'per_job_build_limit' defines the maximum number of build that can be displayed in for  a particular job.
+    job_status_keys = ["Job No", "Suite Name", "Build No", "Result", "StartTime", "EndTime", "Duration", "UserName"]
+    job_status_json_file = open('app/templates/app/JobStatusFile.json', 'w')
+    job_status_json_file.write("[\n\t")
+    first_entry = True
+
     per_job_build_limit = 2
     counter_1 = 0
-    print j.get_all_jobs()
-    while counter_1 < j.get_all_jobs().__len__():
-        job_name = j.get_all_jobs()[counter_1][u'name']
-        print "Job Name: ", job_name
-        counter_1 = counter_1 + 1
+    job_list = j.get_all_jobs()
+    job_list_len = len(job_list)
+    logger.debug("Number of Jobs: " + str(job_list_len))
+
+    while counter_1 < job_list_len :
+        job_name = job_list[counter_1][u'name']
+        logger.debug("Job Name: " + job_name)
+        counter_1 += 1
         counter_2 = 0
-        while (counter_2 < j.get_job_info(job_name)[u'builds'].__len__()) and (counter_2 < per_job_build_limit):
-            build_num = j.get_job_info(job_name)[u'builds'][counter_2][u'number']
-            print 'Job: ', job_name, ' Build # ', build_num
+        job_info = j.get_job_info(job_name)
+        job_builds_count = len(job_info[u'builds'])
+        logger.debug("Number of builds: " + str(job_builds_count) + "  Job Name: " + job_name)
+        while (counter_2 < job_builds_count) and (counter_2 < per_job_build_limit):
+            build_num = job_info[u'builds'][counter_2][u'number']
+            logger.debug('Job: ' + str(job_name) + ' Build # ' + str(build_num))
             counter_2 = counter_2 + 1
             build_info = j.get_build_info(job_name, build_num)
-            STB = job_name
             try:
-                 TestSuite = j.get_build_info(job_name, build_num)[u'actions'][0][u'parameters'][0][u'value']
-                 print TestSuite
+                 test_suite = build_info[u'actions'][0][u'parameters'][0][u'value']
             except:
-                TestSuite = '...'
+                test_suite = '...'
             try:
-                userName = j.get_build_info(job_name, build_num)[u'actions'][0][u'parameters'][1][u'value']
-                print userName
+                userName = build_info[u'actions'][0][u'parameters'][1][u'value']
             except:
                 userName = '...'
+
+            #logger.debug("test_suite : " + test_suite + "  userName: " + userName)
 
             Duration = '...'
             current_build_number = build_num
             if str(build_info['result']) == 'None':
-                print"......   JOB IN PROGRESS"
                 status = "IN PROGRESS"
                 start_time = time.strftime('%m/%d/%Y %H:%M:%S',time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
                 end_time = '---------'
@@ -307,48 +311,51 @@ def getJobStatus(request):
                 start_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp'])) - 18000000) / 1000))
                 end_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000)))
                 Duration= int(build_info['duration'])/1000
-            abc = (str(STB) + "," + str(TestSuite) + "," + str(current_build_number) + "," + str(status) + "," + start_time + "," + end_time + "," + str(Duration)+ "," + str(userName))
-            m.write(abc + "\n")
-    
-    
-    a = j.get_queue_info()
-    if  a.__len__()>0:
-        print 'No queue'
-        counter_3 = 0
-        while counter_3 < j.get_queue_info().__len__():
-            STB = a[counter_3][u'task'][u'name']
-            print 'Job: ', a[counter_3][u'task'][u'name']
-            current_build_number = a[counter_3][u'id']
-            print 'id/current_build_number: ', a[counter_3][u'id']
-            TestSuite = a[counter_3][u'actions'][0][u'parameters'][0][u'value']
-            userName = a[counter_3][u'actions'][0][u'parameters'][1][u'value']
-            print 'test suite: ', a[counter_3][u'actions'][0][u'parameters'][0][u'value']
-            start_time = '...'
-            end_time = '...'
-            Duration = '...'
-            print 'start and end time: ', '...'
-            status = 'IN QUEUE'
-            counter_3 = counter_3+1
             
-            abc = (str(STB) + "," + str(TestSuite) + "," + str(current_build_number) + "," + str(status) + "," + start_time + "," + end_time + "," + str(Duration)+ "," + str(userName))
-            m.write(abc + "\n")
+            job_status_vals = [str(job_name), str(test_suite), str(current_build_number), str(status), start_time, end_time, str(Duration), str(userName)]
+            logger.debug("job_status_vals: " + str(job_status_vals))
+            job_status_dict = dict(zip(job_status_keys, job_status_vals))
+            if not first_entry:
+                job_status_json_file.write(",\n\t")
+            else:
+                first_entry = False
+            job_status_json_file.write(json.dumps(job_status_dict))
+            
     
+    queue_info = j.get_queue_info()
+    queue_info_len = len(queue_info)
+    counter_3 = 0
+    logger.debug("Number of queues: " + str(queue_info_len))
+    while counter_3 < queue_info_len:
+        job_name = queue_info[counter_3][u'task'][u'name']
+        logger.debug("Job Name: " + job_name)
+        current_build_number = queue_info[counter_3][u'id']
+        test_suite = queue_info[counter_3][u'actions'][0][u'parameters'][0][u'value']
+        userName = queue_info[counter_3][u'actions'][0][u'parameters'][1][u'value']
+        start_time = '...'
+        end_time = '...'
+        Duration = '...'
+        status = 'IN QUEUE'
+        counter_3 = counter_3+1
+        
+        job_status_vals = [str(job_name), str(test_suite), str(current_build_number), str(status), start_time, end_time, str(Duration), str(userName)]
+        logger.debug("job_status_vals: " + str(job_status_vals))
+        job_status_dict = dict(zip(job_status_keys, job_status_vals))
+        if not first_entry:
+            job_status_json_file.write(",\n\t")
+        else:
+            first_entry = False
+        job_status_json_file.write(json.dumps(job_status_dict))
+        first_entry = False
+        
+    job_status_json_file.write("\n]")
+    job_status_json_file.close()
     
-    m.close()
-    f = open(file_name, 'r')
-    jsonfile = open('app/templates/app/JobStatusFile.json', 'w')
-    reader = csv.DictReader(f,fieldnames=("Job No", "Suite Name", "Build No", "Result", "StartTime", "EndTime", "Duration", "UserName"))
-    out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in reader]) + "\n]"
-    jsonfile.write(out)
-    jsonfile.close()
-
-    assert isinstance(request, HttpRequest)
+    logger.debug("End")
     return render(
         request,
         "app/JobStatusFile.json",
-        RequestContext(request,
-                       {
-                       })
+        {}
     )
 
 
