@@ -22,6 +22,10 @@ import io
 import csv
 import json
 import json as simplejson
+import logging
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 @login_required
 def home(request):
@@ -347,54 +351,51 @@ def getJobStatus(request):
                        })
     )
 
-#######Ashish(End): new func to get job status##############
 
-def stopJob(request):
-    print "KILL QUEUE"
-    print "***Job***", request.GET['job']
-    print "***QueueID***", request.GET['build']
-    
-    j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
-    
+def stop_job_impl(jnkns_srvr, my_job, my_build):
+    logger.debug("my_job: " + my_job + "  my_build: " + str(my_build))
     try:
-        build_info = j.get_build_info(request.GET['job'], int(request.GET['build']))
-        print "...Job is in progress: "
-        if str(build_info['result']) == 'None':
-            j.stop_build(request.GET['job'], int(request.GET['build']))
+        if my_build in [job['id'] for job in jnkns_srvr.get_queue_info()]:
+            jnkns_srvr.cancel_queue(my_build)
+            logger.debug("CANCELLED QUEUE: " + "my_job: " + my_job + "  my_build: " + str(my_build))
         else:
-            j.stop_build(request.GET['job'], int(request.GET['build']))
+            running_build_number = [ build['number'] for build in jnkns_srvr.get_running_builds() if urllib.unquote(build['name']) == my_job]
+            if running_build_number :
+                jnkns_srvr.stop_build(my_job, running_build_number[0])
+                logger.debug("CANCELLED BUILD: " + "my_job: " + my_job + "  my_build: " + str(my_build))
+            else:
+                logger.debug("JOB NEITHER IN QUEUE NOR RUNNING:  " + "my_job: " + my_job + "  my_build: " + str(my_build))
     except jenkins.NotFoundException:
-        print "......JOB IN QUEUE"
-        j.cancel_queue(request.GET['build'])
-    
+        logger.error("NotFoundException + " + str(my_build))
+
+
+def stopJob(request):    
     assert isinstance(request, HttpRequest)
+    jnkns_srvr = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
+    stop_job_impl(jnkns_srvr, request.GET['job'], int(request.GET['build']))
+    
     return render(
         request,
         "app/JobStatusFile.json",
-        RequestContext(request,{
-        })
+        RequestContext(request,{ })
     )
 
+
 def StopMultipleJobs(request):
-    form = NameForm(request.POST)
+    assert isinstance(request, HttpRequest)
+
     my_stb = request.POST.getlist('check2')
-    counter_4 = 0
-    j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
-    while counter_4 < len(my_stb):
-        x = str(my_stb[counter_4])
+    logger.debug("my_stb: " + str(my_stb))
+    loop_counter = len(my_stb) - 1
+    jnkns_srvr = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
+    
+    while loop_counter >= 0:
+        x = str(my_stb[loop_counter])
         my_job = x.split(",")[0]
         my_build = int(x.split(",")[1])
-        try:
-            build_info = j.get_build_info(my_job, my_build)
-            if str(build_info['result']) == 'None':
-                j.stop_build(my_job, my_build)
-            else:
-                j.cancel_queue(my_build)
-        except jenkins.NotFoundException:
-            j.cancel_queue(my_build)
-        counter_4 = counter_4+1
-    assert isinstance(request, HttpRequest)
-    
+        stop_job_impl(jnkns_srvr, my_job, my_build)
+        loop_counter -= 1
+
     return HttpResponseRedirect("/revo")
 
 

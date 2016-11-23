@@ -149,10 +149,19 @@ JENKINS_TASKS = (
 
 PROJECT_APPS = ['app']
 
+# DJANGO_LOG_LEVEL = DEBUG
 
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(filename)s %(funcName)s %(lineno)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     "filters": {
         "require_debug_false": {
             "()": "django.utils.log.RequireDebugFalse"
@@ -163,9 +172,20 @@ LOGGING = {
             "level": "ERROR",
             "filters": ["require_debug_false"],
             "class": "django.utils.log.AdminEmailHandler"
-        }
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'logs/revo.log',
+            'formatter': 'verbose',
+        },
     },
     "loggers": {
+        'revo': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
         "django.request": {
             "handlers": ["mail_admins"],
             "level": "ERROR",
