@@ -10,6 +10,7 @@ from app.models import Storm, Appium, Revo, Set_Top_Box, racktestresult
 from revo.models import testsuite, device
 from xml.etree import ElementTree as ET
 from xml.dom.minidom import parse
+from django.core.exceptions import ValidationError
 import jenkins
 import urllib2
 import urllib
@@ -26,6 +27,9 @@ import logging
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
+
+REVO_FOLDER_PATH = "/job/revo/job/"
+REVO_FOLDER_NAME = "revo"
 
 @login_required
 def home(request):
@@ -45,7 +49,7 @@ def  consolelink(request):
     job = request.GET["job"]
     build = int(request.GET["build"])
     server = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
-    output = server.get_build_console_output(job, build)
+    output = server.get_build_console_output(get_full_job_name(job), build)
     return HttpResponse(output)   
     
 ########################
@@ -65,21 +69,30 @@ def revo_view(request):
     
     j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
 
+    new_folder_config = '<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@5.13"><actions/><description/><displayName>revo</displayName><properties/><views><hudson.model.AllView><owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../.."/><name>All</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/></hudson.model.AllView></views><viewsTabBar class="hudson.views.DefaultViewsTabBar"/><healthMetrics><com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric/></healthMetrics><icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/></com.cloudbees.hudson.plugins.folder.Folder>'
+    new_view_config = '<hudson.model.ListView><name>revo_view</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/><jobNames><comparator class="hudson.util.CaseInsensitiveComparator"/><string>revo</string></jobNames><jobFilters/><columns><hudson.views.StatusColumn/><hudson.views.WeatherColumn/><hudson.views.JobColumn/><hudson.views.LastSuccessColumn/><hudson.views.LastFailureColumn/><hudson.views.LastDurationColumn/><hudson.views.BuildButtonColumn/></columns><recurse>false</recurse></hudson.model.ListView>'
+
+    if j.job_exists('revo') != True:
+        j.create_job('revo', new_folder_config)
+
+    # if j.view_exists("revo_view") != True:
+    #     j.create_view("revo_view", new_view_config)
+
     form = NameForm(request.POST)
     my_stb = request.POST.getlist('check1')
     my_test_suite = request.POST.getlist('checks')
     user_name = request.user.username
-    print "*****************************", user_name
     count1 = 0
     for s in my_stb:
         count2 = 0
         for t in my_test_suite:
-            print my_stb[count1], ' : ', my_test_suite[count2]
+            job_path = "revo/" + my_stb[count1]
+            print job_path, ' : ', my_test_suite[count2]
             
-            if not j.job_exists(my_stb[count1]):
-                j.create_job(my_stb[count1], myXML_1)
-                j.enable_job(my_stb[count1])
-                jobConfig = j.get_job_config(my_stb[count1])
+            if not j.job_exists(job_path):
+                j.create_job(job_path, myXML_1)
+                j.enable_job(job_path)
+                jobConfig = j.get_job_config(job_path)
        
                 tree = ET.XML(jobConfig)
                 with open("temp.xml", "w") as f:
@@ -96,14 +109,13 @@ def revo_view(request):
                 prev_command = cd1 + r + cd2
             
                 shellCommand = jobConfig.replace(prev_command, mycommand2)
-                j.reconfig_job(my_stb[count1], shellCommand)
-                j.build_job(my_stb[count1],{'param1': my_test_suite[count2],'param2': user_name})
+                j.reconfig_job(job_path, shellCommand)
+                j.build_job(job_path,{'param1': my_test_suite[count2],'param2': user_name})
                         
             else:
-                j.enable_job(my_stb[count1])
-                jobConfig = j.get_job_config(my_stb[count1])
+                j.enable_job(job_path)
+                jobConfig = j.get_job_config(job_path)
                 print "Before RECONFIG"
-#                 print j.get_job_config(my_stb[count1])
                 tree = ET.XML(jobConfig)
                 with open("temp.xml", "w") as f:
                     f.write(ET.tostring(tree))
@@ -119,19 +131,15 @@ def revo_view(request):
                 prev_command = cd1 + r + cd2
                 
                 shellCommand = jobConfig.replace(prev_command, mycommand2)
-                j.reconfig_job(my_stb[count1], shellCommand)
+                j.reconfig_job(job_path, shellCommand)
                 
                 print "RECONFIG"
-#                 print j.get_job_config(my_stb[count1])
-                j.build_job(my_stb[count1],{'param1': my_test_suite[count2],'param2': user_name})
+                j.build_job(job_path,{'param1': my_test_suite[count2],'param2': user_name})
                 count2 = count2+1    
-#                 j.build_job(name, parameters, token)        
         count1 = count1+1
-  
  
     return HttpResponseRedirect("/revo")
  
-    return render(request, 'revo/revo.html', {'form': form})
 ########################
 ## End: Revo Views  ##
 ########################
@@ -272,12 +280,12 @@ def getJobStatus(request):
 
     per_job_build_limit = 2
     counter_1 = 0
-    job_list = j.get_all_jobs()
+    job_list = [x for x in j.get_all_jobs() if REVO_FOLDER_PATH in x['url']]
     job_list_len = len(job_list)
     logger.debug("Number of Jobs: " + str(job_list_len))
 
     while counter_1 < job_list_len :
-        job_name = job_list[counter_1][u'name']
+        job_name = job_list[counter_1][u'fullname']
         logger.debug("Job Name: " + job_name)
         counter_1 += 1
         counter_2 = 0
@@ -298,8 +306,6 @@ def getJobStatus(request):
             except:
                 userName = '...'
 
-            #logger.debug("test_suite : " + test_suite + "  userName: " + userName)
-
             Duration = '...'
             current_build_number = build_num
             if str(build_info['result']) == 'None':
@@ -312,7 +318,7 @@ def getJobStatus(request):
                 end_time = time.strftime('%m/%d/%Y %H:%M:%S', time.gmtime(((int(build_info['timestamp']) + int(build_info['duration']) - 18000000) / 1000)))
                 Duration= int(build_info['duration'])/1000
             
-            job_status_vals = [str(job_name), str(test_suite), str(current_build_number), str(status), start_time, end_time, str(Duration), str(userName)]
+            job_status_vals = [str(job_name).split('/')[1], str(test_suite), str(current_build_number), str(status), start_time, end_time, str(Duration), str(userName)]
             logger.debug("job_status_vals: " + str(job_status_vals))
             job_status_dict = dict(zip(job_status_keys, job_status_vals))
             if not first_entry:
@@ -320,9 +326,9 @@ def getJobStatus(request):
             else:
                 first_entry = False
             job_status_json_file.write(json.dumps(job_status_dict))
+
             
-    
-    queue_info = j.get_queue_info()
+    queue_info = [x for x in j.get_queue_info() if REVO_FOLDER_PATH in x[u'task'][u'url']]
     queue_info_len = len(queue_info)
     counter_3 = 0
     logger.debug("Number of queues: " + str(queue_info_len))
@@ -358,6 +364,9 @@ def getJobStatus(request):
         {}
     )
 
+def get_full_job_name(job_name):
+    return REVO_FOLDER_NAME + '/' + job_name
+
 
 def stop_job_impl(jnkns_srvr, my_job, my_build):
     logger.debug("my_job: " + my_job + "  my_build: " + str(my_build))
@@ -366,9 +375,10 @@ def stop_job_impl(jnkns_srvr, my_job, my_build):
             jnkns_srvr.cancel_queue(my_build)
             logger.debug("CANCELLED QUEUE: " + "my_job: " + my_job + "  my_build: " + str(my_build))
         else:
-            running_build_number = [ build['number'] for build in jnkns_srvr.get_running_builds() if urllib.unquote(build['name']) == my_job]
+            running_build_number = [ build['number'] for build in jnkns_srvr.get_running_builds() if REVO_FOLDER_PATH + my_job in urllib.unquote(build['url']) ]
+            print str(running_build_number)
             if running_build_number :
-                jnkns_srvr.stop_build(my_job, running_build_number[0])
+                jnkns_srvr.stop_build(get_full_job_name(my_job), running_build_number[0])
                 logger.debug("CANCELLED BUILD: " + "my_job: " + my_job + "  my_build: " + str(my_build))
             else:
                 logger.debug("JOB NEITHER IN QUEUE NOR RUNNING:  " + "my_job: " + my_job + "  my_build: " + str(my_build))
@@ -444,15 +454,23 @@ def add_test_suite(request) :
 def add_device(request) :
     assert isinstance(request, HttpRequest)
 
-    if request.POST.get('device-name') and request.POST.get('device-id') :
-        new_device = device()
-        new_device.name = request.POST.get('device-name')
-        new_device.mac_id = request.POST.get('device-id')
-        new_device.serial_id = request.POST.get('serial-id')
-        new_device.device_type = request.POST.get('device-type')
-        new_device.ip = request.POST.get('ip')
-        new_device.router = request.POST.get('router')
+    # if request.POST.get('device-name') and request.POST.get('device-id') :
+    new_device = device()
+    new_device.name = request.POST.get('device-name')
+    new_device.mac_id = request.POST.get('device-id')
+    new_device.serial_id = request.POST.get('serial-id')
+    new_device.device_type = request.POST.get('device-type')
+    new_device.ip = request.POST.get('ip')
+    new_device.router = request.POST.get('router')
+    try:
         new_device.save()
-
         print "ADDED device name: " + request.POST.get('device-name') + "  Device Id:  " + request.POST.get('device-id')
+    except ValidationError as err:
+        logger.error("ValidationError: " + str(err))
+    except Exception as exception:
+        logger.error("Data line1: " + request.POST.get('device-name') + request.POST.get('device-id') + request.POST.get('serial-id'))
+        logger.error("Data line2: " + request.POST.get('device-type') + request.POST.get('ip') + request.POST.get('router'))
+        logger.error("EXCEPTION: " + str(exception))
+        print str(exception)
+
     return HttpResponseRedirect("/device")

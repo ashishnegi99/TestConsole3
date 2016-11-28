@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import validate_ipv46_address as ip_validator
+
 
 class testsuite(models.Model):
     name = models.CharField(max_length=255)
@@ -14,5 +16,5 @@ class device(models.Model):
     	choices=device_type_choices,
     	default='VM',
 	)
-	ip = models.GenericIPAddressField(protocol='IPv4')
+	ip = models.GenericIPAddressField(protocol='both', validators=[ip_validator])
 	router = models.CharField(max_length=255)
