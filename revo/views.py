@@ -64,8 +64,7 @@ def revo_view(request):
     cd1 = "<command>"
     cd2 = "</command>"
     mycommand2 = cd1 + "import time"+"\n" + "time.sleep(500)" + cd2
-    myXML_1 = "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties><hudson.model.ParametersDefinitionProperty><parameterDefinitions><hudson.model.StringParameterDefinition><name>param1</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition><hudson.model.StringParameterDefinition><name>param2</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition></parameterDefinitions></hudson.model.ParametersDefinitionProperty></properties><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.plugins.python.Python plugin='python@1.3'><command>i am a new job</command></hudson.plugins.python.Python></builders><publishers/><buildWrappers/></project>"
-    myXML = "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties/><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.plugins.python.Python plugin='python@1.3'><command>RawComamnd</command></hudson.plugins.python.Python></builders><publishers/><buildWrappers/></project>"
+    new_job_config = "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties><hudson.model.ParametersDefinitionProperty><parameterDefinitions><hudson.model.StringParameterDefinition><name>param1</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition><hudson.model.StringParameterDefinition><name>param2</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition></parameterDefinitions></hudson.model.ParametersDefinitionProperty></properties><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.tasks.BatchFile><command>timeout 500</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
     
     j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
 
@@ -90,7 +89,7 @@ def revo_view(request):
             print job_path, ' : ', my_test_suite[count2]
             
             if not j.job_exists(job_path):
-                j.create_job(job_path, myXML_1)
+                j.create_job(job_path, new_job_config)
                 j.enable_job(job_path)
                 jobConfig = j.get_job_config(job_path)
        
@@ -376,7 +375,6 @@ def stop_job_impl(jnkns_srvr, my_job, my_build):
             logger.debug("CANCELLED QUEUE: " + "my_job: " + my_job + "  my_build: " + str(my_build))
         else:
             running_build_number = [ build['number'] for build in jnkns_srvr.get_running_builds() if REVO_FOLDER_PATH + my_job in urllib.unquote(build['url']) ]
-            print str(running_build_number)
             if running_build_number :
                 jnkns_srvr.stop_build(get_full_job_name(my_job), running_build_number[0])
                 logger.debug("CANCELLED BUILD: " + "my_job: " + my_job + "  my_build: " + str(my_build))
