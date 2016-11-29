@@ -60,14 +60,25 @@ def revo_view(request):
         form = NameForm(request.POST)
     else:
         form = NameForm()
+
+    form = NameForm(request.POST)
+    my_stb = request.POST.getlist('check1')
+    my_test_suite = request.POST.getlist('checks')
+    user_name = request.user.username
     
+    loc_fix = "BUILD_PATH=C:\Jenkins\.jenkins\jobs\evo_automation"
+    test_runner_path = "C:\Jenkins\.jenkins\jobs\evo_automation\tests\TestRunner"
+    report_location = "C:\Jenkins\.jenkins\jobs\evo_automation"
+    run_path = "C:\Jenkins\.jenkins\logs\evoautomation\VMS_01"
+    jason_path = "C:\Jenkins\.jenkins\jobs\evo_automation\Test_Suite.json"
+    env_variables = "%JOB_NAME% %BUILD_TAG% SIT"
+    path_build = "cd %BUILD_PATH%"
+
     cd1 = "<command>"
     cd2 = "</command>"
-    mycommand2 = cd1 + "import time"+"\n" + "time.sleep(500)" + cd2
-    new_job_config = "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties><hudson.model.ParametersDefinitionProperty><parameterDefinitions><hudson.model.StringParameterDefinition><name>param1</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition><hudson.model.StringParameterDefinition><name>param2</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition></parameterDefinitions></hudson.model.ParametersDefinitionProperty></properties><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.tasks.BatchFile><command>timeout 500</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
     
     j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
-
+    new_job_config = "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties><hudson.model.ParametersDefinitionProperty><parameterDefinitions><hudson.model.StringParameterDefinition><name>param1</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition><hudson.model.StringParameterDefinition><name>param2</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition></parameterDefinitions></hudson.model.ParametersDefinitionProperty></properties><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.tasks.BatchFile><command>timeout 500</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
     new_folder_config = '<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@5.13"><actions/><description/><displayName>revo</displayName><properties/><views><hudson.model.AllView><owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../.."/><name>All</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/></hudson.model.AllView></views><viewsTabBar class="hudson.views.DefaultViewsTabBar"/><healthMetrics><com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric/></healthMetrics><icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/></com.cloudbees.hudson.plugins.folder.Folder>'
     new_view_config = '<hudson.model.ListView><name>revo_view</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/><jobNames><comparator class="hudson.util.CaseInsensitiveComparator"/><string>revo</string></jobNames><jobFilters/><columns><hudson.views.StatusColumn/><hudson.views.WeatherColumn/><hudson.views.JobColumn/><hudson.views.LastSuccessColumn/><hudson.views.LastFailureColumn/><hudson.views.LastDurationColumn/><hudson.views.BuildButtonColumn/></columns><recurse>false</recurse></hudson.model.ListView>'
 
@@ -77,16 +88,13 @@ def revo_view(request):
     # if j.view_exists("revo_view") != True:
     #     j.create_view("revo_view", new_view_config)
 
-    form = NameForm(request.POST)
-    my_stb = request.POST.getlist('check1')
-    my_test_suite = request.POST.getlist('checks')
-    user_name = request.user.username
     count1 = 0
     for s in my_stb:
         count2 = 0
         for t in my_test_suite:
             job_path = "revo/" + my_stb[count1]
             print job_path, ' : ', my_test_suite[count2]
+            mycommand2 = cd1 + "set " + loc_fix + "\n" + "cd C:\Jenkins\.jenkins\jobs\evo_automation" + "\n" + "cd tests\TestRunner" + "\n" + "python TestRunner.py " + my_test_suite[count2] + " " + my_stb[count1] + " True " + "C:\Jenkins\.jenkins\jobs\evo_automation" + " " + run_path + " " + "C:\Jenkins\.jenkins\jobs\evo_automation\Test_Suite.json" + " " + env_variables + "\n" + path_build + cd2
             
             if not j.job_exists(job_path):
                 j.create_job(job_path, new_job_config)
