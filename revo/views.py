@@ -518,4 +518,4 @@ def add_configurations(request) :
         config_file.write(run_path+ "\n")
         config_file.write(json_path+ "\n")
         config_file.close()
-    return HttpResponseRedirect("/revo/configs")
+    return HttpResponseRedirect("/revo/configs/")
