@@ -23,5 +23,8 @@ urlpatterns = [
     url(r"^testsuite", views.add_test_suite, name="testsuite"),
 # device
     url(r"^device", views.add_device, name="device"),
-
+# configs
+    url(r"^configs/", views.configs, name="configs"),
+# configs add
+    url(r"^configs_add", views.add_configurations, name="configs_add"),    
 ]

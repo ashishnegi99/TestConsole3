@@ -1,0 +1,43 @@
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+
+{% block body %} 
+    <div class="panel panel-primary device">
+        <div class="panel-heading device-heading">
+            <h3 class="device-title">Revo Configurations</h3>
+        </div>
+        <div class="panel-body">
+            <form  action="{% url 'configs_add' %}" method="post">
+                {% csrf_token %}
+                <div class="col-md-12 col-sm-12">
+                    <p>
+                        <label for="device-id">loc_fix</label>
+                        <input type="text" class="form-control input-sm" name="loc_fix" placeholder= {{ loc }} />
+                    </p>
+                    <p>
+                        <label for="device-serial-id">test_runner_path</label>
+                        <input type="text" class="form-control input-sm" name="test_runner_path" placeholder= {{ test_runner_path }}  />
+                    </p>
+                    <p>
+                        <label for="ip">report_location</label>
+                        <input name="report_location" type="text" class="form-control input-sm" placeholder= {{ report_location }} />
+                    </p>
+                    <p>
+                        <label for="device-name">run_path</label>
+                        <input name="run_path" type="text" class="form-control input-sm" placeholder= {{ run_path }} />
+                    </p>
+                    <p>
+                        <label for="router">json_path</label> 
+                        <input name="json_path" type="text" class="form-control input-sm" placeholder= {{ json_path }} />
+                     </p>
+                    <p>
+                        <div>
+                            <input type='submit' class="btn btn-primary center-block" value="Submit"  name="submit"/>
+                        </div>
+                    </p>
+                </div>
+        
+            </form>
+        </div>
+    </div>
+{% endblock %}

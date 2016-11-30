@@ -1,0 +1,5 @@
+BUILD_PATH=C:\Jenkins\.jenkins\jobs\evo_automation
+C:\Jenkins\.jenkins\jobs\evo_automation\tests\TestRunner
+C:\Jenkins\.jenkins\jobs\evo_automation
+C:\Jenkins\.jenkins\logs\evoautomation\VMS_01
+C:\Jenkins\.jenkins\jobs\evo_automation\Test_Suite.json

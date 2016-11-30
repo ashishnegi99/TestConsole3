@@ -66,11 +66,14 @@ def revo_view(request):
     my_test_suite = request.POST.getlist('checks')
     user_name = request.user.username
     
-    loc_fix = "BUILD_PATH=C:\Jenkins\.jenkins\jobs\evo_automation"
-    test_runner_path = "C:\Jenkins\.jenkins\jobs\evo_automation\tests\TestRunner"
-    report_location = "C:\Jenkins\.jenkins\jobs\evo_automation"
-    run_path = "C:\Jenkins\.jenkins\logs\evoautomation\VMS_01"
-    jason_path = "C:\Jenkins\.jenkins\jobs\evo_automation\Test_Suite.json"
+    with open("revo_configs.txt") as revo_config:
+        content = revo_config.readlines()
+    
+    loc_fix = content[0]
+    test_runner_path = content[1]
+    report_location = content[2]
+    run_path = content[3]
+    json_path = content[4]
     env_variables = "%JOB_NAME% %BUILD_TAG% SIT"
     path_build = "cd %BUILD_PATH%"
 
@@ -94,7 +97,7 @@ def revo_view(request):
         for t in my_test_suite:
             job_path = "revo/" + my_stb[count1]
             print job_path, ' : ', my_test_suite[count2]
-            mycommand2 = cd1 + "set " + loc_fix + "\n" + "cd C:\Jenkins\.jenkins\jobs\evo_automation" + "\n" + "cd tests\TestRunner" + "\n" + "python TestRunner.py " + my_test_suite[count2] + " " + my_stb[count1] + " True " + "C:\Jenkins\.jenkins\jobs\evo_automation" + " " + run_path + " " + "C:\Jenkins\.jenkins\jobs\evo_automation\Test_Suite.json" + " " + env_variables + "\n" + path_build + cd2
+            mycommand2 = cd1 + "set " + loc_fix + "\n" + "cd " + test_runner_path + "\n" + "python TestRunner.py " + my_test_suite[count2] + " " + my_stb[count1] + " True " + report_location + " " + run_path + " " + json_path + " " + env_variables + "\n" + path_build + cd2
             
             if not j.job_exists(job_path):
                 j.create_job(job_path, new_job_config)
@@ -460,7 +463,6 @@ def add_test_suite(request) :
 def add_device(request) :
     assert isinstance(request, HttpRequest)
 
-    # if request.POST.get('device-name') and request.POST.get('device-id') :
     new_device = device()
     new_device.name = request.POST.get('device-name')
     new_device.mac_id = request.POST.get('device-id')
@@ -470,13 +472,50 @@ def add_device(request) :
     new_device.router = request.POST.get('router')
     try:
         new_device.save()
-        print "ADDED device name: " + request.POST.get('device-name') + "  Device Id:  " + request.POST.get('device-id')
+        #print "ADDED device name: " + request.POST.get('device-name') + "  Device Id:  " + request.POST.get('device-id')
     except ValidationError as err:
         logger.error("ValidationError: " + str(err))
     except Exception as exception:
-        logger.error("Data line1: " + request.POST.get('device-name') + request.POST.get('device-id') + request.POST.get('serial-id'))
-        logger.error("Data line2: " + request.POST.get('device-type') + request.POST.get('ip') + request.POST.get('router'))
+        # logger.error("Data line1: " + request.POST.get('device-name') + request.POST.get('device-id') + request.POST.get('serial-id'))
+        # logger.error("Data line2: " + request.POST.get('device-type') + request.POST.get('ip') + request.POST.get('router'))
         logger.error("EXCEPTION: " + str(exception))
         print str(exception)
 
     return HttpResponseRedirect("/device")
+
+@login_required
+def configs(request):
+    assert isinstance(request, HttpRequest)
+    with open("revo_configs.txt") as revo_config:
+        content = revo_config.readlines()
+    
+    return render(
+        request,
+        "revo/configs.html",
+        RequestContext(request, {
+            "loc" : content[0],
+            "test_runner_path" : content[1],
+            "report_location" : content[2],
+            "run_path" : content[3],
+            "json_path" : content[4],
+        })
+    )
+
+def add_configurations(request) :
+    assert isinstance(request, HttpRequest)
+    loc_fix = str(request.POST.get('loc_fix'))
+    test_runner_path = str(request.POST.get('test_runner_path'))
+    report_location = str(request.POST.get('report_location'))
+    run_path = str(request.POST.get('run_path'))
+    json_path = str(request.POST.get('json_path'))
+    
+    if loc_fix and test_runner_path and report_location and run_path and json_path:
+        print loc_fix + test_runner_path + report_location + run_path + json_path
+        config_file = open("revo_configs.txt", "w")
+        config_file.write(loc_fix+ "\n")
+        config_file.write(test_runner_path+ "\n")
+        config_file.write(report_location+ "\n")
+        config_file.write(run_path+ "\n")
+        config_file.write(json_path+ "\n")
+        config_file.close()
+    return HttpResponseRedirect("/revo/configs")

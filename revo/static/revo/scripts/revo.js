@@ -136,7 +136,7 @@ function stbststus1(){
 		    }
         if(item.Result == "IN PROGRESS"){
           colorclass = "progress";
-		      linkclass = "linkclass";
+		      linkclass = "";
           status = '';
 		    }
         if(item.Result == "IN QUEUE"){
