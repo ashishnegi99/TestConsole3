@@ -145,7 +145,7 @@ def revo_view(request):
                 
                 print "RECONFIG"
                 j.build_job(job_path,{'param1': my_test_suite[count2],'param2': user_name})
-                count2 = count2+1    
+            count2 = count2+1    
         count1 = count1+1
  
     return HttpResponseRedirect("/revo")
