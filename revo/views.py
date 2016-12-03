@@ -79,17 +79,20 @@ def revo_view(request):
 
     cd1 = "<command>"
     cd2 = "</command>"
-    
+
+    with open('Reference_File.txt', 'rb') as f:
+        reader = csv.reader(f)
+        job_node_list = {}
+        for row in reader:
+            job_node_list[row[1]] = row[3]
+
     j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
-    new_job_config = "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties><hudson.model.ParametersDefinitionProperty><parameterDefinitions><hudson.model.StringParameterDefinition><name>param1</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition><hudson.model.StringParameterDefinition><name>param2</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition></parameterDefinitions></hudson.model.ParametersDefinitionProperty></properties><scm class='hudson.scm.NullSCM'/><canRoam>true</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.tasks.BatchFile><command>timeout 500</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
+    new_job_config_pre =    "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties><hudson.model.ParametersDefinitionProperty><parameterDefinitions><hudson.model.StringParameterDefinition><name>param1</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition><hudson.model.StringParameterDefinition><name>param2</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition></parameterDefinitions></hudson.model.ParametersDefinitionProperty></properties><scm class='hudson.scm.NullSCM'/>"
+    new_job_config_post = "<disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.tasks.BatchFile><command>timeout 500</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
     new_folder_config = '<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@5.13"><actions/><description/><displayName>revo</displayName><properties/><views><hudson.model.AllView><owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../.."/><name>All</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/></hudson.model.AllView></views><viewsTabBar class="hudson.views.DefaultViewsTabBar"/><healthMetrics><com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric/></healthMetrics><icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/></com.cloudbees.hudson.plugins.folder.Folder>'
-    new_view_config = '<hudson.model.ListView><name>revo_view</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/><jobNames><comparator class="hudson.util.CaseInsensitiveComparator"/><string>revo</string></jobNames><jobFilters/><columns><hudson.views.StatusColumn/><hudson.views.WeatherColumn/><hudson.views.JobColumn/><hudson.views.LastSuccessColumn/><hudson.views.LastFailureColumn/><hudson.views.LastDurationColumn/><hudson.views.BuildButtonColumn/></columns><recurse>false</recurse></hudson.model.ListView>'
 
     if j.job_exists('revo') != True:
         j.create_job('revo', new_folder_config)
-
-    # if j.view_exists("revo_view") != True:
-    #     j.create_view("revo_view", new_view_config)
 
     count1 = 0
     for s in my_stb:
@@ -97,9 +100,17 @@ def revo_view(request):
         for t in my_test_suite:
             job_path = "revo/" + my_stb[count1]
             print job_path, ' : ', my_test_suite[count2]
-            mycommand2 = cd1 + "set " + loc_fix + "\n" + "cd " + test_runner_path + "\n" + "python TestRunner.py " + my_test_suite[count2] + " " + my_stb[count1] + " True " + report_location + " " + run_path + " " + json_path + " " + env_variables + "\n" + path_build + cd2
+            mycommand2 = cd1 + "set " + loc_fix + "\n" + "cd " + test_runner_path + "\n" + "python TestRunner.py " + "%param1%" + " " + my_stb[count1] + " True " + report_location + " " + run_path + " " + json_path + " " + env_variables + "\n" + path_build + cd2
             
+            new_job_config = new_job_config_pre
+            if my_stb[count1] in job_node_list.keys() :
+                new_job_config += "<assignedNode>" + job_node_list[my_stb[count1]] + "</assignedNode><canRoam>false</canRoam>"
+            else :
+                new_job_config += "<canRoam>true</canRoam>"
+            new_job_config += new_job_config_post
+
             if not j.job_exists(job_path):
+
                 j.create_job(job_path, new_job_config)
                 j.enable_job(job_path)
                 jobConfig = j.get_job_config(job_path)
@@ -123,6 +134,7 @@ def revo_view(request):
                 j.build_job(job_path,{'param1': my_test_suite[count2],'param2': user_name})
                         
             else:
+                j.reconfig_job(job_path, new_job_config)
                 j.enable_job(job_path)
                 jobConfig = j.get_job_config(job_path)
                 print "Before RECONFIG"
