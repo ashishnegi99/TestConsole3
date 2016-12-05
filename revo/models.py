@@ -18,3 +18,4 @@ class device(models.Model):
 	)
 	ip = models.GenericIPAddressField(protocol='both', validators=[ip_validator])
 	router = models.CharField(max_length=255)
+	host = models.CharField(max_length=255)

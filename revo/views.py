@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime, date, timedelta
 from app.forms import UserForm, NameForm, BootstrapAuthenticationForm
 from app.models import Storm, Appium, Revo, Set_Top_Box, racktestresult
-from revo.models import testsuite, device
+from revo.models import testsuite
+from revo.models import device as stb_devices
 from xml.etree import ElementTree as ET
 from xml.dom.minidom import parse
 from django.core.exceptions import ValidationError
@@ -67,7 +68,7 @@ def revo_view(request):
     user_name = request.user.username
     
     with open("revo_configs.txt") as revo_config:
-        content = revo_config.readlines()
+        content = revo_config.read().splitlines()
     
     loc_fix = content[0]
     test_runner_path = content[1]
@@ -80,11 +81,9 @@ def revo_view(request):
     cd1 = "<command>"
     cd2 = "</command>"
 
-    with open('Reference_File.txt', 'rb') as f:
-        reader = csv.reader(f)
-        job_node_list = {}
-        for row in reader:
-            job_node_list[row[1]] = row[3]
+    job_node_list = {}
+    for row in stb_devices.objects.all():
+        job_node_list[row.name] = row.host
 
     j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
     new_job_config_pre =    "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties><hudson.model.ParametersDefinitionProperty><parameterDefinitions><hudson.model.StringParameterDefinition><name>param1</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition><hudson.model.StringParameterDefinition><name>param2</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition></parameterDefinitions></hudson.model.ParametersDefinitionProperty></properties><scm class='hudson.scm.NullSCM'/>"
@@ -99,9 +98,10 @@ def revo_view(request):
         count2 = 0
         for t in my_test_suite:
             job_path = "revo/" + my_stb[count1]
-            print job_path, ' : ', my_test_suite[count2]
+            logger.debug("JOB_PATH: " + job_path + ' : ' + str(my_test_suite[count2]))
             mycommand2 = cd1 + "set " + loc_fix + "\n" + "cd " + test_runner_path + "\n" + "python TestRunner.py " + "%param1%" + " " + my_stb[count1] + " True " + report_location + " " + run_path + " " + json_path + " " + env_variables + "\n" + path_build + cd2
-            
+            logger.debug("MyCommand2: " +  mycommand2)
+
             new_job_config = new_job_config_pre
             if my_stb[count1] in job_node_list.keys() :
                 new_job_config += "<assignedNode>" + job_node_list[my_stb[count1]] + "</assignedNode><canRoam>false</canRoam>"
@@ -171,8 +171,8 @@ def logToJobFile(abc):
     logFile.write(abc + "\n")
 
 
-
 def GetSerialNum(request):
+    assert isinstance(request, HttpRequest)
     if request.method == 'GET':
 
         print 'calling SETTOPBOX function'
@@ -190,16 +190,7 @@ def GetSerialNum(request):
         s.settimeout(5)
         s.sendto(msg, ('239.255.255.250', 1900))
 
-        try:
-            os.remove('serialnumbers.txt')
-        except OSError:
-            pass
-
-        def logToFile(logTxt):
-            logFile = open("serialnumbers.txt", "a+")
-            logFile.write(logTxt + "\n")
-            # print logTxt
-
+        device_serial_num_list = []
         count = 0
         try:
             while True:
@@ -208,7 +199,7 @@ def GetSerialNum(request):
 
                 mylist = data.split('\r')
                 url = re.findall('http?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', data)
-                print url[0]
+                print "URL: " + url[0]
                 response = urllib2.urlopen(url[0])
                 the_page = response.read()
 
@@ -222,63 +213,38 @@ def GetSerialNum(request):
                     for node in act.childNodes:
                         if node.nodeType == node.TEXT_NODE:
                             r = "{}".format(node.data)
-                            print r
-                            logToFile(str(r))
+                            device_serial_num_list.append(str(r))
                             i += 1
-                            print i
-
         except socket.timeout:
-            print "I WAs in the except block"
+            print "I was in the except block!"
             pass
 
-        f = open("Reference_File.txt", "r")
-        reader = csv.reader(f)
+        logger.debug("Devices from socket: " + str(device_serial_num_list))
+        device_list = stb_devices.objects.all()
+        logger.debug("Devices from database: " + str(device_list))
+        matched_device = set([row.serial_id for row in device_list]).intersection(device_serial_num_list)
+        logger.debug("Matched Devices: " + str(matched_device))
 
-        data = open("temp1.csv", "wb")
-        w = csv.writer(data)
-        for row in reader:
-            my_row = []
-            my_row.append(row[0])
-            w.writerow(my_row)
-        data.close()
+        sample_list = []
+        for device in device_list:
+            sample_dict = {}
 
-        with io.open('temp1.csv', 'r') as file1:
-            with io.open('serialnumbers.txt', 'r') as file2:
-                same = set(file1).intersection(file2)
-                print same
+            if device.serial_id in matched_device:
+                sample_dict["STBStatus"] = 1
+            else:
+                sample_dict["STBStatus"] = 0
 
-        with open('results.csv', 'w') as file_out:
-            for line in same:
-                file_out.write(line)
-                print line
+            sample_dict["RouterSNo"] = device.router
+            sample_dict["STBLabel"] = device.name
+            sample_dict["STBSno"] = device.serial_id
+            sample_list.append(sample_dict)
 
-        with open('results.csv', 'rb') as f:
-            reader = csv.reader(f)
-            result_list = []
-            for row in reader:
-                result_list.extend(row)
-
-        with open('Reference_File.txt', 'rb') as f:
-            reader = csv.reader(f)
-            sample_list = []
-            for row in reader:
-                if row[0] in result_list:
-                    sample_list.append(row + [1])
-                else:
-                    sample_list.append(row + [0])
-
-        with open('sample_output.csv', 'wb') as f:
-            writer = csv.writer(f)
-            writer.writerows(sample_list)
-            print
-
-        f = open('sample_output.csv', 'r')
         jsonfile = open('app/templates/app/temp1.json', 'w')
-        reader = csv.DictReader(f, fieldnames=("STBSno", "STBLabel", "RouterSNo", "STBStatus"))
-        out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in reader]) + "\n]"
+        out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in sample_list]) + "\n]"
         jsonfile.write(out)
-    assert isinstance(request, HttpRequest)
+
     return HttpResponseRedirect("/revo")
+
 
 def createJsonFile(fileName):
     f = open(fileName, 'r')
@@ -475,21 +441,26 @@ def add_test_suite(request) :
 def add_device(request) :
     assert isinstance(request, HttpRequest)
 
-    new_device = device()
+    new_device = stb_devices()
     new_device.name = request.POST.get('device-name')
     new_device.mac_id = request.POST.get('device-id')
     new_device.serial_id = request.POST.get('serial-id')
     new_device.device_type = request.POST.get('device-type')
     new_device.ip = request.POST.get('ip')
     new_device.router = request.POST.get('router')
+    new_device.host = request.POST.get('host-name')
+
+    # import pdb; pdb.set_trace()
     try:
-        new_device.save()
-        #print "ADDED device name: " + request.POST.get('device-name') + "  Device Id:  " + request.POST.get('device-id')
+        if new_device.name and new_device.serial_id and new_device.router and new_device.host:
+            logger.debug("Data line1: " + request.POST.get('device-name') + " : "  + request.POST.get('serial-id'))
+            logger.debug("Data line2: " + request.POST.get('device-type') + " : "  + request.POST.get('ip') + " : " + request.POST.get('device-id'))
+            logger.debug("Data line3: " + request.POST.get('router') + " : "  + request.POST.get('host-name'))
+            new_device.save()
+            print "ADDED device name: " + request.POST.get('device-name') + "  Device Id:  " + request.POST.get('device-id')
     except ValidationError as err:
         logger.error("ValidationError: " + str(err))
     except Exception as exception:
-        # logger.error("Data line1: " + request.POST.get('device-name') + request.POST.get('device-id') + request.POST.get('serial-id'))
-        # logger.error("Data line2: " + request.POST.get('device-type') + request.POST.get('ip') + request.POST.get('router'))
         logger.error("EXCEPTION: " + str(exception))
         print str(exception)
 
