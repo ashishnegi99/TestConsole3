@@ -171,78 +171,80 @@ def logToJobFile(abc):
     logFile.write(abc + "\n")
 
 
+def get_serial_num_impl():
+    print 'calling SETTOPBOX function'
+    i = 0
+
+    msg = \
+        'M-SEARCH * HTTP/1.1\r\n' \
+        'HOST:239.255.255.250:1900\r\n' \
+        'MX:2\r\n' \
+        'MAN:ssdp:discover\r\n' \
+        'ST:urn:schemas-upnp-org:device:ManageableDevice:2\r\n'
+
+    # Set up UDP socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+    s.settimeout(5)
+    s.sendto(msg, ('239.255.255.250', 1900))
+
+    device_serial_num_list = []
+    count = 0
+    try:
+        while True:
+            count = count + 1
+            data, addr = s.recvfrom(65507)
+
+            mylist = data.split('\r')
+            url = re.findall('http?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', data)
+            print "URL: " + url[0]
+            response = urllib2.urlopen(url[0])
+            the_page = response.read()
+
+            tree = ET.XML(the_page)
+            with open("temp.xml", "w") as f:
+                f.write(ET.tostring(tree))
+
+            document = parse('temp.xml')
+            actors = document.getElementsByTagName("ns0:serialNumber")
+            for act in actors:
+                for node in act.childNodes:
+                    if node.nodeType == node.TEXT_NODE:
+                        r = "{}".format(node.data)
+                        device_serial_num_list.append(str(r))
+                        i += 1
+    except socket.timeout:
+        print "I was in the except block!"
+        pass
+
+    logger.debug("Devices from socket: " + str(device_serial_num_list))
+    device_list = stb_devices.objects.all()
+    logger.debug("Devices from database: " + str(device_list))
+    matched_device = set([row.serial_id for row in device_list]).intersection(device_serial_num_list)
+    logger.debug("Matched Devices: " + str(matched_device))
+
+    sample_list = []
+    for device in device_list:
+        sample_dict = {}
+
+        if device.serial_id in matched_device:
+            sample_dict["STBStatus"] = 1
+        else:
+            sample_dict["STBStatus"] = 0
+
+        sample_dict["RouterSNo"] = device.router
+        sample_dict["STBLabel"] = device.name
+        sample_dict["STBSno"] = device.serial_id
+        sample_list.append(sample_dict)
+
+    jsonfile = open('app/templates/app/temp1.json', 'w')
+    out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in sample_list]) + "\n]"
+    jsonfile.write(out)
+
+
 def GetSerialNum(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-
-        print 'calling SETTOPBOX function'
-        i = 0
-
-        msg = \
-            'M-SEARCH * HTTP/1.1\r\n' \
-            'HOST:239.255.255.250:1900\r\n' \
-            'MX:2\r\n' \
-            'MAN:ssdp:discover\r\n' \
-            'ST:urn:schemas-upnp-org:device:ManageableDevice:2\r\n'
-
-        # Set up UDP socket
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
-        s.settimeout(5)
-        s.sendto(msg, ('239.255.255.250', 1900))
-
-        device_serial_num_list = []
-        count = 0
-        try:
-            while True:
-                count = count + 1
-                data, addr = s.recvfrom(65507)
-
-                mylist = data.split('\r')
-                url = re.findall('http?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', data)
-                print "URL: " + url[0]
-                response = urllib2.urlopen(url[0])
-                the_page = response.read()
-
-                tree = ET.XML(the_page)
-                with open("temp.xml", "w") as f:
-                    f.write(ET.tostring(tree))
-
-                document = parse('temp.xml')
-                actors = document.getElementsByTagName("ns0:serialNumber")
-                for act in actors:
-                    for node in act.childNodes:
-                        if node.nodeType == node.TEXT_NODE:
-                            r = "{}".format(node.data)
-                            device_serial_num_list.append(str(r))
-                            i += 1
-        except socket.timeout:
-            print "I was in the except block!"
-            pass
-
-        logger.debug("Devices from socket: " + str(device_serial_num_list))
-        device_list = stb_devices.objects.all()
-        logger.debug("Devices from database: " + str(device_list))
-        matched_device = set([row.serial_id for row in device_list]).intersection(device_serial_num_list)
-        logger.debug("Matched Devices: " + str(matched_device))
-
-        sample_list = []
-        for device in device_list:
-            sample_dict = {}
-
-            if device.serial_id in matched_device:
-                sample_dict["STBStatus"] = 1
-            else:
-                sample_dict["STBStatus"] = 0
-
-            sample_dict["RouterSNo"] = device.router
-            sample_dict["STBLabel"] = device.name
-            sample_dict["STBSno"] = device.serial_id
-            sample_list.append(sample_dict)
-
-        jsonfile = open('app/templates/app/temp1.json', 'w')
-        out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in sample_list]) + "\n]"
-        jsonfile.write(out)
-
+        get_serial_num_impl()
     return HttpResponseRedirect("/revo")
 
 
@@ -475,13 +477,14 @@ def add_device(request) :
         logger.error("EXCEPTION: " + str(exception))
         print str(exception)
 
+    get_serial_num_impl()
     return HttpResponseRedirect("/revo/devices/list_view")
 
 def delete_device(request) :
     assert isinstance(request, HttpRequest)
     stb_devices.objects.filter(name__in=request.POST.getlist('device_name')).delete()
+    get_serial_num_impl()
     return HttpResponseRedirect("/revo/devices/list_view")
-
 
 @login_required
 def configs(request):

@@ -831,5 +831,9 @@ margin-top: 85%}
     padding-top: 10px;
 }
 
-
+.revo-config {
+  background-color: grey;
+  font-weight: bold;
+  padding-left: 10px;
+}
 
