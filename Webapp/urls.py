@@ -31,10 +31,6 @@ urlpatterns = patterns("",
     url(r"^home", "app.views.home", name="home"),
     url(r"^$", "app.views.home", name="home"),
 
-## Configurations
-    url(r"^device", "app.views.device", name="device"),
-    url(r"^test_suites", "app.views.test_suites", name="test_suites"),
-
 ## Revo's
     url(r'^revo/', include('revo.urls')),
 

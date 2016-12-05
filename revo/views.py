@@ -424,19 +424,30 @@ def Json2(request):
         })
     )
 
-def add_test_suite(request) :
+
+@login_required
+def device_list(request):
     assert isinstance(request, HttpRequest)
-    names = request.POST.getlist('names')
-    mappings = request.POST.getlist('mappings')
 
-    for index in range(0, len(names)):
-        if str(names[index]) and str(mappings[index]):
-            test_suite = testsuite(name = str(names[index]), mapping_name = str(mappings[index]))
-            test_suite.save()
-            print "ADDED TEST SUITE name: " + str(names[index]) + "  mapping_name: " + str(mappings[index])
+    devices = [ { "name": row.name, "serial_num" : row.serial_id, "router" : row.router, "host" : row.host } for row in stb_devices.objects.all()]
+    return render(
+        request,
+        "revo/device_list.html",
+        RequestContext(request, {
+         "devices" : devices
+        })
+    )
 
-    return HttpResponseRedirect("/test_suites")
-
+@login_required
+def device_add_view(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        "revo/device_add_view.html",
+        RequestContext(request, {
+         
+        })
+    )
 
 def add_device(request) :
     assert isinstance(request, HttpRequest)
@@ -464,7 +475,13 @@ def add_device(request) :
         logger.error("EXCEPTION: " + str(exception))
         print str(exception)
 
-    return HttpResponseRedirect("/device")
+    return HttpResponseRedirect("/revo/devices/list_view")
+
+def delete_device(request) :
+    assert isinstance(request, HttpRequest)
+    stb_devices.objects.filter(name__in=request.POST.getlist('device_name')).delete()
+    return HttpResponseRedirect("/revo/devices/list_view")
+
 
 @login_required
 def configs(request):
@@ -502,3 +519,47 @@ def add_configurations(request) :
         config_file.write(json_path+ "\n")
         config_file.close()
     return HttpResponseRedirect("/revo/configs/")
+
+
+@login_required
+def test_suites_add_view(request):
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        "revo/test_suites.html",
+        RequestContext(request, {
+            
+        })
+    )
+
+@login_required
+def test_suites_list(request):
+    assert isinstance(request, HttpRequest)
+    suite = [ { "name": row.name, "mapping" : row.mapping_name} for row in testsuite.objects.all()]
+    return render(
+        request,
+        "revo/test_suite_list.html",
+        RequestContext(request, {
+            "suite" : suite,
+        })
+    )
+
+
+def add_test_suite(request) :
+    assert isinstance(request, HttpRequest)
+    names = request.POST.getlist('names')
+    mappings = request.POST.getlist('mappings')
+
+    for index in range(0, len(names)):
+        if str(names[index]) and str(mappings[index]):
+            test_suite = testsuite(name = str(names[index]), mapping_name = str(mappings[index]))
+            test_suite.save()
+            print "ADDED TEST SUITE name: " + str(names[index]) + "  mapping_name: " + str(mappings[index])
+
+    return HttpResponseRedirect("/revo/test_suites/list_view")
+
+
+def delete_test_suite(request) :
+    assert isinstance(request, HttpRequest)
+    testsuite.objects.filter(name__in=request.POST.getlist('tset_suite_name')).delete()
+    return HttpResponseRedirect("/revo/test_suites/list_view")

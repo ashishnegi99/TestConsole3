@@ -68,29 +68,6 @@ def Appium(request):
     )
 
 
-@login_required
-def device(request):
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        "app/device.html",
-        RequestContext(request, {
-         
-        })
-    )
-
-
-@login_required
-def test_suites(request):
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        "app/test_suites.html",
-        RequestContext(request, {
-            
-        })
-    )
-
 def register(request):
     context = RequestContext(request)
 

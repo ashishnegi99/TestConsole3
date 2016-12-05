@@ -8,12 +8,16 @@
             <h3 class="device-title">Add Device</h3>
         </div>
         <div class="panel-body">
-            <form  action="{% url 'device' %}" method="post">
+            <form  action="{% url 'device_new' %}" method="post">
                 {% csrf_token %}
                 <div class="col-md-12 col-sm-12">
                     <p>
                         <label for="device-id">Device ID (MAC ID)</label>
                         <input type="text" class="form-control input-sm" name="device-id" placeholder="Device ID">
+                    </p>
+                    <p>
+                        <label for="device-name">Device Name</label>
+                        <input name="device-name" type="text" class="form-control input-sm" placeholder="Device Name">
                     </p>
                     <p>
                         <label for="device-serial-id">Device Serial ID</label>
@@ -28,29 +32,24 @@
                             <option>MKB</option>
                         </select>
                     </p>
-        
                     
                     <script>
                         $(function(){
                             $('#ipv4').ipAddress();
                             $('#ipv6').ipAddress({v:6});
                         });
-
-                        //mask input type text (ipv4) : ___.___.___.___
-                        //mask input type text (ipv6) : ____:____:____:____:____:____:____:____
                     </script>
                     <p>
                         <label for="ip">IP Address</label>
                         <input name="ip" type="text" class="form-control input-sm">
-                        <!--<input type="text" name="ipv" id="ipv6">-->
                     </p>
                     <p>
-                        <label for="device-name">Device Name</label>
-                        <input name="device-name" type="text" class="form-control input-sm" placeholder="Device Name">
-                    </p>
-                    <p>
-                        <label for="router">Home Setup / Router</label>
+                        <label for="router">Router SNo.</label>
                         <input name="router" type="text" class="form-control input-sm" placeholder="Home Setup / Router">
+                    </p>
+                    <p>
+                        <label for="host-name">Host Name</label>
+                        <input name="host-name" type="text" class="form-control input-sm" placeholder="Host Name">
                     </p>
                     <p>
                         <div>
@@ -58,7 +57,7 @@
                         </div>
                     </p>
                 </div>
-        
+                
             </form>
         </div>
     </div>
