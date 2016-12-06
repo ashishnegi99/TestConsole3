@@ -47,7 +47,7 @@ Revo:
 	Testsuite values are fetched from the database.
 
 	Select multiple devices and testsuites combination and press run
-		- In jenkins we create/reconfig a project coressponding to every device inside revo folder
+		- We create/reconfig a jenkins project for every device (inside revo folder)
 		- For every testsuite we create a build
 		- Depending on the config it will run on the coressponding slave machine
 
