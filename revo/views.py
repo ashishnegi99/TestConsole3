@@ -103,7 +103,7 @@ def revo_view(request):
             logger.debug("MyCommand2: " +  mycommand2)
 
             new_job_config = new_job_config_pre
-            if my_stb[count1] in job_node_list.keys() :
+            if my_stb[count1] in job_node_list.keys() and job_node_list[my_stb[count1]]:
                 new_job_config += "<assignedNode>" + job_node_list[my_stb[count1]] + "</assignedNode><canRoam>false</canRoam>"
             else :
                 new_job_config += "<canRoam>true</canRoam>"
