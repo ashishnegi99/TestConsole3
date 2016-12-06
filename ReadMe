@@ -1,7 +1,9 @@
 Install Jenkins locally
 
-Add local path to jenkins in .bash_profile if using mac
+MAC:
+Add local path to jenkins in .bash_profile
 
+WIN:
 Edit the config file and remove username and password if using windows
 
 Install python 2.7 or higher
@@ -10,7 +12,53 @@ pip install -r requirements.txt
 
 chmod +x manage.py
 
-
 ./manage.py syncdb
 ./manage.py migrate
 ./manage.py runserver
+
+Check  /TestConsole3/Instructions for Test Console Setup (*).pdf  for installation related informatons.
+
+
+FEATURES
+
+Configurations:
+	Add/delete a device
+	Device list gets updated in configurations.
+	Device list gets updated in revo view.
+
+	Add/delete a testsuite
+	testsuite list gets updated in configurations.
+	testsuite list gets updated in revo view.
+
+	Modify configs - check they are updated in the file revo_configs.txt
+	They must get updated as placeholders in the view.
+	Run a build in revo view.
+	The build command in jenkins contains the new config values.
+
+Reports:
+	All the four graphs generated using values in the database.
+	Change the date and check again the values in the graphs should honour the date changes.
+
+Revo:
+	All STB values are fetched from the databse.
+	Click the refresh button 
+		- all STB from the connected router are matched and if active are shown as green.
+
+	Testsuite values are fetched from the database.
+
+	Select multiple devices and testsuites combination and press run
+		- In jenkins we create/reconfig a project coressponding to every device inside revo folder
+		- For every testsuite we create a build
+		- Depending on the config it will run on the coressponding slave machine
+
+	The list shows all the jobs
+		- We can stop a job in Queue or in progress. (Others cannot be selected)
+		- We can select multiple or all jobs in queue or in progress.
+		- We can see the user name who initiated that build.
+		- We can see console output of builds which suceeded failed or are in progress.
+		- We can use the refresh button to refresh the list.
+
+Others:
+	The page auto refresh every 60 sec.
+	The login/logout functionality should work
+	Revo/Report page should not be visible wout login.
