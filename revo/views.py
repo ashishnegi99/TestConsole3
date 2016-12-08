@@ -463,7 +463,6 @@ def add_device(request) :
     new_device.router = request.POST.get('router')
     new_device.host = request.POST.get('host-name')
 
-    # import pdb; pdb.set_trace()
     try:
         if new_device.name and new_device.serial_id and new_device.router and new_device.host:
             logger.debug("Data line1: " + request.POST.get('device-name') + " : "  + request.POST.get('serial-id'))
