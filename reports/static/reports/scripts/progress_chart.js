@@ -1,4 +1,8 @@
 $(function () {
+    Highcharts.theme = {
+        colors: ['rgb(80,180,50)', 'rgb(180,00,00)', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4'],
+    }
+    Highcharts.setOptions(Highcharts.theme);
     Highcharts.chart('container1', {
          credits: {
             enabled: false
@@ -23,7 +27,7 @@ $(function () {
             pointFormat: '<br><span style="font-size:2em; color: {point.color}; font-weight: bold">{point.y}%</span>',
             positioner: function (labelWidth) {
                 return {
-                    x: 305 - labelWidth / 2,
+                    x: 225 - labelWidth / 2,
                     y: 150
                 };
             }
