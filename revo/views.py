@@ -53,6 +53,32 @@ def  consolelink(request):
     output = server.get_build_console_output(get_full_job_name(job), build)
     return HttpResponse(output)   
     
+
+def create_groovy_job(job_name, wait_in_sec, **params):
+  job = {}
+  job["name"] = job_name
+  job["WaitFor"] = wait_in_sec
+  parameters = { "param1" : params.get("param1") , "param2" : params.get("param2") }
+  job["Parameters"] = parameters
+  return job
+
+def schedule_job(jobs_as_json_str):
+    jserver = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
+    
+    with open('schedule.groovy', 'r') as content_file:
+        content = content_file.read()
+
+    content = "def jobsToRunStr = '" + jobs_as_json_str + "'\n" + content
+    info = jserver.run_script(content)
+    logger.debug("Groovy Script Info: " + info)
+
+def sample_groovy():
+    jobsToRun = []
+    jobsToRun.append(create_groovy_job('IPC2_01', 10, param1="some long param", param2="def"))
+    jobsToRun.append(create_groovy_job('IPC2_02', 6, param1="ac", param2="df"))
+    jstr = json.dumps(jobsToRun)
+    schedule_job(jstr)
+
 ########################
 ## Start: Revo Views  ##
 ########################
