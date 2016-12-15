@@ -1,7 +1,0 @@
-DEBUG 2016-11-23 12:24:45,830 views.py StopMultipleJobs 385 my_stb: [u'STB 1,28', u'STB 1,81', u'STB 1,82']
-DEBUG 2016-11-23 12:24:45,830 views.py StopMultipleJobs 393 my_job: STB 1  my_build: 82
-DEBUG 2016-11-23 12:24:46,134 views.py StopMultipleJobs 397 CANCELLED QUEUE: my_job: STB 1  my_build: 82
-DEBUG 2016-11-23 12:24:46,134 views.py StopMultipleJobs 393 my_job: STB 1  my_build: 81
-DEBUG 2016-11-23 12:24:46,373 views.py StopMultipleJobs 397 CANCELLED QUEUE: my_job: STB 1  my_build: 81
-DEBUG 2016-11-23 12:24:46,373 views.py StopMultipleJobs 393 my_job: STB 1  my_build: 28
-DEBUG 2016-11-23 12:24:46,757 views.py StopMultipleJobs 402 CANCELLED BUILD: my_job: STB 1  my_build: 28

@@ -176,7 +176,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': 'logs/revo.log',
+            'filename': 'revo/runtime/logs/revo.log',
             'formatter': 'verbose',
         },
     },

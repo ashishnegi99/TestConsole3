@@ -6,7 +6,6 @@ from datetime import datetime, date, timedelta
 from app.forms import UserForm, BootstrapAuthenticationForm
 from app.models import Storm, Appium, racktestresult
 from django.contrib.auth.decorators import login_required
-import jenkins
 import urllib2
 import urllib
 from xml.etree import ElementTree as ET
