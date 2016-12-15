@@ -1,0 +1,25 @@
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+
+{% block body %} 
+    <script src="{% static 'app/scripts/jquery.input-ip-address-control-1.0.min.js' %}"></script>
+    <div class="panel panel-primary device">
+        <div class="panel-heading device-heading">
+            <h3 class="device-title">Add Device</h3>
+        </div>
+        <div class="panel-body">
+            <form  action="{% url 'device' %}" method="post">
+                {% csrf_token %}
+                <div class="col-md-12 col-sm-12">
+                    {{ form.as_p }}
+                    <p>
+                        <div>
+                            <input type='submit' class="btn btn-primary center-block" value="Submit"  name="submit"/>
+                        </div>
+                    </p>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+{% endblock %}

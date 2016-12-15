@@ -5,13 +5,14 @@ from django.db.models import Sum, Avg, Count
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, date, timedelta
-from app.forms import UserForm, NameForm, BootstrapAuthenticationForm
-from app.models import Storm, Appium, Revo, Set_Top_Box, racktestresult
+from app.forms import UserForm, BootstrapAuthenticationForm
+from app.models import Storm, Appium, racktestresult
 from revo.models import testsuite
 from revo.models import device as stb_devices
 from xml.etree import ElementTree as ET
 from xml.dom.minidom import parse
 from django.core.exceptions import ValidationError
+from ftplib import FTP
 import jenkins
 import urllib2
 import urllib
@@ -83,12 +84,6 @@ def sample_groovy():
 ## Start: Revo Views  ##
 ########################
 def revo_view(request):
-    if request.method == 'POST':
-        form = NameForm(request.POST)
-    else:
-        form = NameForm()
-
-    form = NameForm(request.POST)
     my_stb = request.POST.getlist('check1')
     my_test_suite = request.POST.getlist('checks')
     user_name = request.user.username
@@ -195,6 +190,79 @@ def revo_view(request):
 def logToJobFile(abc):
     logFile = open("CreatedJobsFile.csv", "a+")
     logFile.write(abc + "\n")
+
+
+def get_serial_num_impl_via_jnkns():
+    jnkns_srvr = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
+    new_job_config_pre =    "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties><hudson.model.ParametersDefinitionProperty><parameterDefinitions><hudson.model.StringParameterDefinition><name>param1</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition><hudson.model.StringParameterDefinition><name>param2</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition></parameterDefinitions></hudson.model.ParametersDefinitionProperty></properties><scm class='hudson.scm.NullSCM'/>"
+    new_job_config_post = "<disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.tasks.BatchFile><command>timeout 500</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
+    
+    #create the revo folder if it does not exists
+    new_folder_config = '<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@5.13"><actions/><description/><displayName>revo</displayName><properties/><views><hudson.model.AllView><owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../.."/><name>All</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/></hudson.model.AllView></views><viewsTabBar class="hudson.views.DefaultViewsTabBar"/><healthMetrics><com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric/></healthMetrics><icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/></com.cloudbees.hudson.plugins.folder.Folder>'
+    if jnkns_srvr.job_exists(REVO_FOLDER_NAME) != True:
+        jnkns_srvr.create_job(REVO_FOLDER_NAME, new_folder_config)
+    
+    new_job_config = '<project><description/><keepDependencies>false</keepDependencies><properties/><scm class="hudson.scm.NullSCM"/><assignedNode>winSlave</assignedNode><canRoam>false</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers><hudson.triggers.TimerTrigger><spec>H/15 * * * *</spec></hudson.triggers.TimerTrigger></triggers><concurrentBuild>false</concurrentBuild><builders><hudson.plugins.python.Python plugin="python@1.3"><command>cd /Users/krishnaprasad/verizon/evo_automation_Sit/myCode python test_stb.py</command></hudson.plugins.python.Python></builders><publishers/><buildWrappers/></project>'
+    job_path = REVO_FOLDER_NAME + "/" + NAME_OF_THE_JOB
+    
+    # TODO: All jobs are passed on to the harcoded slave. We can either run it on one slave or loop on all available slaves.
+    # Command is also harcoded in the config this should not be a problem unless we want a different path on each slave
+    if not jnkns_srvr.job_exists(job_path):
+        jnkns_srvr.create_job(job_path, new_job_config)
+    else:
+        jnkns_srvr.reconfig_job(job_path, new_job_config)
+    
+    jnkns_srvr.enable_job(job_path)
+    jnkns_srvr.build_job(job_path)
+
+    return HttpResponseRedirect("/revo")
+ 
+
+def get_serial_num_impl_via_ftp():
+    ftp = FTP('FTP SERVER ADDRESS') 
+    ftp.login(user='username', passwd = 'password')
+    ftp.cwd("PATH ON FTP SERVER")
+
+    filenames = ftp.nlst() # get filenames within the directory
+    print filenames
+
+    try:
+        os.remove('serialnumbers.txt')
+    except OSError:
+        pass
+
+    for filename in filenames:
+        localfile = open("serialnumbers.txt", 'wb')
+        ftp.retrbinary('RETR ' + filename, localfile.write, 1024)
+
+    ftp.quit()
+
+    with open("serialnumbers.txt") as stb_name:
+        device_serial_num_list = stb_name.readlines()
+
+    logger.debug("Devices from socket: " + str(device_serial_num_list))
+    device_list = stb_devices.objects.all()
+    logger.debug("Devices from database: " + str(device_list))
+    matched_device = set([row.serial_id for row in device_list]).intersection(device_serial_num_list)
+    logger.debug("Matched Devices: " + str(matched_device))
+
+    sample_list = []
+    for device in device_list:
+        sample_dict = {}
+
+        if device.serial_id in matched_device:
+            sample_dict["STBStatus"] = 1
+        else:
+            sample_dict["STBStatus"] = 0
+
+        sample_dict["RouterSNo"] = device.router
+        sample_dict["STBLabel"] = device.name
+        sample_dict["STBSno"] = device.serial_id
+        sample_list.append(sample_dict)
+
+    jsonfile = open('app/templates/app/temp1.json', 'w')
+    out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in sample_list]) + "\n]"
+    jsonfile.write(out)
 
 
 def get_serial_num_impl():
@@ -352,6 +420,7 @@ def getJobStatus(request):
         job_name = queue_info[counter_3][u'task'][u'name']
         logger.debug("Job Name: " + job_name)
         current_build_number = queue_info[counter_3][u'id']
+        #TODO: Add checks there can be other jobs as well wout parameters
         test_suite = queue_info[counter_3][u'actions'][0][u'parameters'][0][u'value']
         userName = queue_info[counter_3][u'actions'][0][u'parameters'][1][u'value']
         start_time = '...'
@@ -591,3 +660,19 @@ def delete_test_suite(request) :
     assert isinstance(request, HttpRequest)
     testsuite.objects.filter(name__in=request.POST.getlist('tset_suite_name')).delete()
     return HttpResponseRedirect("/revo/test_suites/list_view")
+
+from .forms import DeviceMForm
+
+@login_required
+def device(request):
+    if request.method == "POST":
+        form = DeviceMForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect("/revo/test_suites/list_view")
+    else:
+        form = DeviceMForm()
+
+    return render(request, "revo/device.html" , RequestContext(request, {
+            'form' : form
+        }))
+

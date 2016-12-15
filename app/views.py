@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime, date, timedelta
-from app.forms import UserForm, NameForm, BootstrapAuthenticationForm
-from app.models import Storm, Appium, Revo, Set_Top_Box, racktestresult
+from app.forms import UserForm, BootstrapAuthenticationForm
+from app.models import Storm, Appium, racktestresult
 from django.contrib.auth.decorators import login_required
 import jenkins
 import urllib2
