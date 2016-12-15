@@ -13,6 +13,7 @@ from xml.etree import ElementTree as ET
 from xml.dom.minidom import parse
 from django.core.exceptions import ValidationError
 from ftplib import FTP
+from app.jenkinsapp import JenkinsApp
 import jenkins
 import urllib2
 import urllib
@@ -131,53 +132,32 @@ def revo_view(request):
             new_job_config += new_job_config_post
 
             if not j.job_exists(job_path):
-
                 j.create_job(job_path, new_job_config)
-                j.enable_job(job_path)
-                jobConfig = j.get_job_config(job_path)
-       
-                tree = ET.XML(jobConfig)
-                with open("temp.xml", "w") as f:
-                    f.write(ET.tostring(tree))
-                
-                document = parse('temp.xml')
-                actors = document.getElementsByTagName("command")
-                
-                for act in actors:
-                    for node in act.childNodes:
-                        if node.nodeType == node.TEXT_NODE:
-                            r = "{}".format(node.data)
-                
-                prev_command = cd1 + r + cd2
-            
-                shellCommand = jobConfig.replace(prev_command, mycommand2)
-                j.reconfig_job(job_path, shellCommand)
-                j.build_job(job_path,{'param1': my_test_suite[count2],'param2': user_name})
-                        
             else:
                 j.reconfig_job(job_path, new_job_config)
-                j.enable_job(job_path)
-                jobConfig = j.get_job_config(job_path)
-                print "Before RECONFIG"
-                tree = ET.XML(jobConfig)
-                with open("temp.xml", "w") as f:
-                    f.write(ET.tostring(tree))
-                
-                document = parse('temp.xml')
-                actors = document.getElementsByTagName("command")
-                
-                for act in actors:
-                    for node in act.childNodes:
-                        if node.nodeType == node.TEXT_NODE:
-                            r = "{}".format(node.data)
-                
-                prev_command = cd1 + r + cd2
-                
-                shellCommand = jobConfig.replace(prev_command, mycommand2)
-                j.reconfig_job(job_path, shellCommand)
-                
-                print "RECONFIG"
-                j.build_job(job_path,{'param1': my_test_suite[count2],'param2': user_name})
+
+            j.enable_job(job_path)
+            jobConfig = j.get_job_config(job_path)
+
+            tree = ET.XML(jobConfig)
+            with open("temp.xml", "w") as f:
+                f.write(ET.tostring(tree))
+            
+            document = parse('temp.xml')
+            actors = document.getElementsByTagName("command")
+            
+            for act in actors:
+                for node in act.childNodes:
+                    if node.nodeType == node.TEXT_NODE:
+                        r = "{}".format(node.data)
+            
+            prev_command = cd1 + r + cd2
+            
+            shellCommand = jobConfig.replace(prev_command, mycommand2)
+            #TODO: check this should not be required if we pass the cmd in the confguration itself
+            j.reconfig_job(job_path, shellCommand)
+            
+            j.build_job(job_path,{'param1': my_test_suite[count2],'param2': user_name})
             count2 = count2+1    
         count1 = count1+1
  
@@ -186,39 +166,13 @@ def revo_view(request):
 ########################
 ## End: Revo Views  ##
 ########################
+def sample_call_t0_create_jnkns_cron_job():
+    jnkns_obj = JenkinsApp('http://localhost:8080', 'jenkins', 'jenkins123')
+    jnkns_obj.create_jnkns_cron_job("revo/cron", "winslave", "some command", "winslave", "ftplocation")
+     
 
-def logToJobFile(abc):
-    logFile = open("CreatedJobsFile.csv", "a+")
-    logFile.write(abc + "\n")
-
-
-def get_serial_num_impl_via_jnkns():
-    jnkns_srvr = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
-    new_job_config_pre =    "<?xml version='1.0' encoding='UTF-8'?><project><actions/><description></description><keepDependencies>false</keepDependencies><properties><hudson.model.ParametersDefinitionProperty><parameterDefinitions><hudson.model.StringParameterDefinition><name>param1</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition><hudson.model.StringParameterDefinition><name>param2</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition></parameterDefinitions></hudson.model.ParametersDefinitionProperty></properties><scm class='hudson.scm.NullSCM'/>"
-    new_job_config_post = "<disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers/><concurrentBuild>false</concurrentBuild><builders><hudson.tasks.BatchFile><command>timeout 500</command></hudson.tasks.BatchFile></builders><publishers/><buildWrappers/></project>"
-    
-    #create the revo folder if it does not exists
-    new_folder_config = '<com.cloudbees.hudson.plugins.folder.Folder plugin="cloudbees-folder@5.13"><actions/><description/><displayName>revo</displayName><properties/><views><hudson.model.AllView><owner class="com.cloudbees.hudson.plugins.folder.Folder" reference="../../.."/><name>All</name><filterExecutors>false</filterExecutors><filterQueue>false</filterQueue><properties class="hudson.model.View$PropertyList"/></hudson.model.AllView></views><viewsTabBar class="hudson.views.DefaultViewsTabBar"/><healthMetrics><com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric/></healthMetrics><icon class="com.cloudbees.hudson.plugins.folder.icons.StockFolderIcon"/></com.cloudbees.hudson.plugins.folder.Folder>'
-    if jnkns_srvr.job_exists(REVO_FOLDER_NAME) != True:
-        jnkns_srvr.create_job(REVO_FOLDER_NAME, new_folder_config)
-    
-    new_job_config = '<project><description/><keepDependencies>false</keepDependencies><properties/><scm class="hudson.scm.NullSCM"/><assignedNode>winSlave</assignedNode><canRoam>false</canRoam><disabled>false</disabled><blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding><blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding><triggers><hudson.triggers.TimerTrigger><spec>H/15 * * * *</spec></hudson.triggers.TimerTrigger></triggers><concurrentBuild>false</concurrentBuild><builders><hudson.plugins.python.Python plugin="python@1.3"><command>cd /Users/krishnaprasad/verizon/evo_automation_Sit/myCode python test_stb.py</command></hudson.plugins.python.Python></builders><publishers/><buildWrappers/></project>'
-    job_path = REVO_FOLDER_NAME + "/" + NAME_OF_THE_JOB
-    
-    # TODO: All jobs are passed on to the harcoded slave. We can either run it on one slave or loop on all available slaves.
-    # Command is also harcoded in the config this should not be a problem unless we want a different path on each slave
-    if not jnkns_srvr.job_exists(job_path):
-        jnkns_srvr.create_job(job_path, new_job_config)
-    else:
-        jnkns_srvr.reconfig_job(job_path, new_job_config)
-    
-    jnkns_srvr.enable_job(job_path)
-    jnkns_srvr.build_job(job_path)
-
-    return HttpResponseRedirect("/revo")
- 
-
-def get_serial_num_impl_via_ftp():
+def daemon_get_serial_num_via_ftp():
+    #TODO: to be decided - how to pass these values to the slaves. Via jenkins is very unsafe. Hardcoded is very update unfriendly
     ftp = FTP('FTP SERVER ADDRESS') 
     ftp.login(user='username', passwd = 'password')
     ftp.cwd("PATH ON FTP SERVER")

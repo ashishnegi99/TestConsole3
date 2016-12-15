@@ -1,0 +1,80 @@
+DEBUG 2016-12-14 10:59:46,126 views.py getJobStatus 335 Start
+DEBUG 2016-12-14 10:59:46,373 views.py getJobStatus 348 Number of Jobs: 6
+DEBUG 2016-12-14 10:59:46,373 views.py getJobStatus 352 Job Name: revo/IPC2_01
+DEBUG 2016-12-14 10:59:46,466 views.py getJobStatus 357 Number of builds: 67  Job Name: revo/IPC2_01
+DEBUG 2016-12-14 10:59:46,466 views.py getJobStatus 360 Job: revo/IPC2_01 Build # 67
+DEBUG 2016-12-14 10:59:46,554 views.py getJobStatus 385 job_status_vals: ['IPC2_01', '...', '67', 'FAILURE', '12/14/2016 11:53:42', '12/14/2016 11:53:42', '0', '...']
+DEBUG 2016-12-14 10:59:46,555 views.py getJobStatus 360 Job: revo/IPC2_01 Build # 66
+DEBUG 2016-12-14 10:59:46,633 views.py getJobStatus 385 job_status_vals: ['IPC2_01', '...', '66', 'FAILURE', '12/14/2016 11:38:42', '12/14/2016 11:38:43', '0', '...']
+DEBUG 2016-12-14 10:59:46,634 views.py getJobStatus 352 Job Name: revo/STB 1
+DEBUG 2016-12-14 10:59:46,710 views.py getJobStatus 357 Number of builds: 3  Job Name: revo/STB 1
+DEBUG 2016-12-14 10:59:46,710 views.py getJobStatus 360 Job: revo/STB 1 Build # 3
+DEBUG 2016-12-14 10:59:46,790 views.py getJobStatus 385 job_status_vals: ['STB 1', '1', '3', 'SUCCESS', '11/28/2016 17:29:32', '11/28/2016 17:37:53', '500', '1']
+DEBUG 2016-12-14 10:59:46,790 views.py getJobStatus 360 Job: revo/STB 1 Build # 2
+DEBUG 2016-12-14 10:59:46,864 views.py getJobStatus 385 job_status_vals: ['STB 1', '1', '2', 'SUCCESS', '11/28/2016 17:21:12', '11/28/2016 17:29:32', '500', '1']
+DEBUG 2016-12-14 10:59:46,864 views.py getJobStatus 352 Job Name: revo/STB 2
+DEBUG 2016-12-14 10:59:46,945 views.py getJobStatus 357 Number of builds: 2  Job Name: revo/STB 2
+DEBUG 2016-12-14 10:59:46,946 views.py getJobStatus 360 Job: revo/STB 2 Build # 2
+DEBUG 2016-12-14 10:59:47,025 views.py getJobStatus 385 job_status_vals: ['STB 2', 'SUITE_DIAMOND', '2', 'FAILURE', '12/06/2016 12:45:40', '12/06/2016 12:45:40', '0', 'sid']
+DEBUG 2016-12-14 10:59:47,025 views.py getJobStatus 360 Job: revo/STB 2 Build # 1
+DEBUG 2016-12-14 10:59:47,112 views.py getJobStatus 385 job_status_vals: ['STB 2', 'SUITE_EMERALD', '1', 'FAILURE', '12/06/2016 12:45:40', '12/06/2016 12:45:40', '0', 'sid']
+DEBUG 2016-12-14 10:59:47,112 views.py getJobStatus 352 Job Name: revo/STB 3
+DEBUG 2016-12-14 10:59:47,193 views.py getJobStatus 357 Number of builds: 1  Job Name: revo/STB 3
+DEBUG 2016-12-14 10:59:47,193 views.py getJobStatus 360 Job: revo/STB 3 Build # 1
+DEBUG 2016-12-14 10:59:47,268 views.py getJobStatus 385 job_status_vals: ['STB 3', 'a', '1', 'SUCCESS', '12/02/2016 13:38:04', '12/02/2016 13:46:24', '500', 'b']
+DEBUG 2016-12-14 10:59:47,268 views.py getJobStatus 352 Job Name: revo/STB_01
+DEBUG 2016-12-14 10:59:47,351 views.py getJobStatus 357 Number of builds: 4  Job Name: revo/STB_01
+DEBUG 2016-12-14 10:59:47,351 views.py getJobStatus 360 Job: revo/STB_01 Build # 4
+DEBUG 2016-12-14 10:59:47,431 views.py getJobStatus 385 job_status_vals: ['STB_01', 'SUITE_JADE', '4', 'SUCCESS', '12/06/2016 15:47:14', '12/06/2016 15:58:10', '655', 'sid']
+DEBUG 2016-12-14 10:59:47,431 views.py getJobStatus 360 Job: revo/STB_01 Build # 3
+DEBUG 2016-12-14 10:59:47,510 views.py getJobStatus 385 job_status_vals: ['STB_01', 'SUITE_EMERALD', '3', 'ABORTED', '12/06/2016 15:46:47', '12/06/2016 15:47:14', '27', 'sid']
+DEBUG 2016-12-14 10:59:47,510 views.py getJobStatus 352 Job Name: revo/VMS_01
+DEBUG 2016-12-14 10:59:47,588 views.py getJobStatus 357 Number of builds: 10  Job Name: revo/VMS_01
+DEBUG 2016-12-14 10:59:47,588 views.py getJobStatus 360 Job: revo/VMS_01 Build # 10
+DEBUG 2016-12-14 10:59:47,661 views.py getJobStatus 385 job_status_vals: ['VMS_01', 'SUITE_JADE', '10', 'ABORTED', '12/06/2016 16:23:40', '12/06/2016 16:25:27', '106', 'sid']
+DEBUG 2016-12-14 10:59:47,661 views.py getJobStatus 360 Job: revo/VMS_01 Build # 9
+DEBUG 2016-12-14 10:59:47,749 views.py getJobStatus 385 job_status_vals: ['VMS_01', 'SUITE_EMERALD', '9', 'SUCCESS', '12/06/2016 15:53:03', '12/06/2016 16:23:40', '1837', 'sid']
+DEBUG 2016-12-14 10:59:47,833 views.py getJobStatus 397 Number of queues: 1
+DEBUG 2016-12-14 10:59:47,833 views.py getJobStatus 400 Job Name: VMS_01
+DEBUG 2016-12-14 10:59:47,833 views.py getJobStatus 412 job_status_vals: ['VMS_01', 'SUITE_EMERALD', '241', 'IN QUEUE', '...', '...', '...', 'sid']
+DEBUG 2016-12-14 10:59:47,833 views.py getJobStatus 424 End
+DEBUG 2016-12-14 11:12:01,975 views.py getJobStatus 335 Start
+DEBUG 2016-12-14 11:12:02,314 views.py getJobStatus 348 Number of Jobs: 6
+DEBUG 2016-12-14 11:12:02,314 views.py getJobStatus 352 Job Name: revo/IPC2_01
+DEBUG 2016-12-14 11:12:02,408 views.py getJobStatus 357 Number of builds: 68  Job Name: revo/IPC2_01
+DEBUG 2016-12-14 11:12:02,408 views.py getJobStatus 360 Job: revo/IPC2_01 Build # 68
+DEBUG 2016-12-14 11:12:02,494 views.py getJobStatus 385 job_status_vals: ['IPC2_01', '...', '68', 'FAILURE', '12/14/2016 12:08:42', '12/14/2016 12:08:42', '0', '...']
+DEBUG 2016-12-14 11:12:02,495 views.py getJobStatus 360 Job: revo/IPC2_01 Build # 67
+DEBUG 2016-12-14 11:12:02,580 views.py getJobStatus 385 job_status_vals: ['IPC2_01', '...', '67', 'FAILURE', '12/14/2016 11:53:42', '12/14/2016 11:53:42', '0', '...']
+DEBUG 2016-12-14 11:12:02,581 views.py getJobStatus 352 Job Name: revo/STB 1
+DEBUG 2016-12-14 11:12:02,659 views.py getJobStatus 357 Number of builds: 3  Job Name: revo/STB 1
+DEBUG 2016-12-14 11:12:02,659 views.py getJobStatus 360 Job: revo/STB 1 Build # 3
+DEBUG 2016-12-14 11:12:02,734 views.py getJobStatus 385 job_status_vals: ['STB 1', '1', '3', 'SUCCESS', '11/28/2016 17:29:32', '11/28/2016 17:37:53', '500', '1']
+DEBUG 2016-12-14 11:12:02,734 views.py getJobStatus 360 Job: revo/STB 1 Build # 2
+DEBUG 2016-12-14 11:12:02,811 views.py getJobStatus 385 job_status_vals: ['STB 1', '1', '2', 'SUCCESS', '11/28/2016 17:21:12', '11/28/2016 17:29:32', '500', '1']
+DEBUG 2016-12-14 11:12:02,812 views.py getJobStatus 352 Job Name: revo/STB 2
+DEBUG 2016-12-14 11:12:02,888 views.py getJobStatus 357 Number of builds: 2  Job Name: revo/STB 2
+DEBUG 2016-12-14 11:12:02,888 views.py getJobStatus 360 Job: revo/STB 2 Build # 2
+DEBUG 2016-12-14 11:12:02,965 views.py getJobStatus 385 job_status_vals: ['STB 2', 'SUITE_DIAMOND', '2', 'FAILURE', '12/06/2016 12:45:40', '12/06/2016 12:45:40', '0', 'sid']
+DEBUG 2016-12-14 11:12:02,965 views.py getJobStatus 360 Job: revo/STB 2 Build # 1
+DEBUG 2016-12-14 11:12:03,041 views.py getJobStatus 385 job_status_vals: ['STB 2', 'SUITE_EMERALD', '1', 'FAILURE', '12/06/2016 12:45:40', '12/06/2016 12:45:40', '0', 'sid']
+DEBUG 2016-12-14 11:12:03,041 views.py getJobStatus 352 Job Name: revo/STB 3
+DEBUG 2016-12-14 11:12:03,117 views.py getJobStatus 357 Number of builds: 1  Job Name: revo/STB 3
+DEBUG 2016-12-14 11:12:03,117 views.py getJobStatus 360 Job: revo/STB 3 Build # 1
+DEBUG 2016-12-14 11:12:03,194 views.py getJobStatus 385 job_status_vals: ['STB 3', 'a', '1', 'SUCCESS', '12/02/2016 13:38:04', '12/02/2016 13:46:24', '500', 'b']
+DEBUG 2016-12-14 11:12:03,194 views.py getJobStatus 352 Job Name: revo/STB_01
+DEBUG 2016-12-14 11:12:03,270 views.py getJobStatus 357 Number of builds: 4  Job Name: revo/STB_01
+DEBUG 2016-12-14 11:12:03,270 views.py getJobStatus 360 Job: revo/STB_01 Build # 4
+DEBUG 2016-12-14 11:12:03,348 views.py getJobStatus 385 job_status_vals: ['STB_01', 'SUITE_JADE', '4', 'SUCCESS', '12/06/2016 15:47:14', '12/06/2016 15:58:10', '655', 'sid']
+DEBUG 2016-12-14 11:12:03,348 views.py getJobStatus 360 Job: revo/STB_01 Build # 3
+DEBUG 2016-12-14 11:12:03,423 views.py getJobStatus 385 job_status_vals: ['STB_01', 'SUITE_EMERALD', '3', 'ABORTED', '12/06/2016 15:46:47', '12/06/2016 15:47:14', '27', 'sid']
+DEBUG 2016-12-14 11:12:03,423 views.py getJobStatus 352 Job Name: revo/VMS_01
+DEBUG 2016-12-14 11:12:03,500 views.py getJobStatus 357 Number of builds: 10  Job Name: revo/VMS_01
+DEBUG 2016-12-14 11:12:03,500 views.py getJobStatus 360 Job: revo/VMS_01 Build # 10
+DEBUG 2016-12-14 11:12:03,577 views.py getJobStatus 385 job_status_vals: ['VMS_01', 'SUITE_JADE', '10', 'ABORTED', '12/06/2016 16:23:40', '12/06/2016 16:25:27', '106', 'sid']
+DEBUG 2016-12-14 11:12:03,577 views.py getJobStatus 360 Job: revo/VMS_01 Build # 9
+DEBUG 2016-12-14 11:12:03,653 views.py getJobStatus 385 job_status_vals: ['VMS_01', 'SUITE_EMERALD', '9', 'SUCCESS', '12/06/2016 15:53:03', '12/06/2016 16:23:40', '1837', 'sid']
+DEBUG 2016-12-14 11:12:03,729 views.py getJobStatus 397 Number of queues: 1
+DEBUG 2016-12-14 11:12:03,729 views.py getJobStatus 400 Job Name: VMS_01
+DEBUG 2016-12-14 11:12:03,729 views.py getJobStatus 412 job_status_vals: ['VMS_01', 'SUITE_EMERALD', '241', 'IN QUEUE', '...', '...', '...', 'sid']
+DEBUG 2016-12-14 11:12:03,729 views.py getJobStatus 424 End
