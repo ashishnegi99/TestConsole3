@@ -179,15 +179,20 @@ def create_jnkns_cron_job(host_name):
     mycommand = "cd " + run_path + "\n" + "python test_stb.py " + "%param1%" + "%param2"
     jnkns_obj.create_jnkns_cron_job("revo/cron", host_name, mycommand, host_name, "ftplocation")
 
-     
 
 def daemon_get_serial_num_via_ftp():
     #TODO: to be decided - how to pass these values to the slaves. Via jenkins is very unsafe. Hardcoded is very update unfriendly
-    ftp = FTP('FTP SERVER ADDRESS') 
-    ftp.login(user='username', passwd = 'password')
-    ftp.cwd("PATH ON FTP SERVER")
+    FTP_SERVER_ADDRESS = "localhost"
+    FTP_USERNAME = "sid"
+    FTP_PASSWORD = "password"
+    FTP_CWD = "verizon/FTPServer"
+    FILE_NAME_STARTS_WITH = "OnlineSTBList_"
 
-    filenames = ftp.nlst() # get filenames within the directory
+    ftp = FTP(FTP_SERVER_ADDRESS)
+    ftp.login(user=FTP_USERNAME, passwd = FTP_PASSWORD)
+    ftp.cwd(FTP_CWD)
+
+    filenames = ftp.nlst() #get filenames within the directory
     print filenames
 
     try:
@@ -195,9 +200,19 @@ def daemon_get_serial_num_via_ftp():
     except OSError:
         pass
 
-    for filename in filenames:
+    def writeFunc(s):
         localfile = open("serialnumbers.txt", 'wb')
-        ftp.retrbinary('RETR ' + filename, localfile.write, 1024)
+        localfile.write(s)
+
+    for filename in filenames:
+        if filename.startswith("OnlineSTBList_"):
+            metadata = ftp.sendcmd('MDTM ' + filename)
+            #print datetime.strptime(metadata[4:], "%Y%m%d%H%M%S").strftime("%d %B %Y %H:%M:%S")
+            modified_time = datetime.strptime(metadata[4:], "%Y%m%d%H%M%S")
+            elapsed_time = datetime.now() - modified_time
+            #use the data only if it was updated in the last hour, rest of the data is stale
+            if divmod(elapsed_time.total_seconds())/ (60*60) > 1: #TODO: check for timezone issues
+                ftp.retrbinary('RETR %s' % filename, open("serialnumbers.txt", 'ab').write)
 
     ftp.quit()
 
@@ -645,4 +660,3 @@ def device(request):
     return render(request, "revo/device.html" , RequestContext(request, {
             'form' : form
         }))
-

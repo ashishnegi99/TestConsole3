@@ -70,10 +70,16 @@ except socket.timeout:
 
 from ftplib import FTP
 import socket
-    
-ftp = FTP('ftp.cwi.nl') 
-ftp.login(user='username', passwd = 'password')
-ftp.cwd("PATH ON FTP SERVER")
-placeFile("serialnumbers.txt")
-ftp.storbinary("STOR "+ filename + "_" + socket.gethostname(), open(filename, 'rb'))
+
+FTP_SERVER_ADDRESS = "localhost"
+FTP_USERNAME = "sid"
+FTP_PASSWORD = "password"
+FTP_CWD = "verizon/FTPServer"
+FILE_PREFIX = "OnlineSTBList_"
+
+ftp = FTP(FTP_SERVER_ADDRESS)
+ftp.login(user=FTP_USERNAME, passwd = FTP_PASSWORD)
+ftp.cwd(FTP_CWD)
+
+ftp.storbinary("STOR "+ FILE_PREFIX + "_" + socket.gethostname(), open("serialnumbers.txt", 'rb'), 1024) #replace with argv[1]
 ftp.quit()
