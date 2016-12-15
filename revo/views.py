@@ -166,9 +166,19 @@ def revo_view(request):
 ########################
 ## End: Revo Views  ##
 ########################
-def sample_call_t0_create_jnkns_cron_job():
+def create_jnkns_cron_job(host_name):
     jnkns_obj = JenkinsApp('http://localhost:8080', 'jenkins', 'jenkins123')
-    jnkns_obj.create_jnkns_cron_job("revo/cron", "winslave", "some command", "winslave", "ftplocation")
+    with open("revo_configs.txt") as revo_config:
+        content = revo_config.read().splitlines()
+    
+    test_runner_path = content[1]
+    report_location = content[2]
+    run_path = content[3]
+    json_path = content[4]
+    
+    mycommand = "cd " + run_path + "\n" + "python test_stb.py " + "%param1%" + "%param2"
+    jnkns_obj.create_jnkns_cron_job("revo/cron", host_name, mycommand, host_name, "ftplocation")
+
      
 
 def daemon_get_serial_num_via_ftp():
@@ -510,8 +520,10 @@ def add_device(request) :
     new_device.device_type = request.POST.get('device-type')
     new_device.ip = request.POST.get('ip')
     new_device.router = request.POST.get('router')
-    new_device.host = request.POST.get('host-name')
+    host_name = request.POST.get('host-name')
+    new_device.host = host_name
 
+    host_name_count = stb_devices.objects.filter(host=host_name).count()
     try:
         if new_device.name and new_device.serial_id and new_device.router and new_device.host:
             logger.debug("Data line1: " + request.POST.get('device-name') + " : "  + request.POST.get('serial-id'))
@@ -519,6 +531,10 @@ def add_device(request) :
             logger.debug("Data line3: " + request.POST.get('router') + " : "  + request.POST.get('host-name'))
             new_device.save()
             print "ADDED device name: " + request.POST.get('device-name') + "  Device Id:  " + request.POST.get('device-id')
+
+            if host_name_count == 0 :
+                create_jnkns_cron_job(host_name)
+           
     except ValidationError as err:
         logger.error("ValidationError: " + str(err))
     except Exception as exception:
