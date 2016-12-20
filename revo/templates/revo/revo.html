@@ -4,11 +4,16 @@
 {% block head %}
     <script src="{% static 'revo/scripts/revo.js' %}"></script>
     <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>
-    
-    <script src="{% static 'app/scripts/footable-components.latest/footable.core.js'%}"></script>
-    <script src="{% static 'app/scripts/footable-components.latest/footable.sorting.js'%}"></script>    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-     
+    <script src="{% static 'revo/scripts/jquery.dataTables.min.js' %}"></script>
+	<script src="{% static 'revo/scripts/dataTables.responsive.min.js' %}"></script>
+	<script src="{% static 'revo/scripts/dataTables.fixedHeader.min.js' %}"></script>
+	
+	<link rel="stylesheet" href="{% static 'revo/css/jquery.dataTables.min.css' %}">
+	<link rel="stylesheet" href="{% static 'revo/css/responsive.dataTables.min.css' %}">
+	<link rel="stylesheet" href="{% static 'revo/css/fixedHeader.dataTables.min.css' %}">
+
+     <script src="{% static 'app/scripts/jquery-ui.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'app/content/jquery-ui2.css' %}" />
 {% endblock %}
 
 {% block body %} 
@@ -36,7 +41,8 @@
                         TEST SUITE
                         <span class="pull-right"><img src="{% static 'app/images/suite.png' %}"></span>
                     </p>
-                    <div class="quote-text scroller" id="STBStatus">
+					<hr>
+                    <!--<div class="quote-text scroller" id="STBStatus">
                         {% for test_suite in test_suite_list %}
                             <hr>
                             <label class="checkbox">
@@ -44,11 +50,88 @@
                                 <span>{{ test_suite | safe }}</span>
                             </label>
                         {% endfor %}
-                    </div>
+                    </div>-->
+					<div class="quote-text scroller" id="STBStatus">
+						<div class="multiselect center-block">
+							<div class="selectBox" class="selection">
+								<div class="overSelect"></div>
+							</div>
+							<div id="checkboxes">
+								<nav>
+									<label for="one" class="revo_dropdown">
+										<a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu1" aria-expanded="false"><input type="checkbox" id="one"/></a>
+										+ Test Suite 1
+										<ul class="nav collapse revo_testcase" id="submenu1" role="menu" aria-labelledby="btn-1">
+											<li><input type="checkbox" id="two"/> Test Case 1</li><hr>
+											<li><input type="checkbox" id="two"/> Test Case 2</li><hr>
+											<li><input type="checkbox" id="two"/> Test Case 3</li><hr>
+											<li><input type="checkbox" id="two"/> Test Case 4</li>
+										</ul>
+									</label>	
+									<hr>
+									<label for="two" class="revo_dropdown">
+										<a href="#" id="btn-1" data-toggle="collapse" data-target="#submenu2" aria-expanded="false"><input type="checkbox" id="two"/></a>
+										+ Test Suite 2
+										<ul class="nav collapse revo_testcase" id="submenu2" role="menu" aria-labelledby="btn-1">
+											<li><input type="checkbox" id="two"/> Test Case 1</li><hr>
+											<li><input type="checkbox" id="two"/> Test Case 2</li><hr>
+											<li><input type="checkbox" id="two"/> Test Case 3</li><hr>
+											<li><input type="checkbox" id="two"/> Test Case 4</li>
+										</ul>
+									</label>
+									<hr>
+									<label for="three" class="revo_dropdown"><input type="checkbox"/>
+										Test Suite 3
+									</label>
+									<hr>
+									<label for="four" class="revo_dropdown"><input type="checkbox"/>
+										Test Suite 4
+									</label>
+									<hr>
+									<label for="five" class="revo_dropdown"><input type="checkbox"/>
+										Test Suite 5
+									</label>
+								</nav>
+							</div>
+						</div>
+					</div>
                 </div>
             </div>
 
             <div class="col-md-3">
+				<div class="quote-box runquote">
+					<input type="checkbox" name="schedule" onclick="showMe('div1')"> enable test scheduling
+					<div id="div1" style="display:none">
+						<script>
+							
+						</script>
+						<span id="schedule_timestamp">
+							<input type="text" id="schedule_date" name="schedule_date" class="form-control" placeholder="yy/mm/dd">
+							<input type="text" name="schedule_time" class="form-control" id="schedule_time" style="margin-top:5px">
+						</span>
+					</div>
+					
+                </div>
+				<script>
+					
+					(function () {
+						function checkTime(i) {
+							return (i < 10) ? "0" + i : i;
+						}
+
+						function startTime() {
+							var today_time = new Date(),
+								h = checkTime(today_time.getHours()),
+								m = checkTime(today_time.getMinutes()),
+								s = checkTime(today_time.getSeconds());
+							document.getElementById('schedule_time').value = h + ":" + m + ":" + s;
+							t = setTimeout(function () {
+								startTime()
+							}, 500);
+						}
+						startTime();
+					})();
+				</script>
                 <div class="quote-box runquote">
                     <input type="image" name="submit" img src="{% static 'app/images/run.png' %}" alt="Submit" />
                 </div>
@@ -59,7 +142,7 @@
             {% csrf_token %}	
             <div class="col-md-12 divsub">
 				<div class="quote-box scroller-text scroller">
-					<table class="table job-status_table scrollingTable">
+					<!--<table class="table job-status_table scrollingTable">
 						<thead class="scrollingHead" style="width:100%">
 							<tr>
 								<th style="text-align:center;cursor:pointer;padding:10px 15px 10px 15px;color: #cd040b;">
@@ -81,7 +164,66 @@
 								</th>
 							</tr>
 						</thead>							
-						<tbody class="Result scrollingBody" id="testdataid"/>							
+						<tbody class="Result scrollingBody" id="">
+							<tr>
+								<td style='cursor:pointer;padding:10px 15px;'>
+									<input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' style='margin-top:3px;' >
+								</td>
+								<td width='70px' style='vertical-align:middle'>
+									<label>STB 3</label>
+								</td>
+								<td class='suite-name' width='120px' style='vertical-align:middle; padding:0px 0px 0px 0px'>---</td>
+								<td width='70px' style='vertical-align:middle'>35</td>
+								<td width='105px' class = " + resultclass + " style='vertical-align:middle'>SUCCESS</td>
+								<td width='220px' style='vertical-align:middle;word-break:break-all'>" + item.StartTime + "</td>
+								<td width='220px' style='vertical-align:middle;word-break:break-all'>" + item.EndTime + "</td>
+								<td width='95px' style='vertical-align:middle'>" + item.Duration +" </td>
+								<td width='95px' style='vertical-align:middle'>" + item.UserName +" </td>
+								<td width='84px' style='vertical-align:middle' data-editable=\"true\">
+									<button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td width='125px' data-editable=\"true\" style='vertical-align:middle'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>-->
+					
+					<script>$(document).ready(function() {
+						var table = $('#example').DataTable( {
+							"order": [[ 4, "desc" ]],
+							responsive: true,
+							"searching": false,
+							"bLengthChange": false,
+							"scrollY": "200px",
+							"scrollCollapse": true,
+							paging: false
+						} );
+					 
+						new $.fn.dataTable.FixedHeader( table );
+					} );
+					</script>
+					<style>
+						div.container { max-width: 1200px }
+					</style>
+					<table id="example" class="display nowrap" width="100%" cellspacing="0">
+						<thead>
+							<tr>
+								
+								<th style="color:#cd040b;"><input type="checkbox" onchange="checkAll(this)" name="chk[]" /> &nbsp; STB</th>
+								<th style="color:#cd040b;">SUITE NAME</th>
+								<th style="color:#cd040b;">BUILD#</th>
+								<th style="color:#cd040b;">RESULT</th>
+								<th style="color:#cd040b;">JOB START TIME</th>
+								<th style="color:#cd040b;">JOB END TIME</th>
+								<th style="color:#cd040b;">DURATION</th>
+								<th style="color:#cd040b;">TESTER</th>
+								<th style="color:#cd040b;">STOP JOB</th>
+								<th style="color:#cd040b;"><p class = "quotation-mark" data-sortable="false">
+									OUTPUT &nbsp; &nbsp;<i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
+									</p>
+								</th>
+							</tr>
+						</thead>
+				 
+						<tbody id="testdataid"/>
 					</table>
 			    </div>
 		    </div>

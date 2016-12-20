@@ -154,7 +154,7 @@
     padding: 10px 0px;
 }
 .scroller-text{
-   height: 475px;
+   /*height: 475px;*/
         
 }
 .runquote{
@@ -334,7 +334,9 @@
         display: block;
     }
     #checkboxes label:hover {
-        background-color: #1e90ff;
+       /* background-color: #1e90ff;*/
+	   background-image: url("../../images/highlight.png");
+ 
     }
 	.multiselect{
     

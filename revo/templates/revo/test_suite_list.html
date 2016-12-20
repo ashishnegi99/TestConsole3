@@ -2,6 +2,7 @@
 {% load staticfiles%}
 {% block head %}
     <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>     
+	<script src="{% static 'revo/scripts/revo.js' %}"></script>
 {% endblock %}
 {% block body %} 
     <style>
@@ -21,14 +22,15 @@
             background-color: #dddddd;
         }
     </style>
-    <div class="panel panel-primary device">
+    
+	<div class="panel panel-primary device">
         <div class="panel-heading device-heading">
-            <h3 class="device-title"> Test Suites </h3>
+            <h3 class="device-title"> Test Suites <i class="fa fa-plus" style="cursor:pointer; float: right" aria-hidden="true" data-toggle="modal" data-target="#addModal"></i></h3>
         </div>
         <div class="panel-body">
-            <form  action="{% url 'test_suite_delete' %}" method="post">
+            <form name="tform" action="{% url 'test_suite_delete' %}" method="post">
                 {% csrf_token %}
-                <table>
+                <table id="mytable">
                     <tr>
                         <th>Select</th>
                         <th>Name</th>
@@ -36,7 +38,7 @@
                     </tr>
                     {% for test in suite %}
                         <tr>
-                            <td><input type='checkbox' name='tset_suite_name' value= "{{ test.name }}" /> </td>
+                            <td><input type='checkbox' name='tset_suite_name[]' value= "{{ test.name }}" id="tset_suite" onchange="disable_edit()"/> </td>
                             <td> {{ test.name }} </td>
                             <td> {{ test.mapping }} </td>
                         </tr>
@@ -44,11 +46,193 @@
                 </table>
                 
                 <p>
-                    <div>
-                        <input type='submit' class="btn btn-primary center-block" value="Delete"  name="submit"/>
-                    </div>
+					<div class="col-md-12">
+						<div class="row">
+							<div class="col-md-3"></div>
+							<div class="col-md-2">
+							<div>
+								<button type="button" name="Edit_Button" class="btn btn-primary center-block" data-toggle="modal" data-target="#editModal">Edit</button>
+							</div>
+							</div>
+							<div class="col-md-2">
+							<div>
+								<input type='submit' class="btn btn-primary center-block" value="Delete"  name="submit"/>
+							</div>
+							</div>
+							<div class="col-md-2">
+							<div>
+								<button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#addModal">Add</button>
+							</div>
+							</div>
+							<div class="col-md-3"></div>
+						</div>
+					</div>
                 </p>
+				
+				
             </form>
         </div>
     </div>
+	<!-- Add Test Suites Modal ----->
+	<div id="addModal" class="modal fade" role="dialog">
+		<script src="{% static 'revo/scripts/bootstrap-multiselect.js' %}"></script>
+		<link href="{% static 'revo/css/bootstrap-multiselect.css' %}" rel="stylesheet" type="text/css" />
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			
+				
+				<h3 class="device-title">Add Test Suites</h3>
+			
+			<div class="panel-body">
+				<form action="{% url 'test_suite_new' %}" method="post">
+					{% csrf_token %}
+					<div class="col-md-12 col-sm-12">
+						<div class="field_group">
+							<div class="form-group input-group">
+								<!--<input type="text" name="names" class="form-control input-sm test_suites" placeholder="Test Suite Name">-->
+								<div class="form-group input-group">
+									<label for="device-name">Test Suite Name</label>
+									<input type="text" name="names" class="form-control input-sm test_suites" placeholder="Test Suite Name">
+								</div>
+							<div class="form-group input-group">
+								<!--<input type="text" name="names" class="form-control input-sm test_suites" placeholder="Test Suite Name">-->
+								<label for="device-name">Test Case Name</label>
+								<select id="test-case" multiple="multiple" class="multiple">
+									<option value="Test Case Name 1">Test Case Name 1</option>
+									<option value="Test Case Name 2">Test Case Name 2</option>
+									<option value="Test Case Name 3">Test Case Name 3</option>
+									<option value="Test Case Name 4">Test Case Name 4</option>
+									<option value="Test Case Name 5">Test Case Name 5</option>
+									<option value="Test Case Name 6">Test Case Name 6</option>
+								</select>
+							</div>
+							</div>
+							<script>
+							$('#test-case').multiselect({  
+							  onChange: function(option, checked, select) {
+								var changedVal = $(option).val();
+								if (changedVal < 3) {
+								  if (checked == true) {
+									console.log('less');
+								  } else if (checked == false) {
+									console.log('more');
+								  }
+								}
+							  }
+							});
+							
+							$('.multiple').multiselect();
+						</script>
+						</div>
+						<!--<div>
+							<input type='button' class="btn btn-success" value="+" id="add"/>
+						</div>-->
+						<p>
+							<div>
+								<input type='submit' class="btn btn-primary center-block" value="Submit" name="submit"/>
+							</div>
+						</p>
+					</div>
+				</form>
+			</div>	 
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	<!-- Edit Test Suites Modal ----->
+	<div id="editModal" class="modal fade" role="dialog">
+		<script src="{% static 'revo/scripts/bootstrap-multiselect.js' %}"></script>
+		<link href="{% static 'revo/css/bootstrap-multiselect.css' %}" rel="stylesheet" type="text/css" />
+	  <div class="modal-dialog">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			
+				
+				<h3 class="device-title">Edit Test Suites</h3>
+			
+			<div class="panel-body">
+    		<form action="{% url 'test_suite_new' %}" method="post">
+                {% csrf_token %}
+    			<div class="col-md-12 col-sm-12">
+    				<div class="field_group">
+    					<div class="form-group input-group">
+								<div class="form-group input-group">
+								<label for="device-name">Test Suite Name</label>
+								<select id="test_suite" multiple="multiple" class="multiple">
+									<option value="1">Test Suite Name 1</option>
+									<option value="2">Test Suite Name 2</option>
+									<option value="3">Test Suite Name 3</option>
+									<option value="4">Test Suite Name 4</option>
+									<option value="5">Test Suite Name 5</option>
+									<option value="6">Test Suite Name 6</option>
+								</select>
+    					</div>
+							<div class="form-group input-group">
+							<label for="device-name">Test Case Name</label>
+							<select id="test_case" multiple="multiple" class="multiple">
+								<option value="1">Test Case Name 1</option>
+								<option value="2">Test Case Name 2</option>
+								<option value="3">Test Case Name 3</option>
+								<option value="4">Test Case Name 4</option>
+								<option value="5">Test Case Name 5</option>
+								<option value="6">Test Case Name 6</option>
+							</select>
+    					</div>
+    					</div>
+    					<script>
+						$('#test_suite').multiselect({  
+						  onChange: function(option, checked, select) {
+							var changedVal = $(option).val();
+							if (changedVal < 3) {
+							  if (checked == true) {
+								console.log('less');
+							  } else if (checked == false) {
+								console.log('more');
+							  }
+							}
+						  }
+						});
+						$('#test_case').multiselect({  
+						  onChange: function(option, checked, select) {
+							var changedVal = $(option).val();
+							if (changedVal < 3) {
+							  if (checked == true) {
+								console.log('less');
+							  } else if (checked == false) {
+								console.log('more');
+							  }
+							}
+						  }
+						});
+						
+						$('.multiple').multiselect();
+					</script>
+    				</div>
+    				<!--<div>
+    					<input type='button' class="btn btn-success" value="+" id="add"/>
+    				</div>-->
+    				<p>
+    					<div>
+    						<input type='submit' class="btn btn-primary center-block" value="Submit" name="submit"/>
+    					</div>
+    				</p>
+    			</div>
+    		</form>
+	    </div>
+		</div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+	
+	
 {% endblock %}

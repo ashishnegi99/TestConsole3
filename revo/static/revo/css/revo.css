@@ -25,19 +25,19 @@
 
 }
 
-.available{
+.result_available{
   color: #228B22
 }
-.offline{
+.result_offline{
   color: #ff3030
 }
-.progress{
+.result_progress{
   color: #005eff
 }
-.queue{
+.result_queue{
   color: #ffa54f
 }
-.aborted{
+.result_aborted{
   color: #8b8989
 }
 .In.use{
@@ -312,7 +312,7 @@ padding-right:29px;
    .runquote{
   		background-image: inherit;
       	text-align: -webkit-center;
-    	margin-top: 50%;
+    	margin-top: 25%;
     	border: 0px;	
 	}
 }
