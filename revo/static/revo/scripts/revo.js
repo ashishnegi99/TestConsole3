@@ -22,9 +22,9 @@ $(function () {
 $(document).ready(function() {
 	$('input[type=checkbox]').click(function() {  
 		if(this.checked == true) { 
-			$(this).parent().addClass('activetab');
+			//$(this).parent().addClass('activetab');
 		} else {
-			$(this).parent().removeClass('activetab');
+			//$(this).parent().removeClass('activetab');
 		}
 	}); 
 
@@ -150,7 +150,7 @@ function stbststus1(){
 		      status = 'disabled';
         }
             /*$("#testdataid").append("<tr><td style='cursor:pointer;padding:10px 15px;'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' style='margin-top:3px;' ></td><td width='70px' style='vertical-align:middle'><label>"+item["Job No"]+" </label></td><td class='suite-name' width='120px' style='vertical-align:middle; padding:0px 0px 0px 0px'>"+item["Suite Name"]+"</td><td width='70px' style='vertical-align:middle'>"+item["Build No"]+"</td><td width='105px' class = " + resultclass + " style='vertical-align:middle'>" + item.Result + "</td><td width='220px' style='vertical-align:middle;word-break:break-all'>" + item.StartTime + "</td><td width='220px' style='vertical-align:middle;word-break:break-all'>" + item.EndTime + "</td><td width='95px' style='vertical-align:middle'>" + item.Duration +" </td><td width='95px' style='vertical-align:middle'>" + item.UserName +" </td><td width='84px' style='vertical-align:middle' data-editable=\"true\"><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td width='125px' data-editable=\"true\" style='vertical-align:middle'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");*/
-			$("#testdataid").append("<tr><td><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"'> &nbsp; <label>"+item["Job No"]+" </label></td><td class='suite-name'>"+item["Suite Name"]+"</td><td>"+item["Build No"]+"</td><td class = " + resultclass + ">" + item.Result + "</td><td>" + item.StartTime + "</td><td>" + item.EndTime + "</td><td>" + item.Duration +" </td><td>" + item.UserName +" </td><td><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");
+			$("#testdataid").append("<tr><td style='padding-left:37px;'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"'></td><td><label>"+item["Job No"]+" </label></td><td class='suite-name'>"+item["Suite Name"]+"</td><td>"+item["Build No"]+"</td><td class = " + resultclass + ">" + item.Result + "</td><td>" + item.StartTime + "</td><td>" + item.EndTime + "</td><td>" + item.Duration +" </td><td>" + item.UserName +" </td><td><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");
         });
     }) 
 }
@@ -246,6 +246,11 @@ if(count>1){
 }
 }
 
-$(function() {
-	$("#schedule_date").datepicker({ dateFormat: 'yy/mm/dd' }).val();           
+
+$(function () {
+    $("input[type='checkbox']").change(function () {
+        $(this).siblings('ul')
+            .find("input[type='checkbox']")
+            .prop('checked', this.checked);
+    });
 });

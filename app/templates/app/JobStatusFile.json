@@ -1,15 +1,3 @@
 [
-	{"Job No": "job1", "Result": "FAILURE", "StartTime": "11/17/2016 00:09:50", "Suite Name": "...", "Duration": "0", "EndTime": "11/17/2016 00:09:51", "Build No": "16"},
-	{"Job No": "job1", "Result": "FAILURE", "StartTime": "11/16/2016 08:26:58", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 08:26:59", "Build No": "15"},
-	{"Job No": "job2", "Result": "SUCCESS", "StartTime": "11/16/2016 08:29:25", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 08:29:25", "Build No": "7"},
-	{"Job No": "job2", "Result": "SUCCESS", "StartTime": "11/16/2016 08:29:22", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 08:29:22", "Build No": "6"},
-	{"Job No": "job3", "Result": "SUCCESS", "StartTime": "11/16/2016 02:22:41", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 02:22:42", "Build No": "1"},
-	{"Job No": "job4", "Result": "SUCCESS", "StartTime": "11/16/2016 02:24:31", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 02:24:32", "Build No": "1"},
-	{"Job No": "job5", "Result": "SUCCESS", "StartTime": "11/16/2016 02:25:42", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 02:25:43", "Build No": "1"},
-	{"Job No": "job6", "Result": "SUCCESS", "StartTime": "11/16/2016 04:49:05", "Suite Name": "...", "Duration": "0", "EndTime": "11/16/2016 04:49:05", "Build No": "1"},
-	{"Job No": "job7", "Result": "SUCCESS", "StartTime": "11/17/2016 00:56:39", "Suite Name": "...", "Duration": "0", "EndTime": "11/17/2016 00:56:39", "Build No": "2"},
-	{"Job No": "job7", "Result": "SUCCESS", "StartTime": "11/17/2016 00:55:35", "Suite Name": "...", "Duration": "0", "EndTime": "11/17/2016 00:55:35", "Build No": "1"},
-	{"Job No": "job8", "Result": "SUCCESS", "StartTime": "11/17/2016 01:24:19", "Suite Name": "...", "Duration": "0", "EndTime": "11/17/2016 01:24:19", "Build No": "1"},
-	{"Job No": "job9", "Result": "SUCCESS", "StartTime": "11/17/2016 04:38:16", "Suite Name": "...", "Duration": "0", "EndTime": "11/17/2016 04:38:16", "Build No": "1"},
-	{"Job No": "sample", "Result": "SUCCESS", "StartTime": "11/17/2016 04:56:47", "Suite Name": "...", "Duration": "0", "EndTime": "11/17/2016 04:56:47", "Build No": "1"}
+	
 ]
