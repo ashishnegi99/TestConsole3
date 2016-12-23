@@ -7,8 +7,9 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime, date, timedelta
 from app.forms import UserForm, BootstrapAuthenticationForm
 from app.models import Storm, Appium, racktestresult
-from revo.models import testsuite
+from revo.models import TestSuite as testsuite
 from revo.models import device as stb_devices
+from revo.models import TestCase
 from xml.etree import ElementTree as ET
 from xml.dom.minidom import parse
 from django.core.exceptions import ValidationError
@@ -617,7 +618,7 @@ def test_suites_add_view(request):
 @login_required
 def test_suites_list(request):
     assert isinstance(request, HttpRequest)
-    suite = [ { "name": row.name, "mapping" : row.mapping_name} for row in testsuite.objects.all()]
+    suite = [ { "name": row.name} for row in testsuite.objects.all()]
     return render(
         request,
         "revo/test_suite_list.html",
@@ -634,9 +635,9 @@ def add_test_suite(request) :
 
     for index in range(0, len(names)):
         if str(names[index]) and str(mappings[index]):
-            test_suite = testsuite(name = str(names[index]), mapping_name = str(mappings[index]))
+            test_suite = testsuite(name = str(names[index]))
             test_suite.save()
-            print "ADDED TEST SUITE name: " + str(names[index]) + "  mapping_name: " + str(mappings[index])
+            # print "ADDED TEST SUITE name: " + str(names[index]) + "  mapping_name: " + str(mappings[index])
 
     return HttpResponseRedirect("/revo/test_suites/list_view")
 
@@ -660,3 +661,45 @@ def device(request):
     return render(request, "revo/device.html" , RequestContext(request, {
             'form' : form
         }))
+
+from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.forms.models import modelform_factory
+
+class TestCaseList(ListView):
+    model = TestCase
+    context_object_name = 'test_cases'
+
+class TestCaseCreate(CreateView):
+    model = TestCase
+    fields = '__all__'
+
+class TestCaseUpdate(UpdateView):
+    model = TestCase
+    fields = '__all__'
+
+def delete_test_case(request) :
+    assert isinstance(request, HttpRequest)
+    TestCase.objects.filter(id__in=request.POST.getlist('test_case')).delete()
+    return HttpResponseRedirect(reverse("test_case_list"))
+
+
+# WIP commented to avoid clash
+ 
+# class DeviceList(ListView):
+#     model = stb_devices
+#     context_object_name = 'my_device'
+
+# class DeviceCreate(CreateView):
+#     model = stb_devices
+#     fields = '__all__'
+
+# class DeviceUpdate(UpdateView):
+#     model = stb_devices
+#     fields = '__all__'
+
+# class DeviceDelete(DeleteView):
+#     model = stb_devices
+

@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     "import_export",
     "reports",
     "revo",
+    'widget_tweaks',
 )
 
 # A sample logging configuration. The only tangible logging

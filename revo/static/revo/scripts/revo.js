@@ -224,28 +224,37 @@ function checkAll(ele) {
 }
 
 function disable_edit() {
-
-var obj;
-var count=0;
-var Change = document.getElementsByName('Edit_Button')[0];
-    for (var i=0; i<tform.elements.length; i++) {
-      obj = tform.elements[i];
-      if (obj.type == "checkbox" && obj.checked) {
-        count++;
+  var obj;
+  var count=0;
+  var Change = document.getElementsByName('Edit_Button')[0];
+      for (var i=0; i<tform.elements.length; i++) {
+        obj = tform.elements[i];
+        if (obj.type == "checkbox" && obj.checked) {
+          count++;
+        }
       }
-    }
-if(count==1){
-    Change.disabled=false;
-    
-    
-}
-if(count>1){
-    Change.disabled=true;
-    
-    
-}
+  if(count==1){
+      Change.disabled=false;
+  }
+  if(count>1){
+      Change.disabled=true;
+  }
 }
 
+function disable_edit_test(elementName, checkboxPath) {
+  var changeBtn = document.getElementsByName(elementName)[0];
+
+  if($( checkboxPath + " :checkbox:checked").length == 1) {
+    changeBtn.disabled=false;
+  } else {
+    changeBtn.disabled=true;
+  }
+}
+
+function editTestCase() {
+  window.location.href = $( ".test_case_table tr td :checkbox:checked").attr("data-edit");
+  return false;
+}
 
 $(function () {
     $("input[type='checkbox']").change(function () {
