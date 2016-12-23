@@ -38,8 +38,13 @@
         </div>
         <div class="panel-body">
             <form name="tform" action="{% url 'test_suite_delete' %}" method="post">
-				
-					
+				<script>
+					$(function(){
+						$("table tr").click(function(){
+							alert (this.rowIndex);
+						});
+					});
+				</script>
                 {% csrf_token %}
                 <table id="mytable">
                     <tr>
@@ -207,30 +212,16 @@
     			<div class="col-md-12 col-sm-12">
     				<div class="field_group">
     					<div class="form-group input-group">
-								<div class="form-group input-group">
-								<label for="test_suite-name">Test Suite Name</label>
-								<!--<select id="test_suite" multiple="multiple" class="multiple">
-									<option value="1">Test Suite Name 1</option>
-									<option value="2">Test Suite Name 2</option>
-									<option value="3">Test Suite Name 3</option>
-									<option value="4">Test Suite Name 4</option>
-									<option value="5">Test Suite Name 5</option>
-									<option value="6">Test Suite Name 6</option>
-								</select>-->
-								<input type="text" name="test_suite" value="">
-    					</div>
 							<div class="form-group input-group">
-							<label for="test_case-name">Test Case Name</label>
-							<!--<select id="test_case" multiple="multiple" class="multiple">
-								<option value="1">Test Case Name 1</option>
-								<option value="2">Test Case Name 2</option>
-								<option value="3">Test Case Name 3</option>
-								<option value="4">Test Case Name 4</option>
-								<option value="5">Test Case Name 5</option>
-								<option value="6">Test Case Name 6</option>
-							</select>-->
-							<input type="text" name="test_case" style="border:1px solid #ddd" value="">
-    					</div>
+								<label for="test_suites-name">Test Suite Name</label>
+								
+								<input type="text" name="test_suite" class="form-control input-sm test_suites" value="">
+								
+							</div>							
+							<div class="form-group input-group">
+								<label for="test_case-name">Test Case Name</label>
+								<input type="text" name="test_case" class="form-control input-sm test_suites" value="">
+							</div>
     					</div>
     					
     				</div>

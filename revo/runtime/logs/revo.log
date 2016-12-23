@@ -25938,3 +25938,1331 @@ DEBUG 2016-12-22 19:31:26,058 views.py getJobStatus 335 Start
 DEBUG 2016-12-22 19:31:26,075 views.py getJobStatus 348 Number of Jobs: 0
 DEBUG 2016-12-22 19:31:26,078 views.py getJobStatus 397 Number of queues: 0
 DEBUG 2016-12-22 19:31:26,079 views.py getJobStatus 424 End
+DEBUG 2016-12-23 11:17:27,941 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 11:17:27,983 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 11:17:27,989 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 11:17:27,990 views.py getJobStatus 424 End
+DEBUG 2016-12-23 11:17:55,963 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 11:17:56,003 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 11:17:56,009 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 11:17:56,010 views.py getJobStatus 424 End
+DEBUG 2016-12-23 11:53:21,174 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 11:53:21,234 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 11:53:21,240 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 11:53:21,243 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:29:14,056 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:29:14,256 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:29:14,266 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:29:14,276 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:29:33,657 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:29:33,693 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:29:33,700 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:29:33,700 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:30:35,042 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:30:35,056 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:30:35,059 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:30:35,061 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:31:36,599 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:31:36,614 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:31:36,618 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:31:36,618 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:32:37,714 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:32:37,740 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:32:37,756 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:32:37,756 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:33:38,782 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:33:38,808 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:33:38,815 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:33:38,816 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:34:37,480 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:34:37,509 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:34:37,516 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:34:37,516 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:34:39,486 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:34:39,507 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:34:39,513 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:34:39,515 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:34:48,990 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:34:49,013 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:34:49,020 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:34:49,022 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:35:40,253 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:35:40,267 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:35:40,273 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:35:40,275 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:36:41,042 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:36:41,072 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:36:41,075 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:36:41,075 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:37:41,786 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:37:41,818 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:37:41,825 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:37:41,826 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:38:42,476 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:38:42,490 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:38:42,493 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:38:42,493 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:39:43,302 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:39:43,315 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:39:43,319 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:39:43,319 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:40:25,877 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:40:25,891 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:40:25,897 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:40:25,898 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:40:44,015 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:40:44,029 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:40:44,032 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:40:44,033 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:40:56,049 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:40:56,065 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:40:56,068 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:40:56,069 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:41:45,447 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:41:45,463 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:41:45,467 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:41:45,467 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:41:56,506 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:41:56,522 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:41:56,528 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:41:56,529 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:42:46,815 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:42:46,828 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:42:46,831 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:42:46,832 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:42:56,961 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:42:56,979 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:42:56,983 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:42:56,984 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:43:47,460 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:43:47,477 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:43:47,484 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:43:47,486 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:43:58,112 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:43:58,128 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:43:58,134 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:43:58,134 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:44:48,089 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:44:48,102 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:44:48,105 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:44:48,107 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:44:59,078 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:44:59,094 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:44:59,098 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:44:59,098 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:45:10,621 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:45:10,634 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:45:10,638 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:45:10,638 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:46:00,082 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:46:00,095 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:46:00,099 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:46:00,101 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:46:11,453 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:46:11,466 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:46:11,470 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:46:11,470 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:47:01,164 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:47:01,193 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:47:01,196 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:47:01,197 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:47:12,321 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:47:12,335 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:47:12,339 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:47:12,341 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:47:30,832 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:47:30,846 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:47:30,851 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:47:30,851 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:47:51,296 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:47:51,312 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:47:51,316 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:47:51,318 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:47:58,723 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:47:58,740 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:47:58,744 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:47:58,744 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:48:02,091 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:48:02,107 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:48:02,111 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:48:02,112 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:48:59,482 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:48:59,496 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:48:59,499 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:48:59,500 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:49:02,947 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:49:02,961 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:49:02,969 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:49:02,970 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:49:04,595 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:49:04,612 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:49:04,617 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:49:04,618 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:49:14,403 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:49:14,418 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:49:14,423 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:49:14,424 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:50:00,398 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:50:00,413 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:50:00,417 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:50:00,417 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:50:04,010 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:50:04,023 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:50:04,026 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:50:04,026 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:51:01,203 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:51:01,216 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:51:01,220 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:51:01,220 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:51:05,137 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:51:05,154 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:51:05,158 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:51:05,158 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:52:02,105 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:52:02,118 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:52:02,121 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:52:02,122 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:52:06,068 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:52:06,081 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:52:06,085 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:52:06,085 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:53:02,999 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:53:03,016 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:53:03,019 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:53:03,020 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:53:07,102 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:53:07,115 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:53:07,119 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:53:07,119 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:54:03,871 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:54:03,894 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:54:03,898 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:54:03,900 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:54:08,154 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:54:08,165 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:54:08,168 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:54:08,168 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:55:05,303 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:55:05,318 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:55:05,322 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:55:05,322 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:55:09,098 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:55:09,111 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:55:09,115 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:55:09,115 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:56:06,585 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:56:06,601 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:56:06,608 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:56:06,608 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:56:10,078 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:56:10,092 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:56:10,095 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:56:10,096 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:57:07,387 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:57:07,400 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:57:07,404 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:57:07,404 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:57:11,121 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:57:11,132 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:57:11,135 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:57:11,137 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:58:00,000 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:58:00,015 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:58:00,017 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:58:00,019 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:58:12,017 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:58:12,033 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:58:12,038 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:58:12,038 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:59:00,875 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:59:00,888 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:59:00,891 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:59:00,892 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:59:12,996 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:59:13,009 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:59:13,013 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:59:13,016 views.py getJobStatus 424 End
+DEBUG 2016-12-23 15:59:42,015 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 15:59:42,032 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 15:59:42,039 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 15:59:42,040 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:00:14,094 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:00:14,105 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:00:14,108 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:00:14,108 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:00:28,466 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:00:28,483 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:00:28,486 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:00:28,487 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:01:15,118 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:01:15,131 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:01:15,134 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:01:15,135 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:01:29,753 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:01:29,776 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:01:29,782 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:01:29,783 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:02:01,463 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:02:01,483 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:02:01,486 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:02:01,489 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:02:16,198 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:02:16,214 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:02:16,217 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:02:16,219 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:03:02,644 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:03:02,657 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:03:02,661 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:03:02,661 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:03:17,168 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:03:17,183 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:03:17,186 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:03:17,187 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:04:03,566 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:04:04,232 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:04:04,234 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:04:04,236 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:04:18,017 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:04:18,032 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:04:18,038 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:04:18,039 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:04:26,073 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:04:26,112 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:04:26,117 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:04:26,118 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:04:40,059 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:04:40,105 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:04:40,114 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:04:40,115 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:04:55,910 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:04:55,931 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:04:55,937 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:04:55,937 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:05:19,118 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:05:19,137 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:05:19,140 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:05:19,141 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:05:33,826 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:05:33,842 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:05:33,848 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:05:33,848 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:06:15,558 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:06:15,576 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:06:15,582 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:06:15,582 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:06:20,125 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:06:20,138 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:06:20,141 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:06:20,141 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:07:17,016 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:07:17,029 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:07:17,036 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:07:17,036 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:07:21,125 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:07:21,140 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:07:21,144 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:07:21,144 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:07:55,463 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:07:55,484 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:07:55,496 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:07:55,496 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:08:22,088 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:08:22,105 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:08:22,108 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:08:22,108 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:08:39,141 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:08:39,167 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:08:39,171 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:08:39,173 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:09:23,009 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:09:23,022 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:09:23,026 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:09:23,026 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:09:40,543 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:09:40,558 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:09:40,562 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:09:40,563 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:10:24,026 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:10:24,039 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:10:24,042 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:10:24,042 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:10:41,395 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:10:41,410 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:10:41,414 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:10:41,414 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:11:25,062 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:11:25,075 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:11:25,078 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:11:25,079 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:11:42,161 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:11:42,176 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:11:42,180 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:11:42,180 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:12:26,049 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:12:26,063 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:12:26,066 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:12:26,066 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:12:38,404 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:12:38,434 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:12:38,437 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:12:38,440 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:13:15,042 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:13:15,072 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:13:15,075 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:13:15,076 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:13:27,055 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:13:27,069 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:13:27,073 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:13:27,075 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:14:16,615 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:14:16,634 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:14:16,638 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:14:16,638 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:14:28,092 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:14:28,109 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:14:28,115 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:14:28,117 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:14:38,894 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:14:38,915 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:14:38,921 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:14:38,921 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:15:01,726 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:15:01,756 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:15:01,763 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:15:01,763 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:15:29,114 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:15:29,127 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:15:29,131 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:15:29,131 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:15:32,980 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:15:33,016 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:15:33,022 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:15:33,022 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:16:01,153 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:16:01,168 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:16:01,173 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:16:01,174 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:16:12,595 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:16:12,611 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:16:12,615 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:16:12,615 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:16:30,131 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:16:30,144 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:16:30,148 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:16:30,148 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:17:13,444 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:17:13,460 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:17:13,463 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:17:13,463 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:17:31,117 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:17:31,131 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:17:31,135 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:17:31,137 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:17:31,454 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:17:31,474 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:17:31,479 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:17:31,479 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:18:06,252 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:18:06,266 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:18:06,269 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:18:06,270 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:18:18,673 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:18:18,687 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:18:18,693 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:18:18,694 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:18:32,118 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:18:32,132 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:18:32,135 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:18:32,137 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:18:34,631 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:18:34,648 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:18:34,651 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:18:34,653 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:18:50,328 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:18:50,342 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:18:50,348 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:18:50,348 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:19:04,506 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:19:04,538 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:19:04,542 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:19:04,543 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:19:32,944 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:19:32,959 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:19:32,963 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:19:32,963 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:20:05,861 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:20:05,872 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:20:05,875 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:20:05,877 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:20:34,069 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:20:34,084 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:20:34,088 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:20:34,088 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:20:46,677 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:20:46,711 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:20:46,730 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:20:46,732 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:21:35,184 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:21:35,197 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:21:35,200 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:21:35,200 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:21:47,980 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:21:47,993 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:21:47,996 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:21:47,997 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:22:36,134 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:22:36,148 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:22:36,151 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:22:36,153 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:22:48,953 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:22:48,976 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:22:48,983 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:22:48,983 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:23:37,125 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:23:37,140 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:23:37,144 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:23:37,145 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:23:49,944 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:23:49,956 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:23:49,959 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:23:49,960 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:24:20,032 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:24:20,051 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:24:20,055 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:24:20,055 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:24:38,052 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:24:38,066 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:24:38,072 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:24:38,072 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:25:22,815 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:25:22,828 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:25:22,832 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:25:22,834 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:25:39,000 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:25:39,015 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:25:39,019 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:25:39,019 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:26:23,710 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:26:23,723 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:26:23,726 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:26:23,726 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:26:40,072 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:26:40,085 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:26:40,088 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:26:40,089 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:26:41,828 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:26:41,872 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:26:41,878 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:26:41,880 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:26:53,960 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:26:54,000 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:26:54,005 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:26:54,006 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:27:19,953 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:27:19,963 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:27:19,967 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:27:19,967 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:27:41,144 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:27:41,157 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:27:41,160 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:27:41,161 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:27:45,529 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:27:45,542 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:27:45,546 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:27:45,548 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:28:21,437 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:28:21,457 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:28:21,463 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:28:21,464 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:28:42,089 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:28:42,102 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:28:42,107 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:28:42,108 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:28:45,769 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:28:45,788 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:28:45,792 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:28:45,793 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:29:05,483 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:29:05,500 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:29:05,505 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:29:05,506 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:29:43,002 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:29:43,015 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:29:43,017 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:29:43,019 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:30:07,154 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:30:07,165 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:30:07,170 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:30:07,170 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:30:22,825 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:30:22,844 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:30:22,848 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:30:22,848 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:30:27,992 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:30:28,007 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:30:28,013 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:30:28,013 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:30:44,019 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:30:44,032 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:30:44,036 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:30:44,036 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:31:28,785 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:31:28,801 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:31:28,805 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:31:28,806 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:31:45,095 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:31:45,107 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:31:45,109 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:31:45,111 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:31:51,365 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:31:51,391 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:31:51,398 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:31:51,398 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:32:11,244 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:32:11,256 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:32:11,259 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:32:11,260 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:32:28,973 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:32:28,990 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:32:28,994 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:32:28,996 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:32:46,117 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:32:46,131 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:32:46,135 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:32:46,137 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:33:32,101 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:33:32,112 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:33:32,115 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:33:32,117 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:33:47,069 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:33:47,085 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:33:47,089 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:33:47,091 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:34:33,471 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:34:33,483 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:34:33,486 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:34:33,487 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:34:48,089 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:34:48,105 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:34:48,109 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:34:48,111 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:34:49,767 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:34:49,788 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:34:49,792 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:34:49,792 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:35:03,734 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:35:03,747 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:35:03,752 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:35:03,752 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:35:21,525 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:35:21,538 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:35:21,540 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:35:21,542 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:35:49,124 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:35:49,153 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:35:49,157 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:35:49,157 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:36:22,364 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:36:22,375 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:36:22,378 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:36:22,378 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:36:50,023 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:36:50,052 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:36:50,056 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:36:50,061 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:37:24,177 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:37:24,190 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:37:24,194 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:37:24,194 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:37:51,111 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:37:51,131 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:37:51,137 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:37:51,138 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:38:25,005 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:38:25,017 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:38:25,022 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:38:25,023 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:38:51,888 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:38:51,904 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:38:51,907 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:38:51,908 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:38:52,135 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:38:52,158 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:38:52,164 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:38:52,165 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:39:02,813 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:39:02,826 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:39:02,831 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:39:02,832 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:39:53,135 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:39:53,157 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:39:53,161 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:39:53,163 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:40:03,663 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:40:03,678 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:40:03,683 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:40:03,684 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:40:12,436 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:40:12,456 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:40:12,463 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:40:12,464 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:40:54,148 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:40:54,160 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:40:54,161 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:40:54,163 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:41:13,259 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:41:13,273 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:41:13,278 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:41:13,279 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:41:15,282 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:41:15,305 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:41:15,312 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:41:15,313 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:41:55,151 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:41:55,168 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:41:55,173 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:41:55,174 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:42:16,582 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:42:16,596 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:42:16,601 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:42:16,601 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:42:56,128 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:42:56,145 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:42:56,151 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:42:56,153 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:43:03,788 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:43:03,812 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:43:03,816 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:43:03,818 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:43:17,756 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:43:17,770 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:43:17,775 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:43:17,776 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:43:26,252 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:43:26,270 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:43:26,273 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:43:26,275 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:43:57,154 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:43:57,167 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:43:57,171 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:43:57,173 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:44:21,562 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:44:21,585 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:44:21,592 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:44:21,592 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:44:46,992 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:44:47,006 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:44:47,012 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:44:47,013 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:44:58,032 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:44:58,045 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:44:58,048 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:44:58,049 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:45:33,612 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:45:33,637 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:45:33,641 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:45:33,642 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:45:59,190 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:45:59,206 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:45:59,210 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:45:59,210 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:46:28,657 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:46:28,671 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:46:28,674 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:46:28,676 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:46:44,904 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:46:44,917 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:46:44,921 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:46:44,921 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:47:00,111 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:47:00,127 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:47:00,131 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:47:00,131 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:47:22,545 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:47:22,562 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:47:22,569 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:47:22,569 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:47:49,914 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:47:49,928 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:47:49,931 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:47:49,933 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:48:01,226 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:48:01,242 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:48:01,246 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:48:01,246 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:48:30,983 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:48:30,996 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:48:31,000 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:48:31,000 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:49:02,101 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:49:02,119 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:49:02,124 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:49:02,125 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:49:10,069 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:49:10,091 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:49:10,095 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:49:10,096 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:50:03,073 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:50:03,091 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:50:03,095 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:50:03,098 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:50:11,579 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:50:11,592 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:50:11,596 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:50:11,596 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:51:03,997 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:51:04,013 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:51:04,016 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:51:04,017 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:51:12,388 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:51:12,404 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:51:12,410 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:51:12,411 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:52:05,183 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:52:05,197 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:52:05,200 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:52:05,201 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:52:13,216 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:52:13,230 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:52:13,233 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:52:13,234 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:53:06,111 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:53:06,125 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:53:06,130 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:53:06,131 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:53:14,105 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:53:14,128 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:53:14,132 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:53:14,134 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:54:14,901 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:54:14,914 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:54:14,917 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:54:14,918 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:54:35,163 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:54:35,174 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:54:35,177 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:54:35,178 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:55:23,349 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:55:23,365 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:55:23,378 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:55:23,378 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:55:29,868 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:55:29,884 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:55:29,888 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:55:29,888 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:55:38,108 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:55:38,124 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:55:38,128 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:55:38,128 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:56:28,858 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:56:28,877 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:56:28,880 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:56:28,881 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:56:35,907 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:56:35,930 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:56:35,938 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:56:35,940 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:57:15,838 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:57:15,864 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:57:15,875 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:57:15,875 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:57:51,891 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:57:51,926 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:57:51,930 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:57:51,930 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:58:01,726 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:58:01,744 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:58:01,749 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:58:01,750 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:58:53,161 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:58:53,176 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:58:53,181 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:58:53,183 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:59:02,591 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:59:02,608 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:59:02,611 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:59:02,612 views.py getJobStatus 424 End
+DEBUG 2016-12-23 16:59:53,986 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 16:59:53,999 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 16:59:54,002 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 16:59:54,003 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:00:03,164 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:00:03,178 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:00:03,184 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:00:03,184 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:00:15,569 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:00:15,591 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:00:15,595 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:00:15,596 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:01:03,786 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:01:03,799 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:01:03,802 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:01:03,803 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:01:08,099 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:01:08,119 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:01:08,122 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:01:08,124 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:01:20,315 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:01:20,332 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:01:20,342 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:01:20,344 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:01:41,648 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:01:41,664 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:01:41,671 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:01:41,673 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:02:04,323 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:02:04,338 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:02:04,344 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:02:04,345 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:02:42,545 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:02:42,559 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:02:42,565 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:02:42,565 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:03:04,897 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:03:04,910 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:03:04,913 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:03:04,914 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:03:42,773 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:03:42,790 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:03:42,793 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:03:42,795 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:03:43,634 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:03:43,645 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:03:43,650 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:03:43,651 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:04:43,492 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:04:43,507 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:04:43,513 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:04:43,515 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:04:44,661 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:04:44,676 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:04:44,681 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:04:44,681 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:05:44,095 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:05:44,109 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:05:44,112 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:05:44,114 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:05:45,732 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:05:45,743 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:05:45,747 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:05:45,747 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:06:44,653 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:06:44,765 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:06:44,785 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:06:44,786 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:06:45,003 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:06:45,019 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:06:45,025 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:06:45,026 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:06:59,630 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:06:59,644 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:06:59,648 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:06:59,648 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:07:45,278 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:07:45,298 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:07:45,302 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:07:45,303 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:08:00,733 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:08:00,746 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:08:00,750 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:08:00,750 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:08:39,323 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:08:39,338 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:08:39,342 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:08:39,342 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:08:45,841 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:08:45,855 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:08:45,858 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:08:45,858 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:09:40,467 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:09:40,480 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:09:40,484 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:09:40,486 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:09:46,444 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:09:46,456 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:09:46,459 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:09:46,460 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:10:03,447 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:10:03,460 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:10:03,464 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:10:03,464 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:10:16,516 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:10:16,528 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:10:16,532 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:10:16,532 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:11:04,503 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:11:04,523 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:11:04,529 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:11:04,529 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:11:17,076 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:11:17,091 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:11:17,095 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:11:17,095 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:12:05,704 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:12:05,723 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:12:05,729 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:12:05,730 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:12:17,608 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:12:17,622 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:12:17,628 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:12:17,631 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:12:57,862 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:12:57,875 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:12:57,880 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:12:57,881 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:13:03,282 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:13:03,296 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:13:03,301 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:13:03,302 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:13:50,871 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:13:50,891 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:13:50,895 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:13:50,897 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:13:58,381 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:13:58,401 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:13:58,404 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:13:58,405 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:14:52,039 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:14:52,052 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:14:52,056 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:14:52,058 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:14:58,907 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:14:58,926 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:14:58,930 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:14:58,930 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:15:20,947 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:15:20,960 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:15:20,963 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:15:20,964 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:15:59,528 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:15:59,539 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:15:59,543 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:15:59,545 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:16:22,102 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:16:22,118 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:16:22,138 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:16:22,140 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:16:45,469 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:16:45,482 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:16:45,486 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:16:45,486 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:17:00,130 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:17:00,144 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:17:00,148 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:17:00,148 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:17:46,947 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:17:46,959 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:17:46,963 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:17:46,963 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:18:00,665 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:18:00,678 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:18:00,681 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:18:00,683 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:18:08,667 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:18:08,684 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:18:08,690 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:18:08,690 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:18:31,457 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:18:31,470 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:18:31,473 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:18:31,474 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:19:01,150 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:19:01,163 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:19:01,167 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:19:01,167 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:19:11,174 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:19:11,187 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:19:11,190 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:19:11,190 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:19:28,053 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:19:28,072 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:19:28,078 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:19:28,078 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:19:50,266 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:19:50,279 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:19:50,282 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:19:50,282 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:19:55,171 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:19:55,188 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:19:55,194 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:19:55,194 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:20:51,167 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:20:51,177 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:20:51,181 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:20:51,181 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:20:56,062 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:20:56,082 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:20:56,089 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:20:56,091 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:21:47,885 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:21:47,898 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:21:47,904 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:21:47,904 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:21:52,226 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:21:52,240 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:21:52,243 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:21:52,243 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:22:48,660 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:22:48,677 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:22:48,686 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:22:48,687 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:22:53,108 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:22:53,122 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:22:53,125 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:22:53,127 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:23:49,348 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:23:49,368 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:23:49,371 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:23:49,374 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:23:53,900 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:23:53,913 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:23:53,915 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:23:53,917 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:23:57,240 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:23:57,259 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:23:57,263 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:23:57,265 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:24:17,325 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:24:17,345 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:24:17,351 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:24:17,351 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:24:51,065 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:24:51,082 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:24:51,088 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:24:51,091 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:24:54,665 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:24:54,680 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:24:54,684 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:24:54,686 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:24:56,448 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:24:56,471 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:24:56,480 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:24:56,483 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:25:55,651 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:25:55,676 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:25:55,684 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:25:55,684 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:25:57,253 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:25:57,301 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:25:57,306 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:25:57,308 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:26:08,868 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:26:08,888 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:26:08,894 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:26:08,895 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:26:56,433 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:26:56,446 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:26:56,450 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:26:56,450 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:27:09,561 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:27:09,588 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:27:09,595 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:27:09,595 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:27:30,289 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:27:30,301 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:27:30,305 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:27:30,305 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:28:10,332 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:28:10,355 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:28:10,361 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:28:10,361 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:28:32,197 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:28:32,210 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:28:32,214 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:28:32,216 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:29:05,888 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:29:05,904 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:29:05,907 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:29:05,908 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:29:11,115 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:29:11,134 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:29:11,138 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:29:11,138 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:30:07,384 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:30:07,394 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:30:07,398 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:30:07,398 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:30:12,164 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:30:12,181 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:30:12,187 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:30:12,188 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:31:08,551 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:31:08,566 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:31:08,578 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:31:08,579 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:31:13,091 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:31:13,111 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:31:13,115 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:31:13,115 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:32:09,621 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:32:09,635 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:32:09,640 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:32:09,641 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:32:13,858 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:32:13,875 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:32:13,881 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:32:13,881 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:33:12,176 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:33:12,190 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:33:12,194 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:33:12,197 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:33:14,674 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:33:14,703 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:33:14,711 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:33:14,713 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:33:33,686 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:33:33,701 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:33:33,706 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:33:33,707 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:34:15,585 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:34:15,605 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:34:15,611 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:34:15,611 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:34:35,167 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:34:35,183 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:34:35,186 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:34:35,187 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:35:16,517 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:35:16,536 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:35:16,539 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:35:16,540 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:35:36,270 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:35:36,282 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:35:36,286 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:35:36,288 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:36:17,525 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:36:17,595 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:36:17,604 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:36:17,605 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:37:18,697 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:37:18,723 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:37:18,733 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:37:18,733 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:37:29,211 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:37:29,226 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:37:29,243 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:37:29,243 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:38:22,073 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:38:22,094 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:38:22,099 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:38:22,101 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:38:30,342 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:38:30,358 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:38:30,361 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:38:30,361 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:39:23,051 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:39:23,075 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:39:23,081 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:39:23,082 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:40:23,934 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:40:23,957 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:40:23,964 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:40:23,966 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:41:25,540 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:41:25,565 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:41:25,571 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:41:25,572 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:42:26,476 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:42:26,493 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:42:26,496 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:42:26,497 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:43:27,437 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:43:27,456 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:43:27,464 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:43:27,467 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:44:28,342 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:44:28,361 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:44:28,365 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:44:28,367 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:45:29,211 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:45:29,229 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:45:29,233 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:45:29,234 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:46:30,098 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:46:30,115 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:46:30,121 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:46:30,121 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:47:30,788 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:47:30,803 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:47:30,808 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:47:30,809 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:48:31,608 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:48:31,631 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:48:31,638 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:48:31,640 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:49:32,569 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:49:32,585 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:49:32,588 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:49:32,589 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:49:40,348 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:49:40,364 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:49:40,378 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:49:40,378 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:50:33,387 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:50:33,404 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:50:33,408 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:50:33,410 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:50:41,562 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:50:41,584 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:50:41,588 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:50:41,588 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:51:34,125 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:51:34,148 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:51:34,153 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:51:34,154 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:51:42,890 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:51:42,904 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:51:42,907 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:51:42,908 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:52:35,132 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:52:35,150 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:52:35,154 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:52:35,155 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:52:44,381 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:52:44,397 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:52:44,401 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:52:44,401 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:53:35,898 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:53:35,921 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:53:35,924 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:53:35,926 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:53:45,752 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:53:45,766 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:53:45,769 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:53:45,770 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:54:37,033 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:54:37,051 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:54:37,055 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:54:37,056 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:54:47,025 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:54:47,036 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:54:47,040 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:54:47,040 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:55:37,802 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:55:37,819 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:55:37,823 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:55:37,825 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:55:48,407 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:55:48,421 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:55:48,424 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:55:48,426 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:56:38,706 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:56:38,726 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:56:38,730 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:56:38,730 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:56:49,653 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:56:49,674 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:56:49,677 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:56:49,678 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:57:39,539 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:57:39,558 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:57:39,561 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:57:39,562 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:57:50,997 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:57:51,010 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:57:51,013 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:57:51,015 views.py getJobStatus 424 End
+DEBUG 2016-12-23 17:58:40,256 views.py getJobStatus 335 Start
+DEBUG 2016-12-23 17:58:40,273 views.py getJobStatus 348 Number of Jobs: 0
+DEBUG 2016-12-23 17:58:40,276 views.py getJobStatus 397 Number of queues: 0
+DEBUG 2016-12-23 17:58:40,279 views.py getJobStatus 424 End

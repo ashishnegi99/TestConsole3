@@ -47,20 +47,24 @@
 );
 $(document).ready(function() {
 	var table = $('#example').DataTable( {
-		"order": [[ 5, "desc" ]],
-		"columnDefs": [
-    { "orderable": false, "targets": [0,9,10] }
-  ],
-		responsive: true,
-		"searching": false,
-		"bLengthChange": false,
-		"scrollY": "200px",
-		"scrollCollapse": true,
-		paging: false
+	"order": [[ 5, "desc" ]],
+	"columnDefs": [ {
+	"orderable": false, "targets": [0,9,10],
+		//"orderData": [5,4], "targets": [4]
+    } ],
+	
+	responsive: true,
+	"searching": false,
+	"bLengthChange": false,
+	"scrollY": "200px",
+	"scrollCollapse": true,
+	paging: false
 	} );
-
 	new $.fn.dataTable.FixedHeader( table );
-	} );
+} );
+
+/* Define two custom functions (asc and desc) for string sorting */
+
 	
 	$(function() {
 		$("#schedule_date").datepicker({ minDate: 0, dateFormat: 'yy/mm/dd' });   
@@ -78,6 +82,11 @@ $(document).ready(function() {
 		});
 	});
 </script>
+<script>
+
+
+
+</script>
 {% endblock %}
 
 {% block body %} 
@@ -85,7 +94,7 @@ $(document).ready(function() {
         <form action="{% url 'revo_view' %}" method="post">
             {% csrf_token %}
 
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="quote-box">
                     <p class="quotation-mark">
                         SET TOP BOX &nbsp;
@@ -95,7 +104,7 @@ $(document).ready(function() {
                         <span class="pull-right"><img src="{% static 'app/images/settopbox.png' %}"></span>
                     </p>
                     <hr>
-					<div class="row">
+					<!--<div class="row">
 					<div class="col-md-12">
                     <div class="col-md-6"><div class="quote-text scroller" id="STBStatus"></div></div>
 					<div class="col-md-6"><div class="quote-text scroller" id="">
@@ -113,11 +122,12 @@ $(document).ready(function() {
 					</div>
 					</div>
 					</div>
-					</div>
+					</div>-->
+					<div class="quote-text scroller" id="STBStatus"></div>
                 </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="quote-box">
                     <p class="quotation-mark">
                         TEST SUITE
@@ -244,28 +254,111 @@ $(document).ready(function() {
 					<table id="example" class="display nowrap" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th style="padding-left:37px;">
+								<th style="padding-left:37px; text-align:center">
 								
 								<input type="checkbox" onchange="checkAll(this)" name="chk[]"  /></th>
-								<th style="color:#cd040b;"> &nbsp; STB</th>
-								<th style="color:#cd040b;">SUITE NAME</th>
-								<th style="color:#cd040b;">BUILD#</th>
-								<th style="color:#cd040b;">RESULT</th>
-								<th style="color:#cd040b;">JOB START TIME</th>
-								<th style="color:#cd040b;">JOB END TIME</th>
-								<th style="color:#cd040b;">DURATION</th>
-								<th style="color:#cd040b;">TESTER</th>
-								<th style="color:#cd040b;">STOP JOB</th>
-								<th style="color:#cd040b;">
+								<th style="color:#cd040b;text-align:center"> &nbsp; STB</th>
+								<th style="color:#cd040b;text-align:center">SUITE NAME</th>
+								<th style="color:#cd040b;text-align:center">BUILD#</th>
+								<th style="color:#cd040b;text-align:center">RESULT</th>
+								<th style="color:#cd040b;text-align:center">JOB START TIME</th>
+								<th style="color:#cd040b;text-align:center">JOB END TIME</th>
+								<th style="color:#cd040b;text-align:center" >DURATION</th>
+								<th style="color:#cd040b;text-align:center">TESTER</th>
+								<th style="color:#cd040b;text-align:center">STOP JOB</th>
+								<th style="color:#cd040b;text-align:center">
 									OUTPUT &nbsp; &nbsp;<i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
 									
 								</th>
 							</tr>
 						</thead>
-				 
-						<tbody id="testdataid">
-						
+						<tbody>
+							<tr>
+								<td style="padding-left:36px; width:66px; text-align:center">
+									<input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"'>
+								</td>
+								<td style="width:37px; text-align: center">
+									<label>1</label>
+								</td>
+								<td class='suite-name' style="width:88px; text-align: center">---</td>
+								<td style="width:52px; text-align: center">25</td>
+								<td class = " + resultclass + " style="width:72px; text-align: center">SUCCESS</td>
+								<td style="width:135px; text-align: center"> 12/23/2016 11:50:09</td>
+								<td style="width:135px; text-align: center">12/23/2016 12:50:09</td>
+								<td style="width:77px; text-align: center">22</td>
+								<td style="width:59px; text-align: center">ASH</td>
+								<td style="width:202px; text-align: center">
+									<button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button>
+								</td>
+								<td style="width:237px; text-align: center">
+									<a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-left:36px; width:66px; text-align:center">
+									<input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"'>
+								</td>
+								<td style="width:37px; text-align: center">
+									<label>5</label>
+								</td>
+								<td class='suite-name' style="width:88px; text-align: center">---</td>
+								<td style="width:52px; text-align: center">25</td>
+								<td class = " + resultclass + " style="width:72px; text-align: center">SUCCESS</td>
+								<td style="width:135px; text-align: center">12/24/2016 06:10:09</td>
+								<td style="width:135px; text-align: center"></td>
+								<td style="width:77px; text-align: center">22</td>
+								<td style="width:59px; text-align: center">ASH</td>
+								<td style="width:202px; text-align: center">
+									<button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button>
+								</td>
+								<td style="width:237px; text-align: center">
+									<a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-left:36px; width:66px; text-align:center">
+									<input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"'>
+								</td>
+								<td style="width:37px; text-align: center">
+									<label>3</label>
+								</td>
+								<td class='suite-name' style="width:88px; text-align: center">---</td>
+								<td style="width:52px; text-align: center">25</td>
+								<td class = " + resultclass + " style="width:72px; text-align: center">ABORTED</td>
+								<td style="width:135px; text-align: center">12/21/2016 11:50:09</td>
+								<td style="width:135px; text-align: center">12/21/2016 12:50:09</td>
+								<td style="width:77px; text-align: center">22</td>
+								<td style="width:59px; text-align: center">ASH</td>
+								<td style="width:202px; text-align: center">
+									<button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button>
+								</td>
+								<td style="width:237px; text-align: center">
+									<a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a>
+								</td>
+							</tr>
+							<tr>
+								<td style="padding-left:36px; width:66px; text-align:center">
+									<input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"'>
+								</td>
+								<td style="width:37px; text-align: center">
+									<label>2</label>
+								</td>
+								<td class='suite-name' style="width:88px; text-align: center">---</td>
+								<td style="width:52px; text-align: center">25</td>
+								<td class = " + resultclass + " style="width:72px; text-align: center">IN PROGRESS</td>
+								<td style="width:135px; text-align: center">12/19/2016 11:50:09</td>
+								<td style="width:135px; text-align: center"></td>
+								<td style="width:77px; text-align: center">22</td>
+								<td style="width:59px; text-align: center">ASH</td>
+								<td style="width:202px; text-align: center">
+									<button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button>
+								</td>
+								<td style="width:237px; text-align: center">
+									<a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a>
+								</td>
+							</tr>
 						</tbody>
+						<!--<tbody id="testdataid"/>-->
 					</table>
 			    </div>
 		    </div>

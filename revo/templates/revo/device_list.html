@@ -30,6 +30,13 @@
         </div>
         <div class="panel-body">
             <form name="tform"  action="{% url 'device_delete' %}" method="post">
+				<script>
+					$(function(){
+						$("table tr").click(function(){
+							alert (this.rowIndex);
+						});
+					});
+				</script>
                 {% csrf_token %}
                 <table>
                     <tr>
@@ -117,12 +124,7 @@
                         </select>
                     </p>
                     
-                    <script>
-                        $(function(){
-                            $('#ipv4').ipAddress();
-                            $('#ipv6').ipAddress({v:6});
-                        });
-                    </script>
+                   
                     <p>
                         <label for="ip">IP Address</label>
                         <input name="ip" type="text" class="form-control input-sm">
@@ -189,12 +191,7 @@
                         </select>
                     </p>
                     
-                    <script>
-                        $(function(){
-                            $('#ipv4').ipAddress();
-                            $('#ipv6').ipAddress({v:6});
-                        });
-                    </script>
+                   
                     <p>
                         <label for="ip">IP Address</label>
                         <input name="ip" type="text" class="form-control input-sm">
