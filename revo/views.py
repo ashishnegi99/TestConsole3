@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.db.models import Sum, Avg, Count
@@ -15,6 +16,7 @@ from xml.dom.minidom import parse
 from django.core.exceptions import ValidationError
 from ftplib import FTP
 from app.jenkinsapp import JenkinsApp
+from revo.testsuitejson import TestSuiteJson
 import jenkins
 import urllib2
 import urllib
@@ -55,25 +57,6 @@ def  consolelink(request):
     server = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
     output = server.get_build_console_output(get_full_job_name(job), build)
     return HttpResponse(output)   
-    
-
-def create_groovy_job(job_name, wait_in_sec, **params):
-  job = {}
-  job["name"] = job_name
-  job["WaitFor"] = wait_in_sec
-  parameters = { "param1" : params.get("param1") , "param2" : params.get("param2") }
-  job["Parameters"] = parameters
-  return job
-
-def schedule_job(jobs_as_json_str):
-    jserver = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
-    
-    with open('schedule.groovy', 'r') as content_file:
-        content = content_file.read()
-
-    content = "def jobsToRunStr = '" + jobs_as_json_str + "'\n" + content
-    info = jserver.run_script(content)
-    logger.debug("Groovy Script Info: " + info)
 
 def sample_groovy():
     jobsToRun = []
@@ -167,6 +150,89 @@ def revo_view(request):
 ########################
 ## End: Revo Views  ##
 ########################
+@csrf_exempt
+def run_job(request):
+    post_data = json.loads(request.body)
+    
+    #parsing data
+    scheduled = post_data['scheduled']
+    stbs = post_data['stbs']
+    test_suites = post_data['suites']
+    test_suite_names = [ suite["name"] for suite in test_suites]
+    user_name = request.user.username
+
+    #create TestSuite.json
+    revo_test_json = TestSuiteJson()
+    #cache this part
+    for stb_name in stbs:
+        stb = None
+        if stb_devices.objects.filter(name=stb_name).exists():
+            #TODO: check if the name is in the active stb list
+            stb = stb_devices.objects.get(name=stb_name)
+            revo_test_json.append_box(stb_name,ip=stb.ip,unit_address=stb.unit_address,terminal_id=stb.terminal_id,client_ip=stb.client_ip,type=stb.device_type)
+        
+    for test_suite in test_suites:
+        #TODO: check if the name and testcases are in the db
+        revo_test_json.append_suite(test_suite["name"], test_suite["cases"])
+
+    #TODO: put this file on some ftp server and then pass it path in the cmd
+    print revo_test_json.get_json()
+    slave_configs = get_revo_configs()    
+    jnkns_app = JenkinsApp('http://localhost:8080', 'jenkins', 'jenkins123')
+
+    for stb_name in stbs:
+        for test_suite in test_suites:
+            stb_details = None
+            if stb_devices.objects.filter(name=stb_name).exists():
+                #TODO: check if the name is in the active stb list
+                stb_details = stb_devices.objects.get(name=stb_name)
+            else:
+                pass    
+                #TODO SET error code HttpResponseBadRequest and return
+            
+            if(stb_details and stb_details.environment == "SIT"):
+                config = slave_configs["SIT"]
+                jnknscommand = ( "set " + config["loc_fix"] + "\n" + "cd " + config["runner_path"] + "\n" + "python TestRunner.py " 
+                                + "%param1%" + " " + stb_name + " True " + config["report_loc"] + " " + config["run_path"] + " " 
+                                + config["json_path"] + " " + config["env_var"] + "\n" + config["build_path"] )
+
+                jnkns_app.create_job(stb_name, REVO_FOLDER_NAME, False, stb_details.host, jnknscommand, scheduled, test_suite["name"], user_name)
+
+                scheduled_time = datetime.strptime(post_data['time'], "%Y-%m-%d %H:%M:%S")
+                time_diff = scheduled_time - datetime.now()
+                time_diff_in_sec = int(time_diff.total_seconds())
+
+                if scheduled and time_diff_in_sec > 1:
+                    jobs_scheduled = []
+                    jobs_scheduled.append(jnkns_app.create_groovy_job(stb_name, time_diff_in_sec, param1=test_suite["name"], param2=user_name))
+                    jstr = json.dumps(jobs_scheduled)
+                    jnkns_app.schedule_job(jstr)
+            else:
+                pass
+
+    return HttpResponse("data", content_type='application/text')
+    
+
+def get_revo_configs():
+    slave_configs = {}
+
+    #TODO: configs should be pulled from db and cached
+    with open("revo_configs.txt") as revo_config:
+        content = revo_config.read().splitlines()
+   
+    config = {}
+    config["loc_fix"] = content[0]
+    config["runner_path"] = content[1]
+    config["report_loc"] = content[2]
+    config["run_path"] = content[3]
+    config["json_path"] = content[4]
+    config["env_var"] = "%JOB_NAME% %BUILD_TAG% SIT"
+    config["build_path"] = "cd %BUILD_PATH%"
+
+    slave_configs["SIT"] =  config
+    return slave_configs
+
+
 def create_jnkns_cron_job(host_name):
     jnkns_obj = JenkinsApp('http://localhost:8080', 'jenkins', 'jenkins123')
     with open("revo_configs.txt") as revo_config:

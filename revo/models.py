@@ -12,22 +12,24 @@ class TestCase(models.Model):
         return self.name
 
 
-
 class TestSuite(models.Model):
     name = models.CharField(max_length=255)
     cases = models.ManyToManyField(TestCase, related_name="testcases")
 
 
 class device(models.Model):
-    device_type_choices = ( ('VM', "VM"), ('IPC', "IPC"), ('MKB', "MKB"),)
+    device_type_choices = ( ('VMS', "VMS"), ('IMG', "IMG"), ('IPC2', "IPC2"), ('MKB', "MKB"),)
+    
     name = models.CharField(max_length=255, unique=True)
-    mac_id = models.CharField(max_length=255, blank=True)
-    serial_id = models.CharField(max_length=255)
+    terminal_id = models.CharField(max_length=255, blank=True)
+    unit_address = models.CharField(max_length=255)
     device_type = models.CharField(
         max_length=255,
         choices=device_type_choices,
         default='VM',
     )
     ip = models.GenericIPAddressField(protocol='both', validators=[ip_validator], blank=True, null=True)
-    router = models.CharField(max_length=255)
-    host = models.CharField(max_length=255, blank=True)
+    client_ip = models.GenericIPAddressField(protocol='both', validators=[ip_validator], blank=True, null=True)
+    router = models.CharField(max_length=255, blank=True)
+    host = models.CharField(max_length=255)
+    environment = models.CharField(max_length=255, default="SIT")
