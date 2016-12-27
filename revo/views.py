@@ -342,7 +342,6 @@ def getJobStatus(request):
     job_status_json_file.write("[\n\t")
     first_entry = True
 
-    per_job_build_limit = 2
     counter_1 = 0
     job_list = [x for x in j.get_all_jobs() if REVO_FOLDER_PATH in x['url']]
     job_list_len = len(job_list)
@@ -356,7 +355,7 @@ def getJobStatus(request):
         job_info = j.get_job_info(job_name)
         job_builds_count = len(job_info[u'builds'])
         logger.debug("Number of builds: " + str(job_builds_count) + "  Job Name: " + job_name)
-        while (counter_2 < job_builds_count) and (counter_2 < per_job_build_limit):
+        while (counter_2 < job_builds_count) :
             build_num = job_info[u'builds'][counter_2][u'number']
             logger.debug('Job: ' + str(job_name) + ' Build # ' + str(build_num))
             counter_2 = counter_2 + 1
@@ -687,7 +686,7 @@ def delete_test_case(request) :
 
 
 # WIP commented to avoid clash
- 
+
 # class DeviceList(ListView):
 #     model = stb_devices
 #     context_object_name = 'my_device'
