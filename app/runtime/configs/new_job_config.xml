@@ -11,7 +11,7 @@
     </properties>
     <scm class='hudson.scm.NullSCM'/>
     <assignedNode>BLANK</assignedNode>
-    <canRoam>true</canRoam>
+    <canRoam>false</canRoam>
     <disabled>false</disabled>
     <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
     <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>

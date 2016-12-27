@@ -54,7 +54,7 @@ class JenkinsApp:
         if check_path:
             self.create_folder(path)
         new_job_config = XMLDom.parse('app/runtime/configs/new_job_config.xml')
-        # self.update_node_val(new_job_config, "assignedNode", slave_name)
+        self.update_node_val(new_job_config, "assignedNode", slave_name)
         self.update_node_val(new_job_config, "command", command)
 
         param_config = '<hudson.model.StringParameterDefinition><name>param</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition>'
