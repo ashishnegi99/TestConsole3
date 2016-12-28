@@ -252,7 +252,7 @@ function disable_edit_test(elementName, checkboxPath) {
 }
 
 function editTestCase() {
-  window.location.href = $( ".test_case_table tr td :checkbox:checked").attr("data-edit");
+  window.location.href = $( ".list_table tr td :checkbox:checked").attr("data-edit");
   return false;
 }
 

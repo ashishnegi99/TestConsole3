@@ -568,70 +568,6 @@ def Json2(request):
 
 
 @login_required
-def device_list(request):
-    assert isinstance(request, HttpRequest)
-
-    devices = [ { "name": row.name, "serial_num" : row.serial_id, "router" : row.router, "host" : row.host } for row in stb_devices.objects.all()]
-    return render(
-        request,
-        "revo/device_list.html",
-        RequestContext(request, {
-         "devices" : devices
-        })
-    )
-
-@login_required
-def device_add_view(request):
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        "revo/device_add_view.html",
-        RequestContext(request, {
-         
-        })
-    )
-
-def add_device(request) :
-    assert isinstance(request, HttpRequest)
-
-    new_device = stb_devices()
-    new_device.name = request.POST.get('device-name')
-    new_device.mac_id = request.POST.get('device-id')
-    new_device.serial_id = request.POST.get('serial-id')
-    new_device.device_type = request.POST.get('device-type')
-    new_device.ip = request.POST.get('ip')
-    new_device.router = request.POST.get('router')
-    host_name = request.POST.get('host-name')
-    new_device.host = host_name
-
-    host_name_count = stb_devices.objects.filter(host=host_name).count()
-    try:
-        if new_device.name and new_device.serial_id and new_device.router and new_device.host:
-            logger.debug("Data line1: " + request.POST.get('device-name') + " : "  + request.POST.get('serial-id'))
-            logger.debug("Data line2: " + request.POST.get('device-type') + " : "  + request.POST.get('ip') + " : " + request.POST.get('device-id'))
-            logger.debug("Data line3: " + request.POST.get('router') + " : "  + request.POST.get('host-name'))
-            new_device.save()
-            print "ADDED device name: " + request.POST.get('device-name') + "  Device Id:  " + request.POST.get('device-id')
-
-            if host_name_count == 0 :
-                create_jnkns_cron_job(host_name)
-           
-    except ValidationError as err:
-        logger.error("ValidationError: " + str(err))
-    except Exception as exception:
-        logger.error("EXCEPTION: " + str(exception))
-        print str(exception)
-
-    get_serial_num_impl()
-    return HttpResponseRedirect("/revo/devices/list_view")
-
-def delete_device(request) :
-    assert isinstance(request, HttpRequest)
-    stb_devices.objects.filter(name__in=request.POST.getlist('device_name')).delete()
-    get_serial_num_impl()
-    return HttpResponseRedirect("/revo/devices/list_view")
-
-@login_required
 def configs(request):
     assert isinstance(request, HttpRequest)
     with open("revo_configs.txt") as revo_config:
@@ -712,20 +648,6 @@ def delete_test_suite(request) :
     testsuite.objects.filter(name__in=request.POST.getlist('tset_suite_name')).delete()
     return HttpResponseRedirect("/revo/test_suites/list_view")
 
-from .forms import DeviceMForm
-
-@login_required
-def device(request):
-    if request.method == "POST":
-        form = DeviceMForm(request.POST)
-        if form.is_valid():
-            return HttpResponseRedirect("/revo/test_suites/list_view")
-    else:
-        form = DeviceMForm()
-
-    return render(request, "revo/device.html" , RequestContext(request, {
-            'form' : form
-        }))
 
 from django.core.urlresolvers import reverse_lazy
 from django.core.urlresolvers import reverse
@@ -751,20 +673,20 @@ def delete_test_case(request) :
     return HttpResponseRedirect(reverse("test_case_list"))
 
 
-# WIP commented to avoid clash
+class DeviceList(ListView):
+    model = stb_devices
+    context_object_name = 'stb_devices'
 
-# class DeviceList(ListView):
-#     model = stb_devices
-#     context_object_name = 'my_device'
+class DeviceCreate(CreateView):
+    model = stb_devices
+    fields = '__all__'
 
-# class DeviceCreate(CreateView):
-#     model = stb_devices
-#     fields = '__all__'
+class DeviceUpdate(UpdateView):
+    model = stb_devices
+    fields = '__all__'
 
-# class DeviceUpdate(UpdateView):
-#     model = stb_devices
-#     fields = '__all__'
-
-# class DeviceDelete(DeleteView):
-#     model = stb_devices
-
+def delete_device(request) :
+    assert isinstance(request, HttpRequest)
+    stb_devices.objects.filter(id__in=request.POST.getlist('device')).delete()
+    # get_serial_num_impl()
+    return HttpResponseRedirect(reverse("device_list"))

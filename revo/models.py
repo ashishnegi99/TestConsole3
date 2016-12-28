@@ -33,3 +33,9 @@ class device(models.Model):
     router = models.CharField(max_length=255, blank=True)
     host = models.CharField(max_length=255)
     environment = models.CharField(max_length=255, default="SIT")
+
+    def get_absolute_url(self):
+        return reverse_lazy('device_list')
+
+    def __unicode__(self):
+        return self.name

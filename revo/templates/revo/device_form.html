@@ -1,0 +1,70 @@
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block body %} 
+    <script src="{% static 'app/scripts/jquery.input-ip-address-control-1.0.min.js' %}"></script>
+    <div class="panel panel-primary device">
+        <div class="panel-heading device-heading">
+            <h3 class="device-title">Add Device</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="col-md-12 col-sm-12">
+                    <p>
+                        {{ form.name.errors }}
+                        <label for="{{form.name.id_for_label}}" >Device Name</label>
+                        {{ form.name | add_class:"form-control input-sm" }}
+                    </p>
+                    <p>
+                        {{ form.terminal_id.errors }}
+                        <label for="{{form.terminal_id.id_for_label}}">Terminal ID</label>
+                        {{ form.terminal_id | add_class:"form-control input-sm" }}
+                    </p>
+                    <p>
+                        {{ form.unit_address.errors }}
+                        <label for="{{form.unit_address.id_for_label}}">Unit Address</label>
+                        {{ form.unit_address | add_class:"form-control input-sm" }}
+                    </p>
+                    <p>
+                        {{ form.device_type.errors }}
+                        <label for="{{form.device_type.id_for_label}}">Device Type</label>
+                        {{ form.device_type | add_class:"form-control input-sm" }}
+                    </p>
+                    <p>
+                        {{ form.ip.errors }}
+                        <label for="{{form.ip.id_for_label}}">IP</label>
+                        {{ form.ip | add_class:"form-control input-sm" }}
+                    </p>
+                    <p>
+                        {{ form.client_ip.errors }}
+                        <label for="{{form.client_ip.id_for_label}}">Client IP</label>
+                        {{ form.client_ip | add_class:"form-control input-sm" }}
+                    </p>
+                    <p>
+                        {{ form.router.errors }}
+                        <label for="{{form.router.id_for_label}}">Router</label>
+                        {{ form.router | add_class:"form-control input-sm" }}
+                    </p>
+                    <p>
+                        {{ form.host.errors }}
+                        <label for="{{form.host.id_for_label}}">Host</label>
+                        {{ form.host | add_class:"form-control input-sm" }}
+                    </p>
+                    <p>
+                        {{ form.environment.errors }}
+                        <label for="{{form.environment.id_for_label}}">Environment</label>
+                        {{ form.environment | add_class:"form-control input-sm" }}
+                    </p>
+                    
+                    <p>
+                        <div>
+                            <input type='submit' class="btn btn-primary center-block" value="Submit"  name="submit"/>
+                        </div>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

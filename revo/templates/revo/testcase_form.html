@@ -14,7 +14,7 @@
                 <div class="col-md-12 col-sm-12">
                     <p>
                         {{ form.name.errors }}
-                        <label for="device-id">Test Case Name</label>
+                        <label for="{{form.name.id_for_label}}" >Test Case Name</label>
                         {{ form.name | add_class:"form-control input-sm" }}
                     </p>
 

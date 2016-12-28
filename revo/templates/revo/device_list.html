@@ -1,7 +1,7 @@
 {% extends "app/shell.html" %}
 {% load staticfiles%}
 {% block head %}
-	<script src="{% static 'revo/scripts/revo.js' %}"></script>
+    <script src="{% static 'revo/scripts/revo.js' %}"></script>
     <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>     
 {% endblock %}
 {% block body %} 
@@ -25,201 +25,59 @@
     </style>
     <div class="panel panel-primary device">
         <div class="panel-heading device-heading">
-            <h3 class="device-title"> Devices <i class="fa fa-plus" title="Add Devices" style="cursor:pointer; float: right" aria-hidden="true" data-toggle="modal" data-target="#addModal"></i>
-</h3>
+            <h3 class="device-title"> Devices </h3>
         </div>
         <div class="panel-body">
-            <form name="tform"  action="{% url 'device_delete' %}" method="post">
-				<script>
-					$(function(){
-						$("table tr").click(function(){
-							alert (this.rowIndex);
-						});
-					});
-				</script>
+            <form name="tform" action="{% url 'device_delete' %}" method="post">
                 {% csrf_token %}
-                <table>
+                <table class="list_table">
                     <tr>
                         <th>Select</th>
                         <th>Name</th>
-                        <th>Serial Num</th>
+                        <th>IP</th>
                         <th>Router</th>
                         <th>Host</th>
+                        <th>Type</th>
                     </tr>
-                    {% for device in devices %}
+                    {% for device in stb_devices %}
                         <tr>
-                            <!--<td><input type='checkbox' name='device_name' value= "{{ device.name }}" /> </td>-->
-							<td><input type='checkbox' name='device_name[]' value= "{{ device.name }}" id="device_name" onchange="disable_edit()"/> </td>
+                            <td>
+                                <input type='checkbox' name='device' value='{{ device.id }}' data-edit= '{% url "device_edit" device.id %}'id="{{ device.name }}" onchange="disable_edit_test('Edit_Button', '.list_table tr td')"/> 
+                            </td>
                             <td> {{ device.name }} </td>
-                            <td> {{ device.serial_num }} </td>
+                            <td> {{ device.ip }} </td>
                             <td> {{ device.router }} </td>
                             <td> {{ device.host }} </td>
+                            <td> {{ device.device_type }} </td>
                         </tr>
                     {% endfor %}         
-                </table>
-                
+                </table>                
                 <p>
-                    
-					
-					<div class="col-md-12">
-						<div class="row">
-							<div class="col-md-3"></div>
-							<div class="col-md-2">
-							<div>
-								<button type="button" name="Edit_Button" class="btn btn-primary center-block" data-toggle="modal" data-target="#editModal">Edit</button>
-							</div>
-							</div>
-							<div class="col-md-2">
-							<div>
-								<input type='submit' class="btn btn-primary center-block" value="Delete"  name="submit"/>
-							</div>
-							</div>
-							<div class="col-md-2">
-							<div>
-								<button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#addModal">Add</button>
-							</div>
-							</div>
-							<div class="col-md-3"></div>
-						</div>
-					</div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-2">
+                                <div>
+                                    <button type="button" name="Edit_Button" class="btn btn-primary center-block" disabled="true" onclick="editTestCase()">Edit</button>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div>
+                                    <input type='submit' class="btn btn-primary center-block"  value="Delete" name="submit" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div>
+                                    <a href="{% url 'device_new' %}">
+                                        <button type="button" class="btn btn-primary center-block">Add</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </div>
                 </p>
             </form>
         </div>
     </div>
-	
-	<!-- Add Device Modal ----->
-	<div id="addModal" class="modal fade" role="dialog">
-		
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			
-				
-				<h3 class="device-title">Add Device</h3>
-			
-			<div class="panel-body">
-            <form  action="{% url 'device_new' %}" method="post">
-                {% csrf_token %}
-                <div class="col-md-12 col-sm-12">
-                    <p>
-                        <label for="device-id">Device ID (MAC ID)</label>
-                        <input type="text" class="form-control input-sm" name="device-id" placeholder="Device ID">
-                    </p>
-                    <p>
-                        <label for="device-name">Device Name</label>
-                        <input name="device-name" type="text" class="form-control input-sm" placeholder="Device Name">
-                    </p>
-                    <p>
-                        <label for="device-serial-id">Device Serial ID</label>
-                        <input type="text" class="form-control input-sm" name="serial-id" placeholder="Device Serial ID">
-                    </p>
-                    <p>
-                        <label for="type">Type</label>  
-                        <select name="device-type" class="form-control input-sm">
-                            <option>-- Type --</option>
-                            <option>VM</option>
-                            <option>IPC</option>
-                            <option>MKB</option>
-                        </select>
-                    </p>
-                    
-                   
-                    <p>
-                        <label for="ip">IP Address</label>
-                        <input name="ip" type="text" class="form-control input-sm">
-                    </p>
-                    <p>
-                        <label for="router">Router SNo.</label>
-                        <input name="router" type="text" class="form-control input-sm" placeholder="Home Setup / Router">
-                    </p>
-                    <p>
-                        <label for="host-name">Host Name</label>
-                        <input name="host-name" type="text" class="form-control input-sm" placeholder="Host Name">
-                    </p>
-                    <p>
-                        <div>
-                            <input type='submit' class="btn btn-primary center-block" value="Submit"  name="submit"/>
-                        </div>
-                    </p>
-                </div>
-                
-            </form>
-        </div>	 
-		</div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		  </div>
-		</div>
-	  </div>
-	</div>
-	
-	<!-- Edit Device Modal ----->
-	<div id="editModal" class="modal fade" role="dialog">
-		
-	  <div class="modal-dialog">
-		<div class="modal-content">
-		  <div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			
-				
-				<h3 class="device-title">Edit Device</h3>
-			
-			<div class="panel-body">
-            <form  action="{% url 'device_new' %}" method="post">
-                {% csrf_token %}
-                <div class="col-md-12 col-sm-12">
-                    <p>
-                        <label for="device-id">Device ID (MAC ID)</label>
-                        <input type="text" class="form-control input-sm" name="device-id" placeholder="Device ID">
-                    </p>
-                    <p>
-                        <label for="device-name">Device Name</label>
-                        <input name="device-name" type="text" class="form-control input-sm" placeholder="Device Name">
-                    </p>
-                    <p>
-                        <label for="device-serial-id">Device Serial ID</label>
-                        <input type="text" class="form-control input-sm" name="serial-id" placeholder="Device Serial ID">
-                    </p>
-                    <p>
-                        <label for="type">Type</label>  
-                        <select name="device-type" class="form-control input-sm">
-                            <option>-- Type --</option>
-                            <option>VM</option>
-                            <option>IPC</option>
-                            <option>MKB</option>
-                        </select>
-                    </p>
-                    
-                   
-                    <p>
-                        <label for="ip">IP Address</label>
-                        <input name="ip" type="text" class="form-control input-sm">
-                    </p>
-                    <p>
-                        <label for="router">Router SNo.</label>
-                        <input name="router" type="text" class="form-control input-sm" placeholder="Home Setup / Router">
-                    </p>
-                    <p>
-                        <label for="host-name">Host Name</label>
-                        <input name="host-name" type="text" class="form-control input-sm" placeholder="Host Name">
-                    </p>
-                    <p>
-                        <div>
-                            <input type='submit' class="btn btn-primary center-block" value="Submit"  name="submit"/>
-                        </div>
-                    </p>
-                </div>
-                
-            </form>
-        </div>	 
-		</div>
-		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		  </div>
-		</div>
-	  </div>
-	</div>
-	
-	
 {% endblock %}
