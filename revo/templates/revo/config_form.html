@@ -1,0 +1,38 @@
+{% extends "revo/element_form.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+{% block form_title %} Add Slave Configuration {% endblock %}
+
+{% block form_elem %}
+    <p>
+        {{ form.name.errors }}
+        <label for="{{form.name.id_for_label}}" >Configuration Name</label>
+        {{ form.name | add_class:"form-control input-sm" }}
+    </p>
+    <p>
+        {{ form.loc_fix.errors }}
+        <label for="{{form.loc_fix.id_for_label}}" >loc_fix</label>
+        {{ form.loc_fix | add_class:"form-control input-sm" }}
+    </p>
+    <p>
+        {{ form.test_runner_path.errors }}
+        <label for="{{form.test_runner_path.id_for_label}}" >test_runner_path</label>
+        {{ form.test_runner_path | add_class:"form-control input-sm" }}
+    </p>
+    <p>
+        {{ form.report_location.errors }}
+        <label for="{{form.report_location.id_for_label}}" >report_location</label>
+        {{ form.report_location | add_class:"form-control input-sm" }}
+    </p>
+    <p>
+        {{ form.json_path.errors }}
+        <label for="{{form.json_path.id_for_label}}" >json_path</label>
+        {{ form.json_path | add_class:"form-control input-sm" }}
+    </p>
+    <p>
+        {{ form.run_path.errors }}
+        <label for="{{form.run_path.id_for_label}}" >run_path</label>
+        {{ form.run_path | add_class:"form-control input-sm" }}
+    </p>
+
+{% endblock %}

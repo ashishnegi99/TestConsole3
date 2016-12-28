@@ -39,3 +39,17 @@ class device(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class Config(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    loc_fix = models.CharField(max_length=255)
+    test_runner_path = models.CharField(max_length=255)
+    report_location = models.CharField(max_length=255)
+    run_path = models.CharField(max_length=255)
+    json_path = models.CharField(max_length=255)
+
+    def get_absolute_url(self):
+        return reverse_lazy('config_list')
+
+    def __unicode__(self):
+        return self.name

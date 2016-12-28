@@ -1,0 +1,30 @@
+{% extends "app/shell.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block body %} 
+    <div class="panel panel-primary device">
+        <div class="panel-heading device-heading">
+            <h3 class="device-title">{% block form_title %} {% endblock %}</h3>
+        </div>
+        <div class="panel-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="col-md-12 col-sm-12">
+                    {% block form_elem %} 
+                        <p>
+                            {{ form.name.errors }}
+                            <label for="{{form.name.id_for_label}}" >Test Case Name</label>
+                            {{ form.name | add_class:"form-control input-sm" }}
+                        </p>
+                    {% endblock %}
+                    <p>
+                        <div>
+                            <input type='submit' class="btn btn-primary center-block" value="Submit"  name="submit"/>
+                        </div>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

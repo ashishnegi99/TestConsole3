@@ -10,7 +10,7 @@ from app.forms import UserForm, BootstrapAuthenticationForm
 from app.models import Storm, Appium, racktestresult
 from revo.models import TestSuite as testsuite
 from revo.models import device as stb_devices
-from revo.models import TestCase
+from revo.models import TestCase, Config
 from xml.etree import ElementTree as ET
 from xml.dom.minidom import parse
 from django.core.exceptions import ValidationError
@@ -654,6 +654,24 @@ from django.core.urlresolvers import reverse
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.forms.models import modelform_factory
+
+class ConfigList(ListView):
+    model = Config
+    context_object_name = 'configs'
+
+class ConfigCreate(CreateView):
+    model = Config
+    fields = '__all__'
+
+class ConfigUpdate(UpdateView):
+    model = Config
+    fields = '__all__'
+
+def delete_config(request) :
+    assert isinstance(request, HttpRequest)
+    Config.objects.filter(id__in=request.POST.getlist('config')).delete()
+    return HttpResponseRedirect(reverse("config_list"))
+
 
 class TestCaseList(ListView):
     model = TestCase

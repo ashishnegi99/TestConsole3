@@ -39,9 +39,12 @@ urlpatterns = [
     url(r'^device/edit/(?P<pk>\d+)/$', views.DeviceUpdate.as_view(), name='device_edit'),
 
 # configs
-    url(r"^configs/", views.configs, name="configs_view"),
-    url(r"^configs_add", views.add_configurations, name="configs_add"),
+    url(r"^configs", views.ConfigList.as_view(), name="config_list"),
+    url(r"^config/new$", views.ConfigCreate.as_view(), name="config_new"),
+    url(r"^config/delete", views.delete_config, name="config_delete"),
+    url(r'^config/edit/(?P<pk>\d+)/$', views.ConfigUpdate.as_view(), name='config_edit'),
 
+    
 # TestCase
     url(r'^test-case/$', views.TestCaseList.as_view(), name='test_case_list'),
     url(r'^test-case/new$', views.TestCaseCreate.as_view(), name='test_case_new'),

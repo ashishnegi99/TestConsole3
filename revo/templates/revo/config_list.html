@@ -1,0 +1,30 @@
+{% extends "revo/element_list.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block form_title %} Slave Configuration {% endblock %}
+
+{% block form_elem %} 
+    <tr>
+        <th>Select</th>
+        <th>Name</th>
+        <th>loc_fix</th>
+        <th>test_runner_path</th>
+        <th>report_location</th>
+        <th>json_path</th>
+    </tr>
+    {% for config in configs %}
+        <tr>
+            <td>
+                <input type='checkbox' name='config' value='{{ config.id }}' data-edit= '{% url "config_edit" config.id %}'id="{{ config.name }}" onchange="disable_edit_test('Edit_Button', '.list_table tr td')"/> 
+            </td>
+            <td> {{ config.name }} </td>
+            <td> {{ config.loc_fix }} </td>
+            <td> {{ config.test_runner_path }} </td>
+            <td> {{ config.report_location }} </td>
+            <td> {{ config.json_path }} </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block add_url %} {% url 'config_new' %} {% endblock %}
