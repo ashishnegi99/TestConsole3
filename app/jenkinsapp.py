@@ -91,7 +91,13 @@ class JenkinsApp:
             if not self.srvr.job_exists(folder_name):
                 self.srvr.create_job(folder_name, self.new_folder_config.toxml())
 
-
+    def sample_groovy():
+        jobsToRun = []
+        jobsToRun.append(create_groovy_job('IPC2_01', 10, param1="some long param", param2="def"))
+        jobsToRun.append(create_groovy_job('IPC2_02', 6, param1="ac", param2="df"))
+        jstr = json.dumps(jobsToRun)
+        schedule_job(jstr)
+    
     def create_groovy_job(self, job_name, wait_in_sec, **params):
         job = {}
         job["name"] = job_name

@@ -56,14 +56,7 @@ def  consolelink(request):
     build = int(request.GET["build"])
     server = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
     output = server.get_build_console_output(get_full_job_name(job), build)
-    return HttpResponse(output)   
-
-def sample_groovy():
-    jobsToRun = []
-    jobsToRun.append(create_groovy_job('IPC2_01', 10, param1="some long param", param2="def"))
-    jobsToRun.append(create_groovy_job('IPC2_02', 6, param1="ac", param2="df"))
-    jstr = json.dumps(jobsToRun)
-    schedule_job(jstr)
+    return HttpResponse(output)
 
 ########################
 ## Start: Revo Views  ##
@@ -190,8 +183,8 @@ def run_job(request):
                 pass    
                 #TODO SET error code HttpResponseBadRequest and return
             
-            if(stb_details and stb_details.environment == "SIT"):
-                config = slave_configs["SIT"]
+            if(stb_details and stb_details.environment in slave_configs):
+                config = slave_configs[stb_details.environment]
                 jnknscommand = ( "set " + config["loc_fix"] + "\n" + "cd " + config["runner_path"] + "\n" + "python TestRunner.py " 
                                 + "%param1%" + " " + stb_name + " True " + config["report_loc"] + " " + config["run_path"] + " " 
                                 + config["json_path"] + " " + config["env_var"] + "\n" + config["build_path"] )
@@ -216,22 +209,20 @@ def run_job(request):
 def get_revo_configs():
     slave_configs = {}
 
-    #TODO: configs should be pulled from db and cached
-    with open("revo_configs.txt") as revo_config:
-        content = revo_config.read().splitlines()
-   
-    config = {}
-    config["loc_fix"] = content[0]
-    config["runner_path"] = content[1]
-    config["report_loc"] = content[2]
-    config["run_path"] = content[3]
-    config["json_path"] = content[4]
-    config["env_var"] = "%JOB_NAME% %BUILD_TAG% SIT"
-    config["build_path"] = "cd %BUILD_PATH%"
-
-    slave_configs["SIT"] =  config
+    config_list = Config.objects.all()
+    
+    for content in config_list:    
+        config = {}
+        config["loc_fix"] = content.loc_fix
+        config["runner_path"] = content.runner_path
+        config["report_loc"] = content.report_loc
+        config["run_path"] = content.run_path
+        config["json_path"] = content.json_path
+        config["env_var"] = "%JOB_NAME% %BUILD_TAG% SIT"
+        config["build_path"] = "cd %BUILD_PATH%"
+        slave_configs[content.name] =  config
+    
     return slave_configs
-
 
 def create_jnkns_cron_job(host_name):
     jnkns_obj = JenkinsApp('http://localhost:8080', 'jenkins', 'jenkins123')
@@ -402,38 +393,31 @@ def getJobStatus(request):
     logger.debug("Start")
     j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
     
-    ######'per_job_build_limit' defines the maximum number of build that can be displayed in for  a particular job.
     job_status_keys = ["Job No", "Suite Name", "Build No", "Result", "StartTime", "EndTime", "Duration", "UserName"]
     job_status_json_file = open('app/templates/app/JobStatusFile.json', 'w')
     job_status_json_file.write("[\n\t")
     first_entry = True
 
-    counter_1 = 0
-    job_list = [x for x in j.get_all_jobs() if REVO_FOLDER_PATH in x['url']]
-    job_list_len = len(job_list)
-    logger.debug("Number of Jobs: " + str(job_list_len))
-
-    while counter_1 < job_list_len :
-        job_name = job_list[counter_1][u'fullname']
+    job_list = [x for x in j.get_all_jobs() if REVO_FOLDER_PATH in x['url']]    
+    for job in job_list :
+        job_name = job[u'fullname']
         logger.debug("Job Name: " + job_name)
-        counter_1 += 1
-        counter_2 = 0
         job_info = j.get_job_info(job_name)
-        job_builds_count = len(job_info[u'builds'])
-        logger.debug("Number of builds: " + str(job_builds_count) + "  Job Name: " + job_name)
-        while (counter_2 < job_builds_count) :
-            build_num = job_info[u'builds'][counter_2][u'number']
+        logger.debug("Number of builds: " + str(len(job_info[u'builds'])) + "  Job Name: " + job_name)
+        
+        for job_build_info in job_info[u'builds']:
+            build_num = job_build_info[u'number']
             logger.debug('Job: ' + str(job_name) + ' Build # ' + str(build_num))
-            counter_2 = counter_2 + 1
+            
             build_info = j.get_build_info(job_name, build_num)
             try:
                  test_suite = build_info[u'actions'][0][u'parameters'][0][u'value']
             except:
-                test_suite = '...'
+                continue
             try:
                 userName = build_info[u'actions'][0][u'parameters'][1][u'value']
             except:
-                userName = '...'
+                continue
 
             Duration = '...'
             current_build_number = build_num
@@ -458,21 +442,19 @@ def getJobStatus(request):
 
             
     queue_info = [x for x in j.get_queue_info() if REVO_FOLDER_PATH in x[u'task'][u'url']]
-    queue_info_len = len(queue_info)
-    counter_3 = 0
-    logger.debug("Number of queues: " + str(queue_info_len))
-    while counter_3 < queue_info_len:
-        job_name = queue_info[counter_3][u'task'][u'name']
+    for queue in queue_info:
+        job_name = queue[u'task'][u'name']
         logger.debug("Job Name: " + job_name)
-        current_build_number = queue_info[counter_3][u'id']
-        #TODO: Add checks there can be other jobs as well wout parameters
-        test_suite = queue_info[counter_3][u'actions'][0][u'parameters'][0][u'value']
-        userName = queue_info[counter_3][u'actions'][0][u'parameters'][1][u'value']
+        current_build_number = queue[u'id']
+        if "parameters" not in queue[u'actions'][0]:
+            continue
+
+        test_suite = queue[u'actions'][0][u'parameters'][0][u'value']
+        userName = queue[u'actions'][0][u'parameters'][1][u'value']
         start_time = '...'
         end_time = '...'
         Duration = '...'
         status = 'IN QUEUE'
-        counter_3 = counter_3+1
         
         job_status_vals = [str(job_name), str(test_suite), str(current_build_number), str(status), start_time, end_time, str(Duration), str(userName)]
         logger.debug("job_status_vals: " + str(job_status_vals))
@@ -566,45 +548,6 @@ def Json2(request):
         })
     )
 
-
-@login_required
-def configs(request):
-    assert isinstance(request, HttpRequest)
-    with open("revo_configs.txt") as revo_config:
-        content = revo_config.readlines()
-    
-    return render(
-        request,
-        "revo/configs.html",
-        RequestContext(request, {
-            "loc" : content[0],
-            "test_runner_path" : content[1],
-            "report_location" : content[2],
-            "run_path" : content[3],
-            "json_path" : content[4],
-        })
-    )
-
-def add_configurations(request) :
-    assert isinstance(request, HttpRequest)
-    loc_fix = str(request.POST.get('loc_fix'))
-    test_runner_path = str(request.POST.get('test_runner_path'))
-    report_location = str(request.POST.get('report_location'))
-    run_path = str(request.POST.get('run_path'))
-    json_path = str(request.POST.get('json_path'))
-    
-    if loc_fix and test_runner_path and report_location and run_path and json_path:
-        print loc_fix + test_runner_path + report_location + run_path + json_path
-        config_file = open("revo_configs.txt", "w")
-        config_file.write(loc_fix+ "\n")
-        config_file.write(test_runner_path+ "\n")
-        config_file.write(report_location+ "\n")
-        config_file.write(run_path+ "\n")
-        config_file.write(json_path+ "\n")
-        config_file.close()
-    return HttpResponseRedirect("/revo/configs/")
-
-
 @login_required
 def test_suites_add_view(request):
     assert isinstance(request, HttpRequest)
@@ -653,7 +596,6 @@ from django.core.urlresolvers import reverse_lazy
 from django.core.urlresolvers import reverse
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.forms.models import modelform_factory
 
 class ConfigList(ListView):
     model = Config
