@@ -17,7 +17,13 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'app/content/jquery-ui2.css' %}" />
 	<script src="{% static 'revo/scripts/jquery.ui.timepicker.js' %}"></script>
 	<link rel="stylesheet" href="{% static 'revo/css/jquery.ui.timepicker.css' %}"/>
-	<script>
+
+    <script src="{% static 'app/scripts/external/react-with-addons.min.js' %}"></script>
+    <script src="{% static 'app/scripts/external/react-dom.min.js' %}"></script>
+    <script src="{% static 'app/scripts/external/JSXTransformer.js' %}"></script>
+    <script src="{% static 'revo/scripts/revo.jsx' %}" type="text/jsx"></script>
+    
+    <script>
 	$(document).ready(
     function() {
         //clicking the parent checkbox should check or uncheck all child checkboxes
@@ -215,6 +221,13 @@ $(document).ready(function() {
             </div>
         </form>
 
+<!-- WIP -->
+<!--         <div class="col-md-12 divsub">
+            <div id="container" class="quote-box scroller-text scroller">
+                React Component is Inserted Here
+            </div>
+        </div> -->
+
 		<form action="{% url 'StopMultipleJobs' %}" method="post">
             {% csrf_token %}	
             <div class="col-md-12 divsub">
@@ -272,7 +285,7 @@ $(document).ready(function() {
 								</th>
 							</tr>
 						</thead>
-						
+			
 						<tbody id="testdataid"/>
 					</table>
 			    </div>
