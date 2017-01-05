@@ -613,8 +613,8 @@ table#acrylic {
 			color:#228b22;
 			margin: 5px !important;
 		}
-		.ready{
-			color:yellow;
+		.busy{
+			color:orange;
 			margin: 5px !important;
 		}
 		.offline{

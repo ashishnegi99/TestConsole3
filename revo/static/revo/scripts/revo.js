@@ -52,9 +52,7 @@ $(window ).resize(function() {
 });
 
 $(function() {
- // $('table').footable();
-  
-  stbststus();
+
   stbststus1();
   
   var count=1;

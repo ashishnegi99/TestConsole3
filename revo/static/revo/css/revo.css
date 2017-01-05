@@ -358,7 +358,31 @@ input[type="checkbox"].input-validation-error {
 	outline: none;
 }
 
-.table-header {
+.job-status-table {
+  width: 100%
+}
+
+.table-class {
+  border-collapse: collapse;
+  text-align: left;
+  vertical-align: middle;
+}
+
+thead .table-head {
+  display:table-header-group;
+}
+
+.table-head .table-header {
   color:#cd040b;
-  text-align:center;  
+  text-align:center;
+  width:; 25%;
+}
+
+.stb-row { 
+  border-left-color: rgb(128, 128, 128);
+  border-right-color: rgb(128, 128, 128);
+  border-top-color: rgb(128, 128, 128);
+  box-sizing: border-box;
+  color: rgb(51, 51, 51);
+  display: table-row;
 }

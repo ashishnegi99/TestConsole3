@@ -18,8 +18,9 @@
 	<script src="{% static 'revo/scripts/jquery.ui.timepicker.js' %}"></script>
 	<link rel="stylesheet" href="{% static 'revo/css/jquery.ui.timepicker.css' %}"/>
 
-    <script src="{% static 'app/scripts/external/react-with-addons.min.js' %}"></script>
-    <script src="{% static 'app/scripts/external/react-dom.min.js' %}"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{% static 'app/scripts/external/react-with-addons.js' %}"></script>
+    <script src="{% static 'app/scripts/external/react-dom.js' %}"></script>
     <script src="{% static 'app/scripts/external/JSXTransformer.js' %}"></script>
     <script src="{% static 'revo/scripts/revo.jsx' %}" type="text/jsx"></script>
     
@@ -100,36 +101,8 @@ $(document).ready(function() {
         <form action="{% url 'revo_view' %}" method="post">
             {% csrf_token %}
 
-            <div class="col-md-4">
-                <div class="quote-box">
-                    <p class="quotation-mark">
-                        SET TOP BOX &nbsp;
-                        <a href="Set_Top_Box">
-                            <i class="fa fa-refresh" aria-hidden="true" style="color: #cd040b;cursor: pointer"></i>
-                        </a>
-                        <span class="pull-right"><img src="{% static 'app/images/settopbox.png' %}"></span>
-                    </p>
-                    <hr>
-					<!--<div class="row">
-					<div class="col-md-12">
-                    <div class="col-md-6"><div class="quote-text scroller" id="STBStatus"></div></div>
-					<div class="col-md-6"><div class="quote-text scroller" id="">
-						<p class="quotation-mark" style="margin-top:10px">TYPE &nbsp;</p>
-						<hr>
-						<label class="checkbox" ><input type="checkbox"> TYPE 1   </label><hr>
-						<label class="checkbox" ><input type="checkbox"> TYPE 2   </label><hr>
-						<label class="checkbox" ><input type="checkbox"> TYPE 3   </label><hr>
-						<label class="checkbox" ><input type="checkbox"> TYPE 4   </label><hr>
-						<label class="checkbox" ><input type="checkbox"> TYPE 5   </label><hr>
-						<label class="checkbox" ><input type="checkbox"> TYPE 6   </label><hr>
-						<label class="checkbox" ><input type="checkbox"> TYPE 7   </label><hr>
-						<label class="checkbox" ><input type="checkbox"> TYPE 8   </label><hr>
-						
-					</div>
-					</div>
-					</div>
-					</div>-->
-					<div class="quote-text scroller" id="STBStatus"></div>
+            <div class="col-md-5">
+                <div class="quote-box" id="stb-table">
                 </div>
             </div>
 
