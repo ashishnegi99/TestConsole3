@@ -53,6 +53,21 @@ $(window ).resize(function() {
 
 $(function() {
 
+  Array.prototype.contains = function(element){
+    return this.indexOf(element) > -1;
+  };
+
+  Array.prototype.remove = function(elem, all) {
+    for (var i=this.length-1; i>=0; i--) {
+      if (this[i] === elem) {
+          this.splice(i, 1);
+          if(!all)
+            break;
+      }
+    }
+    return this;
+  };
+
   stbststus1();
   
   var count=1;

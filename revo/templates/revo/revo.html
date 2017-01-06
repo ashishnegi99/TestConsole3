@@ -25,6 +25,42 @@
     <script src="{% static 'revo/scripts/revo.jsx' %}" type="text/jsx"></script>
     
     <script>
+        var config = {};
+        config.stbStatusUrl = "{% url 'Set_Top_Box' %}";
+        window.config = config;
+
+        //Use this object to fill the state of different widgets. In the end WHEN WE CLICK RUN("/revo/run/“) we have to send this json as parameter.
+        // {
+        //   "scheduled": true,
+        //   "time": "2016-12-29 17:10:50",
+        //   "stbs": [
+        //     "STB 1",
+        //     "stb 2",
+        //     "stb 3"
+        //   ],
+        //   "suites": [
+        //     {
+        //       "name": "Suite Amber",
+        //       "cases": [
+        //         "VOD_EVO_025.py",
+        //         "VOD_EVO_033.py",
+        //         "VOD_EVO_038.py"
+        //       ]
+        //     },
+        //     {
+        //       "name": "Suite Jade",
+        //       "cases": [
+        //         "VOD_EVO_025.py",
+        //         "VOD_EVO_033.py",
+        //         "VOD_EVO_038.py"
+        //       ]
+        //     }
+        //   ]
+        // }
+        var runRevoJson = {};
+        runRevoJson["stbs"] = [];
+        window.runRevoJson =  runRevoJson;      
+
 	$(document).ready(
     function() {
         //clicking the parent checkbox should check or uncheck all child checkboxes
