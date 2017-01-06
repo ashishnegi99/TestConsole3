@@ -28,7 +28,7 @@
             <h3 class="device-title"> {% block form_title %} {% endblock %}</h3>
         </div>
         <div class="panel-body">
-            <form name="tform" action="{% url 'test_case_delete' %}" method="post">
+            <form name="tform" action="{% block delete_url %} {% endblock %}" method="post">
                 {% csrf_token %}
                 <table class="list_table">
                     {% block form_elem %} 
