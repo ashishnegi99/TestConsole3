@@ -17,6 +17,7 @@ from django.core.exceptions import ValidationError
 from ftplib import FTP
 from app.jenkinsapp import JenkinsApp
 from revo.testsuitejson import TestSuiteJson
+from urlparse import urlparse
 import jenkins
 import urllib2
 import urllib
@@ -350,21 +351,29 @@ def get_serial_num_impl():
     logger.debug("Devices from socket: " + str(device_serial_num_list))
     device_list = stb_devices.objects.all()
     logger.debug("Devices from database: " + str(device_list))
-    matched_device = set([row.serial_id for row in device_list]).intersection(device_serial_num_list)
+    matched_device = set([row.unit_address for row in device_list]).intersection(device_serial_num_list)
     logger.debug("Matched Devices: " + str(matched_device))
 
+    j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
+    running_builds = j.get_running_builds()
+    running_builds_path = [ urlparse(build['url']).path for build in running_builds if REVO_FOLDER_PATH in build['url']]
+    
     sample_list = []
     for device in device_list:
         sample_dict = {}
 
-        if device.serial_id in matched_device:
-            sample_dict["STBStatus"] = 1
+        if device.unit_address in matched_device:
+            full_path = REVO_FOLDER_PATH + device.name
+            if any( path.startswith(full_path) for path in running_builds_path):
+                sample_dict["STBStatus"] = 2
+            else:
+                sample_dict["STBStatus"] = 1
         else:
             sample_dict["STBStatus"] = 0
 
-        sample_dict["RouterSNo"] = device.router
+        sample_dict["Env"] = device.environment.name
         sample_dict["STBLabel"] = device.name
-        sample_dict["STBSno"] = device.serial_id
+        sample_dict["UnitAdd"] = device.unit_address
         sample_list.append(sample_dict)
 
     jsonfile = open('app/templates/app/temp1.json', 'w')
@@ -376,8 +385,13 @@ def GetSerialNum(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
         get_serial_num_impl()
-    return HttpResponseRedirect("/revo")
-
+    
+    return render(
+        request,
+        "app/temp1.json",
+        RequestContext(request, {
+        })
+    )
 
 def createJsonFile(fileName):
     f = open(fileName, 'r')

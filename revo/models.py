@@ -29,7 +29,7 @@ class TestCase(models.Model):
 
 class TestSuite(models.Model):
     name = models.CharField(max_length=255)
-    cases = models.ManyToManyField(TestCase, related_name="testcases")
+    cases = models.ManyToManyField(TestCase, related_name="testsuites")
 
 
 class device(models.Model):
@@ -47,7 +47,7 @@ class device(models.Model):
     client_ip = models.GenericIPAddressField(protocol='both', validators=[ip_validator], blank=True, null=True)
     router = models.CharField(max_length=255, blank=True)
     host = models.CharField(max_length=255)
-    environment = models.ForeignKey(Config, related_name="environment", on_delete=models.CASCADE)
+    environment = models.ForeignKey(Config, related_name="devices", on_delete=models.CASCADE)
 
     def get_absolute_url(self):
         return reverse_lazy('device_list')

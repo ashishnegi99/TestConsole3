@@ -1,15 +1,19 @@
-
-function TableHeader(props) {
-  return (
-    <thead className="table-head">
-      <tr>
-        <th className="table-header">STB</th>
-        <th className="table-header">Status</th>
-        <th className="table-header">Unit Address</th>
-        <th className="table-header">Environment</th>
-      </tr>
-    </thead>
-  );
+class TableHeader extends React.Component {
+  render() {
+    return (
+      <thead className="table-head">
+        <tr>
+          <th className="table-header" onClick={ () => this.props.onClick() }>
+            STB &nbsp;
+            <i className="fa fa-refresh" aria-hidden="true"></i>
+          </th>
+          <th className="table-header">Status</th>
+          <th className="table-header">Unit Address</th>
+          <th className="table-header">Environment</th>
+        </tr>
+      </thead>
+    );
+  }
 }
 
 class TableRow extends React.Component {
@@ -37,10 +41,10 @@ class TableRow extends React.Component {
           <i className= {classVal} aria-hidden="true"></i>
         </td>
         <td>
-          {this.props.value.STBSno}
+          {this.props.value.UnitAdd}
         </td>
         <td>
-          {this.props.value.RouterSNo}
+          {this.props.value.Env}
         </td>
       </tr>
     );
@@ -48,31 +52,37 @@ class TableRow extends React.Component {
 }
 
 class Table extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      rows: [
+    ],
+    }
+  }
+
+  handleRefresh() {
+    axios.get("http://127.0.0.1:8000/revo/Set_Top_Box")
+    .then( res => {
+      const rows = res.data;
+      this.setState({rows});
+    });
+  }
+
   renderRow(resp, i) {
     return (      
-        <TableRow key={i} value={ resp[i] } />
+        <TableRow key={i} value={ resp[i] }/>
     );
   }
 
   render() {
     var rows = [];
-    var resp = [
-      {"STBStatus": "1", "RouterSNo": "R1", "STBLabel": "STB 1", "STBSno": "M11435TDS144"},
-      {"STBStatus": "1", "RouterSNo": "R1", "STBLabel": "STB 2", "STBSno": "M11543TH4292"},
-      {"STBStatus": "2", "RouterSNo": "R1", "STBLabel": "STB 3", "STBSno": "SN005"},
-      {"STBStatus": "1", "RouterSNo": "R1", "STBLabel": "STB 4", "STBSno": "M11509TD9937"},
-      {"STBStatus": "1", "RouterSNo": "R1", "STBLabel": "STB 5", "STBSno": "M11543TH4258"},
-      {"STBStatus": "1", "RouterSNo": "R1", "STBLabel": "STB 6", "STBSno": "SN005"},
-      {"STBStatus": "0", "RouterSNo": "R1", "STBLabel": "STB 7", "STBSno": "SN006"},
-      {"STBStatus": "0", "RouterSNo": "R1", "STBLabel": "STB 8", "STBSno": "SN007"}
-    ];
-    for (var i=0; i < resp.length; i++) {
-        rows.push(this.renderRow(resp,i));
+    for (var i=0; i < this.state.rows.length; i++) {
+        rows.push(this.renderRow(this.state.rows,i));
     }
 
     return (
         <table id="example" className="table-class display nowrap dataTable no-footer collapsed">
-          <TableHeader/>
+          <TableHeader onClick={ () => this.handleRefresh() } />
           <tbody id="stb-body">
             {rows}
           </tbody>
