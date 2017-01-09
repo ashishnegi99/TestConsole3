@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime, date, timedelta
 from app.forms import UserForm, BootstrapAuthenticationForm
 from app.models import Storm, Appium, racktestresult
-from revo.models import TestSuite as testsuite
+from revo.models import TestSuite
 from revo.models import device as stb_devices
 from revo.models import TestCase, Config
 from xml.etree import ElementTree as ET
@@ -41,7 +41,7 @@ REVO_FOLDER_NAME = "revo"
 @login_required
 def home(request):
     assert isinstance(request, HttpRequest)
-    test_suite_list = [suite.name for suite in testsuite.objects.all()]
+    test_suite_list = [suite.name for suite in TestSuite.objects.all()]
 
     return render(
         request,
@@ -348,6 +348,7 @@ def get_serial_num_impl():
         print "I was in the except block!"
         pass
 
+    device_serial_num_list = ["M11543TH4292", "M11543TH4258", "M11509TD9937"]
     logger.debug("Devices from socket: " + str(device_serial_num_list))
     device_list = stb_devices.objects.all()
     logger.debug("Devices from database: " + str(device_list))
@@ -576,7 +577,7 @@ def test_suites_add_view(request):
 @login_required
 def test_suites_list(request):
     assert isinstance(request, HttpRequest)
-    suite = [ { "name": row.name} for row in testsuite.objects.all()]
+    suite = [ { "name": row.name} for row in TestSuite.objects.all()]
     return render(
         request,
         "revo/test_suite_list.html",
@@ -593,7 +594,7 @@ def add_test_suite(request) :
 
     for index in range(0, len(names)):
         if str(names[index]) and str(mappings[index]):
-            test_suite = testsuite(name = str(names[index]))
+            test_suite = TestSuite(name = str(names[index]))
             test_suite.save()
             # print "ADDED TEST SUITE name: " + str(names[index]) + "  mapping_name: " + str(mappings[index])
 
@@ -602,7 +603,7 @@ def add_test_suite(request) :
 
 def delete_test_suite(request) :
     assert isinstance(request, HttpRequest)
-    testsuite.objects.filter(name__in=request.POST.getlist('tset_suite_name')).delete()
+    TestSuite.objects.filter(name__in=request.POST.getlist('tset_suite_name')).delete()
     return HttpResponseRedirect("/revo/test_suites/list_view")
 
 
@@ -664,3 +665,16 @@ def delete_device(request) :
     stb_devices.objects.filter(id__in=request.POST.getlist('device')).delete()
     # get_serial_num_impl()
     return HttpResponseRedirect(reverse("device_list"))
+
+
+def test_suite_cases(request):
+    assert isinstance(request, HttpRequest)
+
+    resp = {}
+    test_suites = TestSuite.objects.all()
+    for suite in test_suites:
+        cases = [ case.name for case in suite.cases.all() ]
+        resp[suite.name] = cases
+
+    data = json.dumps(resp)            
+    return HttpResponse(data, content_type='application/json')

@@ -67,6 +67,7 @@ $(function() {
   };
 
   stbststus1();
+  populateTestSuite();
   
   var count=1;
   $(".scrollingHead").find('tr>th').each(function( event ) {        
@@ -409,5 +410,38 @@ $(document).ready(function() {
 		});
 	});
 
+function populateTestSuite() {
+    $.getJSON("test-suite-cases", function(result) {
+      var parentresult, childresult,i = 0,j=0;
+  
+          $.each(result,function(item,childItem) {
+            var active='';
+            if(j==0) {
+              active='selectCheckbox';
+            }
+          
+            parentresult = "";
+            parentresult = "<li ><label class='checkbox "+active+" revo_dropdown'  for='one' >";
+            parentresult += "<a href='#' id='btn-1' data-target='#submenu"+j+"' aria-expanded='false'>";
+            parentresult += "<input onclick='parentClick(event)' type='checkbox' class='parentCheckBox' data-chk="+j+" /></a>";
+            parentresult += "<a href='#testsuite"+j+"' data-toggle='tab' onclick='navClick(event)'>"+item+"</a></label></li><hr>";
+            $("#testsuite ul").append(parentresult);
+            
+            if(j==0){
+              active='active';
+            }
+            childresult ="<div class='tab-pane "+active+" view_chk"+j+" ' id='testsuite"+j+"'><ul class='nav' id='submenu"+j+"' role='menu' aria-labelledby='btn-1'>";
+                 
+            $.each(childItem, function(child,val){
+              childresult += "<li><label class='checkbox' for='one' class='revo_dropdown'><input type='checkbox' class='childCheckBox chk"+j+"' />"+val+"</label></li><hr>";
+              i++;
+            });
+            
+            childresult +="</ul></div>";
+            j++;
+            $("#testcase").append(childresult);
+          });
+    });
+}
 	
 	

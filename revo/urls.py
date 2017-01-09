@@ -24,7 +24,10 @@ urlpatterns = [
     url(r"^Json", views.Json, name="Json"),
 # Json2's
     url(r"^Json2", views.Json2, name="Json2"),
-# SetTopBox
+
+# Test Suite and Cases
+    url(r"^test-suite-cases", views.test_suite_cases, name="test_suite_with_cases"),
+# SetTopBox 
     url(r"^Set_Top_Box", views.GetSerialNum, name="Set_Top_Box"),
     
 # testsuite
