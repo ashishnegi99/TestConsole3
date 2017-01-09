@@ -9,7 +9,6 @@ $(window).resize(function() {
 });
 
 $(function () {
-  //$('table').footable();
   
   var count=1;
   $(".scrollingHead").find('tr>th').each(function( event ) {        
@@ -20,13 +19,12 @@ $(function () {
 });
 
 $(document).ready(function() {
-	$('input[type=checkbox]').click(function() {  
-		if(this.checked == true) { 
-			//$(this).parent().addClass('activetab');
-		} else {
-			//$(this).parent().removeClass('activetab');
-		}
-	}); 
+  var checkboxes_all = document.getElementsByName('check2');
+
+  for(var i=0; i<checkboxes_all.length; i++) {
+  console.log(checkboxes_all[i],'---------');
+    checkboxes_all[i].addEventListener("click", singleCheck(),true)
+  }
 
 	$(':radio').change(function () {
       $(':radio[name=' + this.name + ']').parent().removeClass('activetab');
@@ -44,7 +42,7 @@ $(window ).resize(function() {
   setTimeout( function(){var count=1;
     $(".scrollingHead").find('tr>th').each(function( event ) {        
       var thWdith=$(this).outerWidth();
-      //console.log(count+'dddddd');
+    
       $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
       count++;
     });
@@ -73,7 +71,7 @@ $(function() {
   var count=1;
   $(".scrollingHead").find('tr>th').each(function( event ) {        
     var thWdith=$(this).outerWidth();
-    //console.log(count+'dddddd');
+  
     $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
     count++;
   });
@@ -87,10 +85,10 @@ $(function() {
 });
 
 function checkStatus($event){
-  //console.log($event.toSource());
+ 
     if ($event.value && $event.checked == true){
-      //console.log($event.value);
-      console.log($event.checked);
+    
+  
       //alert($event.checked);
       $event.setAttribute("checked", "checked");
     }
@@ -162,8 +160,8 @@ function stbststus1(){
 		      linkclass = "";
 		      status = 'disabled';
         }
-            /*$("#testdataid").append("<tr><td style='cursor:pointer;padding:10px 15px;'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"' style='margin-top:3px;' ></td><td width='70px' style='vertical-align:middle'><label>"+item["Job No"]+" </label></td><td class='suite-name' width='120px' style='vertical-align:middle; padding:0px 0px 0px 0px'>"+item["Suite Name"]+"</td><td width='70px' style='vertical-align:middle'>"+item["Build No"]+"</td><td width='105px' class = " + resultclass + " style='vertical-align:middle'>" + item.Result + "</td><td width='220px' style='vertical-align:middle;word-break:break-all'>" + item.StartTime + "</td><td width='220px' style='vertical-align:middle;word-break:break-all'>" + item.EndTime + "</td><td width='95px' style='vertical-align:middle'>" + item.Duration +" </td><td width='95px' style='vertical-align:middle'>" + item.UserName +" </td><td width='84px' style='vertical-align:middle' data-editable=\"true\"><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td width='125px' data-editable=\"true\" style='vertical-align:middle'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");*/
-			$("#testdataid").append("<tr><td style='padding-left:36px; width:66px; text-align:center'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"'></td><td style='width:37px; text-align: center'><label>"+item["Job No"]+" </label></td><td class='suite-name' style='width:88px; text-align: center'>"+item["Suite Name"]+"</td><td style='width:52px; text-align: center'>"+item["Build No"]+"</td><td class = " + resultclass + " style='width:72px; text-align: center'>" + item.Result + "</td><td style='width:135px; text-align: center'>" + item.StartTime + "</td><td style='width:135px; text-align: center'>" + item.EndTime + "</td><td style='width:77px; text-align: center'>" + item.Duration +" </td><td style='width:59px; text-align: center'>" + item.UserName +" </td><td style='width:202px; text-align: center'><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td style='width:237px; text-align: center'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");
+           
+			$("#testdataid").append("<tr><td style='padding:14px; width:20px; text-align:center'></td><td style='padding-left:36px; width:66px; text-align:center'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"'></td><td style='width:37px; text-align: center'><label>"+item["Job No"]+" </label></td><td class='suite-name' style='width:88px; text-align: center'>"+item["Suite Name"]+"</td><td style='width:52px; text-align: center'>"+item["Build No"]+"</td><td class = " + resultclass + " style='width:72px; text-align: center'>" + item.Result + "</td><td style='width:135px; text-align: center'>" + item.StartTime + "</td><td style='width:135px; text-align: center'>" + item.EndTime + "</td><td style='width:77px; text-align: center'>" + item.Duration +" </td><td style='width:59px; text-align: center'>" + item.UserName +" </td><td style='width:202px; text-align: center'><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td style='width:237px; text-align: center'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");
         });
     }) 
 }
@@ -196,15 +194,34 @@ function checkAll(ele) {
          }
      } else {
          for (var i = 0; i < checkboxes.length; i++) {
-             console.log(i)
+      
              if (checkboxes[i].type == 'checkbox') {
                  checkboxes[i].checked = false;
              }
          }
      }
  }
- 
- 
+
+
+ function singleCheck(ele) {
+ console.log('calling');
+	 var checkboxes = document.getElementsByName('check2');
+	 console.log($(checkboxes+':checked').length,$(checkboxes).length,'----',ele);
+	
+	
+	 if($(checkboxes+':checked').length == $(checkboxes).length){
+	 console.log('inside')
+		$('.parent_chk_job').prop("checked",true);
+	//ele.stopPropagation();
+	 }
+	 else{
+		$('.parent_chk_job').prop("checked",false);
+		//ele.stopPropagation();
+		}
+	 
+	
+	 
+ }
  function showMe (box) {
         
 	var chboxs = document.getElementsByName("schedule");
@@ -276,3 +293,121 @@ $(function () {
             .prop('checked', this.checked);
     });
 });
+
+/*parent child checkbox*/
+$(document).ready(
+    function() {
+		 
+		  $(".parentCheckBox1").on("click", function(){
+		
+				var chkval = $(this).attr("data-chk");
+				
+				$(".tab-pane").removeClass('active');
+				$('.chk'+ chkval).attr('checked', this.checked);
+				$('.view_chk'+ chkval).addClass('active');/**/
+				
+            }
+        );
+        //clicking the last unchecked or checked checkbox should check or uncheck the parent checkbox
+        $('.childCheckBox').click(
+            function() {
+                if ($(this).parents('label:eq(0)').find('.parentCheckBox').attr('checked') == true && this.checked == false)
+                    $(this).parents('label:eq(0)').find('.parentCheckBox').attr('checked', false);
+                if (this.checked == true) {
+                    var flag = true;
+                    $(this).parents('label:eq(0)').find('.childCheckBox').each(
+	                    function() {
+	                        if (this.checked == false)
+	                            flag = false;
+	                    }
+                    );
+                    $(this).parents('label:eq(0)').find('.parentCheckBox').attr('checked', flag);
+                }
+            }
+        );
+		
+		$('.nav-tabs a').click(function(){
+
+		$('.nav-tabs a').parent().removeClass('selectCheckbox');
+		$(this).parent().addClass('selectCheckbox');
+	});
+		
+    }
+);
+function parentClick(e){		
+	$(".tab-pane").removeClass('active');
+	var j = $(e.target).attr("data-chk");
+	 if($(e.target).is(":checked")){
+              $('.chk'+j).prop('checked',true);
+			  $(e.target).parent().parent().addClass('selectCheckbox');
+        }else{
+		$('.chk'+j).prop('checked',false);
+		  $(e.target).parent().parent().removeClass('selectCheckbox');
+		}
+	$('.view_chk'+j).addClass('active');
+}
+
+function navClick(e){
+  $('.nav-tabs a').parent().removeClass('selectCheckbox');
+  $(e.target).parent().addClass('selectCheckbox');
+}
+
+var tabsFn = (function() {
+  function init() {
+    //setHeight();
+  }
+  
+  function setHeight() {
+    var $tabPane = $('.tab-pane'),
+        tabsHeight = $('.nav-tabs').height();
+    
+    $tabPane.css({
+      height: tabsHeight
+    });
+  }
+    
+  $(init);
+})();
+
+
+
+
+/* Define two custom functions (asc and desc) for string sorting */
+
+$(document).ready(function() {
+	var table = $('#example').DataTable( {
+	"order": [[ 6, "desc" ]],
+	"columnDefs": [ {
+	"orderable": false, "targets": [0,1,10,11],
+		//"orderData": [5,4], "targets": [4]
+    } ],
+	
+	responsive: true,
+	"searching": false,
+	"bLengthChange": false,
+	"scrollY": "200px",
+	"scrollCollapse": true,
+	paging: false
+	} );
+	new $.fn.dataTable.FixedHeader( table );
+} );
+
+/*datetime*/
+	$(function() {
+		$("#schedule_date").datepicker({ minDate: 0, dateFormat: 'yy/mm/dd' });   
+		$('#schedule_time').timepicker({
+			
+			onHourShow: function( hour ) { 
+				var now = new Date();
+				if ( $('#schedule_date').val() == $.datepicker.formatDate ( 'yy/mm/dd', now ) ) {
+					if ( hour <= now.getHours() ) {
+						return false;
+					}
+				}
+				return true;
+			}
+		});
+	});
+
+	
+	

@@ -53,9 +53,23 @@
 	overflow-y: auto;
 	width: 100%;
 }
+.hideme{
+display:none}
+.job-status_heading{
+	color:#cd040b;text-align:center;
+}
+.job-status_checkbox1{
+padding:14px; width:20px; text-align:center
+}
+.job-status_checkbox2{
+padding-left:37px; text-align:center;
+}
+
 .job-status_table p,
 #testdataid td{
     text-align: center;
+}
+.add_device:hover{text-decoration:none;
 }
 
 .testreport{
@@ -165,10 +179,10 @@ font-weight:bold;
     background-position: center;
     background-size: 100% 100%;
     background-repeat: no-repeat; 
-    margin-top: 20px; 
+    /*margin-top: 20px; 
     margin-right: 20px;
 	margin-bottom: 20px;
-	margin-left: 20px;
+	margin-left: 20px;*/
 	
     border-radius: 7px;
     border: 1px solid #cdcdcd; 
@@ -192,12 +206,20 @@ font-weight:bold;
     background-size: 100%;
     background-repeat: no-repeat; 
 }
+
 label.radio:hover,label.checkbox:hover{
  background-image: url(../../images/highlight.png);  
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
 }
+.selectCheckbox{
+background-image: url(../../images/highlight.png)!important;
+ background-position: center;
+ background-size: 100%;
+ background-repeat: no-repeat;
+ }
+
  .quotation-mark{
   color: #cd040b;
   padding: 0px 8px;
@@ -239,13 +261,23 @@ tbody.scroller.testsum>tr>td.col-xs-8>p{
    max-height: 228px;
    overflow-y: auto;
 }
+.suite-text{
+	max-height: 228px;
+   overflow-y: auto;
+}
+
+#stb-body
+{
+	max-height: 228px;
+   overflow-y: auto;
+}
 .runquote{
   	background-image: inherit;
   	text-align: -webkit-center;
     margin-top: 50%;
     border: 0px;
 }
- 
+ .chk_job{}
 .subhead>.pull-right{
 	padding-right:44px;
 }
@@ -306,7 +338,7 @@ content: url('../../images/run-hover.png');
 @media only screen and (max-width: 769px) {
    .runquote{
   background-image: inherit;
-      text-align: -webkit-center;
+   text-align: -webkit-center;
     margin-top: 0%;
 }
 .subhead>.pull-right{
@@ -318,7 +350,7 @@ padding-right:29px;
    .runquote{
   		background-image: inherit;
       	text-align: -webkit-center;
-    	margin-top: 25%;
+    	margin-top: 0%;
     	border: 0px;	
 	}
 }

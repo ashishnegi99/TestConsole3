@@ -8,13 +8,13 @@ class TableHeader extends React.Component {
     return (
       <thead className="table-head">
         <tr>
-          <th className="table-header" onClick={ () => this.props.onClick() }>
+          <th className="table-header job-status_heading" onClick={ () => this.props.onClick() }>
             STB &nbsp;
             <i className={ classVal}  aria-hidden="true"></i>
           </th>
-          <th className="table-header">Status</th>
-          <th className="table-header">Unit Address</th>
-          <th className="table-header">Environment</th>
+          <th className="table-header job-status_heading">Status</th>
+          <th className="table-header job-status_heading">Unit Address</th>
+          <th className="table-header job-status_heading">Environment</th>
         </tr>
       </thead>
     );
@@ -103,7 +103,7 @@ class Table extends React.Component {
         rows.push(this.renderRow(this.state.rows,i));
     }
     return (
-        <table id="example" className="table-class display nowrap dataTable no-footer collapsed">
+        <table id="example" className="table-class display nowrap dataTable collapsed">
           <TableHeader onClick={ () => this.handleRefresh() }  fetching= { this.state.fetching }/>
           <tbody id="stb-body">
             {rows}
