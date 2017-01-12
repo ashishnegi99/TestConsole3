@@ -28,13 +28,13 @@
 
 {% block body %} 
     
-        <form action="{% url 'revo_view' %}" method="post">
+        <form action="{% url 'revo_run' %}" method="post">
 		<div class="row">
             {% csrf_token %}
 
 			<div class="col-md-12">
 				<div class="col-md-5">
-					<div class="quote-box" id="stb-table">
+					<div class="quote-box" id="stb-table" name="stb-table">
 					</div>
 				</div>
 
@@ -46,8 +46,9 @@
 								<span class="pull-right"><img src="{% static 'app/images/suite.png' %}"></span>
 							</p>
 							<hr>
-							<div class="suite-text scroller main_menu" id="testsuite">
-							 <ul class="nav nav-tabs"></ul>
+							<div class="suite-text scroller main_menu" id="testsuite" name="suites">
+							<ul class="nav nav-tabs"></ul>
+								
 							</div>
 						</div><!-- /tabbable -->
 					</div>
@@ -61,7 +62,7 @@
 						</p>
 						<hr>
 						<div id="myTabContent" class="bar-content">
-							<div id="testcase"></div>
+							<div id="testcase" name="cases"></div>
 						</div>
 					</div>
 				</div>
@@ -81,7 +82,7 @@
 						</div>
 					</div>
 					<div class="quote-box runquote" style="text-align:center">
-						<input type="image" name="submit" img src="{% static 'app/images/run.png' %}" alt="Submit" />
+                        <input type="image" name="submit" img src="{% static 'app/images/run.png' %}" alt="Submit" />
 					</div>
 				</div>
 				<div class="col-md-4"></div>
@@ -132,8 +133,11 @@
 	<script>
         var config = {};
         config.stbStatusUrl = "{% url 'Set_Top_Box' %}";
+        config.revo_run = "{% url 'revo_run' %}";
+        config.revo = "{% url 'revo' %}";
         window.config = config;
 
+        window.runRevoJson = {}
         //Use this object to fill the state of different widgets. In the end WHEN WE CLICK RUN("/revo/run/“) we have to send this json as parameter.
         // {
         //   "scheduled": true,
@@ -162,10 +166,9 @@
         //     }
         //   ]
         // }
-        var runRevoJson = {};
-        runRevoJson["stbs"] = [];
-        window.runRevoJson =  runRevoJson;
+       
 
 	</script>
+	
 	{% include "revo/console_modal.html" %}
 {% endblock %}

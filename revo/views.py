@@ -184,23 +184,24 @@ def run_job(request):
                 pass    
                 #TODO SET error code HttpResponseBadRequest and return
             
-            if(stb_details and stb_details.environment in slave_configs):
-                config = slave_configs[stb_details.environment]
+            if(stb_details and stb_details.environment.name in slave_configs):
+                config = slave_configs[stb_details.environment.name]
                 jnknscommand = ( "set " + config["loc_fix"] + "\n" + "cd " + config["runner_path"] + "\n" + "python TestRunner.py " 
                                 + "%param1%" + " " + stb_name + " True " + config["report_loc"] + " " + config["run_path"] + " " 
                                 + config["json_path"] + " " + config["env_var"] + "\n" + config["build_path"] )
 
                 jnkns_app.create_job(stb_name, REVO_FOLDER_NAME, False, stb_details.host, jnknscommand, scheduled, test_suite["name"], user_name)
 
-                scheduled_time = datetime.strptime(post_data['time'], "%Y-%m-%d %H:%M:%S")
-                time_diff = scheduled_time - datetime.now()
-                time_diff_in_sec = int(time_diff.total_seconds())
+                if scheduled: 
+                    scheduled_time = datetime.strptime(post_data['time'], "%Y-%m-%d %H:%M:%S")
+                    time_diff = scheduled_time - datetime.now()
+                    time_diff_in_sec = int(time_diff.total_seconds())
 
-                if scheduled and time_diff_in_sec > 1:
-                    jobs_scheduled = []
-                    jobs_scheduled.append(jnkns_app.create_groovy_job(stb_name, time_diff_in_sec, param1=test_suite["name"], param2=user_name))
-                    jstr = json.dumps(jobs_scheduled)
-                    jnkns_app.schedule_job(jstr)
+                    if time_diff_in_sec > 1:
+                        jobs_scheduled = []
+                        jobs_scheduled.append(jnkns_app.create_groovy_job(stb_name, time_diff_in_sec, param1=test_suite["name"], param2=user_name))
+                        jstr = json.dumps(jobs_scheduled)
+                        jnkns_app.schedule_job(jstr)
             else:
                 pass
 
@@ -215,8 +216,8 @@ def get_revo_configs():
     for content in config_list:    
         config = {}
         config["loc_fix"] = content.loc_fix
-        config["runner_path"] = content.runner_path
-        config["report_loc"] = content.report_loc
+        config["runner_path"] = content.test_runner_path
+        config["report_loc"] = content.report_location
         config["run_path"] = content.run_path
         config["json_path"] = content.json_path
         config["env_var"] = "%JOB_NAME% %BUILD_TAG% SIT"
@@ -348,7 +349,6 @@ def get_serial_num_impl():
         print "I was in the except block!"
         pass
 
-    device_serial_num_list = ["M11543TH4292", "M11543TH4258", "M11509TD9937"]
     logger.debug("Devices from socket: " + str(device_serial_num_list))
     device_list = stb_devices.objects.all()
     logger.debug("Devices from database: " + str(device_list))

@@ -22,7 +22,6 @@ $(document).ready(function() {
   var checkboxes_all = document.getElementsByName('check2');
 
   for(var i=0; i<checkboxes_all.length; i++) {
-  console.log(checkboxes_all[i],'---------');
     checkboxes_all[i].addEventListener("click", singleCheck(),true)
   }
 
@@ -205,19 +204,15 @@ function checkAll(ele) {
 
 
  function singleCheck(ele) {
- console.log('calling');
 	 var checkboxes = document.getElementsByName('check2');
 	 console.log($(checkboxes+':checked').length,$(checkboxes).length,'----',ele);
-	
 	
 	 if($(checkboxes+':checked').length == $(checkboxes).length){
 	 console.log('inside')
 		$('.parent_chk_job').prop("checked",true);
-	//ele.stopPropagation();
 	 }
 	 else{
 		$('.parent_chk_job').prop("checked",false);
-		//ele.stopPropagation();
 		}
 	 
 	
@@ -414,34 +409,105 @@ function populateTestSuite() {
     $.getJSON("test-suite-cases", function(result) {
       var parentresult, childresult,i = 0,j=0;
   
-          $.each(result,function(item,childItem) {
+          $.each(result,function(item,childItem){
             var active='';
             if(j==0) {
               active='selectCheckbox';
             }
-          
             parentresult = "";
-            parentresult = "<li ><label class='checkbox "+active+" revo_dropdown'  for='one' >";
+            parentresult = "<li ><label class='checkbox "+active+" revo_dropdown' name='suites'  for='one' >";
             parentresult += "<a href='#' id='btn-1' data-target='#submenu"+j+"' aria-expanded='false'>";
-            parentresult += "<input onclick='parentClick(event)' type='checkbox' class='parentCheckBox' data-chk="+j+" /></a>";
+            parentresult += "<input name='suites' value=\'"+item+"\' onclick='parentClick(event)' type='checkbox' class='parentCheckBox' data-chk="+j+"  data-count=\'"+j+"\' data-len=\'"+childItem.length+"\' /></a>";
             parentresult += "<a href='#testsuite"+j+"' data-toggle='tab' onclick='navClick(event)'>"+item+"</a></label></li><hr>";
             $("#testsuite ul").append(parentresult);
             
-            if(j==0){
+            if(j==0) {
               active='active';
             }
             childresult ="<div class='tab-pane "+active+" view_chk"+j+" ' id='testsuite"+j+"'><ul class='nav' id='submenu"+j+"' role='menu' aria-labelledby='btn-1'>";
-                 
+          
             $.each(childItem, function(child,val){
-              childresult += "<li><label class='checkbox' for='one' class='revo_dropdown'><input type='checkbox' class='childCheckBox chk"+j+"' />"+val+"</label></li><hr>";
+              childresult += "<li><label class='checkbox' for='one' class='revo_dropdown'><input type='checkbox' class='childCheckBox chk"+j+"' name='cases' value=\'"+val+"\'  />"+val+"</label></li><hr>";
               i++;
             });
-            
             childresult +="</ul></div>";
             j++;
             $("#testcase").append(childresult);
-          });
+          });    
     });
 }
-	
-	
+
+$.fn.serializeObject = function() {
+    var runRevoJson = {};
+    runRevoJson['scheduled']= false;
+    runRevoJson['time']='';
+    runRevoJson['stbs']=[];
+    runRevoJson['suites']=[];
+    
+    var count=0;
+      var o = {};
+      var a = this.serializeArray();
+      var scheduled = [];
+      var suite = [];
+      var casesarry = [];
+      var date='';
+      
+      $.each(a, function(key,values) {
+        if(values.name=='schedule'){
+          scheduled = values.value;
+        }
+        if(values.name=='date'){
+          date=values.value;
+        }        
+        if(values.name=='time'){
+          runRevoJson['time'] = date+' '+values.value;
+        }
+        if(values.name=='stbs'){        
+          var x=values.value;
+          suite.push(x);
+        }
+        if(values.name=='cases'){
+          casesarry.push(values.value);
+        }         
+        if(values.name=='suites'){
+          runRevoJson['suites'].push({'name':values.value,'cases':null});
+          count++;
+        }
+      });
+      runRevoJson['stbs'] = suite;
+      
+      var all=0, count=0;
+      $('.parentCheckBox:checked').each(function(){
+        var len=$(this).attr('data-len');
+        var arrycases=[];
+        len=parseInt(len)+ parseInt(all);
+        
+        for(var i=all; i<len; i++) {
+          arrycases.push(casesarry[i]);
+        }
+        all=parseInt(arrycases.length)+parseInt(all);
+        runRevoJson['suites'][count].cases=arrycases;
+        count++;
+      });
+
+      window.runRevoJson = runRevoJson;
+    };
+
+$(function() {
+  $('form').submit(function() {
+    event.preventDefault();
+    $('form').serializeObject();
+
+    $.ajax({
+      type: "POST",
+      url: window.config.revo_run,
+      data: JSON.stringify(window.runRevoJson),
+      success: function(response) {
+      },
+      dataType: "json",
+      contentType : "application/json"
+    });
+    window.location.href = window.config.revo;
+    return false;
+  });
+});

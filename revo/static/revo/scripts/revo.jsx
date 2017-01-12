@@ -39,7 +39,7 @@ class TableRow extends React.Component {
     return (
       <tr key={i} className="stb-row">
         <td className="">
-          <input type="checkbox" name="check1" value={this.props.value.STBLabel} onChange={ (event) => this.props.onClick(this.props.value.STBLabel, event) }/> 
+          <input type="checkbox" name="stbs" value={this.props.value.STBLabel} onChange={ (event) => this.props.onClick(this.props.value.STBLabel, event) }/> 
           <span> {this.props.value.STBLabel} </span>
         </td>
         <td>
@@ -84,11 +84,11 @@ class Table extends React.Component {
   }
 
   handleCheck(stbName) {
-    if (window.runRevoJson.stbs.contains(stbName)) {
-      window.runRevoJson.stbs.remove(stbName);
-    } else {
-      window.runRevoJson.stbs.push(stbName);
-    }
+    // if (window.runRevoJson.stbs.contains(stbName)) {
+    //   window.runRevoJson.stbs.remove(stbName);
+    // } else {
+    //   window.runRevoJson.stbs.push(stbName);
+    // }
   }
 
   renderRow(resp, i) {
