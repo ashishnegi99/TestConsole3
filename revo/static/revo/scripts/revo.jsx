@@ -24,7 +24,10 @@ class TableHeader extends React.Component {
 class TableRow extends React.Component {
   render() {
     var classVal = "fa fa-circle pull-right";
+    var tdClass = "";
     var st = parseInt(this.props.value.STBStatus, 10);
+    var disabled = false;
+
     switch(st) {
       case 1:
             classVal += " available";
@@ -34,12 +37,14 @@ class TableRow extends React.Component {
             break;
       case 0:
             classVal += " offline";
+            tdClass += "half_opaque";
+            disabled = true;
             break;
     }
     return (
-      <tr key={i} className="stb-row">
-        <td className="">
-          <input type="checkbox" name="stbs" value={this.props.value.STBLabel} onChange={ (event) => this.props.onClick(this.props.value.STBLabel, event) }/> 
+      <tr key={i} className= "stb-row">
+        <td className={tdClass}>
+          <input disabled={disabled} type="checkbox" name="stbs" value={this.props.value.STBLabel} onChange={ (event) => this.props.onClick(this.props.value.STBLabel, event) }/> 
           <span> {this.props.value.STBLabel} </span>
         </td>
         <td>

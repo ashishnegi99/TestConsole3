@@ -423,3 +423,56 @@ thead .table-head {
   color: #cd040b;
   cursor: pointer
 }
+
+.half_opaque {
+  opacity: 0.5;
+}
+
+.react-table {
+    display: block;
+    width: 96%;
+    max-width: 100%;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.react-table .table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #eee;
+}
+.react-table>thead, .react-table>tbody, .react-table tr, .react-table td, .react-table th { display: block; }
+
+.react-table tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.react-table>tbody>tr>td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.react-table>tbody {
+    height: 180px;
+    overflow-y: auto;
+}
+
+.react-table>tbody td, .react-table>thead th {
+    height: 40px;
+    width: 9%;
+    float: left;
+    padding: 3px;
+}
+
+.react-table .fixed-width{
+  width: 25px;
+}
+
+.not-active {
+   pointer-events: none;
+   cursor: default;
+   color: grey;
+}

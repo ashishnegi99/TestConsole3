@@ -1,55 +1,56 @@
-$(window).resize(function() {
-  setTimeout( function(){var count=1;
-    $(".scrollingHead").find('tr>th').each(function( event ) {        
-      var thWdith=$(this).outerWidth();
-      $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
-      count++;
-    });
-  },10);
-});
+// $(window).resize(function() {
+//   setTimeout( function(){var count=1;
+//     $(".scrollingHead").find('tr>th').each(function( event ) {        
+//       var thWdith=$(this).outerWidth();
+//       $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
+//       count++;
+//     });
+//   },10);
+// });
 
-$(function () {
+// $(function () {
   
-  var count=1;
-  $(".scrollingHead").find('tr>th').each(function( event ) {        
-    var thWdith=$(this).outerWidth();
-    $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
-    count++;
-  });
-});
+//   var count=1;
+//   $(".scrollingHead").find('tr>th').each(function( event ) {        
+//     var thWdith=$(this).outerWidth();
+//     $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
+//     count++;
+//   });
+// });
 
-$(document).ready(function() {
-  var checkboxes_all = document.getElementsByName('check2');
+// $(document).ready(function() {
+//   var checkboxes_all = document.getElementsByName('check2');
 
-  for(var i=0; i<checkboxes_all.length; i++) {
-    checkboxes_all[i].addEventListener("click", singleCheck(),true)
-  }
+//   for(var i=0; i<checkboxes_all.length; i++) {
+//     checkboxes_all[i].addEventListener("click", singleCheck(),true)
+//   }
 
-	$(':radio').change(function () {
-      $(':radio[name=' + this.name + ']').parent().removeClass('activetab');
-      $(this).parent().addClass('activetab');
-  });
+// 	$(':radio').change(function () {
+//       $(':radio[name=' + this.name + ']').parent().removeClass('activetab');
+//       $(this).parent().addClass('activetab');
+//   });
 
-  $('.dropdown-menu').on('click', function(e) {
-    if($(this).hasClass('dropdown-menu-form')) {
-      e.stopPropagation();
-    }
-  });
-});
+//   $('.dropdown-menu').on('click', function(e) {
+//     if($(this).hasClass('dropdown-menu-form')) {
+//       e.stopPropagation();
+//     }
+//   });
+// });
 
-$(window ).resize(function() {
-  setTimeout( function(){var count=1;
-    $(".scrollingHead").find('tr>th').each(function( event ) {        
-      var thWdith=$(this).outerWidth();
+// $(window ).resize(function() {
+//   setTimeout( function(){var count=1;
+//     $(".scrollingHead").find('tr>th').each(function( event ) {        
+//       var thWdith=$(this).outerWidth();
     
-      $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
-      count++;
-    });
-  },10);
-});
+//       $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
+//       count++;
+//     });
+//   },10);
+// });
 
 $(function() {
 
+  //Utility Functionality added to Array
   Array.prototype.contains = function(element){
     return this.indexOf(element) > -1;
   };
@@ -65,116 +66,81 @@ $(function() {
     return this;
   };
 
-  stbststus1();
+  //stbststus1();
   populateTestSuite();
   
-  var count=1;
-  $(".scrollingHead").find('tr>th').each(function( event ) {        
-    var thWdith=$(this).outerWidth();
+  // var count=1;
+  // $(".scrollingHead").find('tr>th').each(function( event ) {        
+  //   var thWdith=$(this).outerWidth();
   
-    $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
-    count++;
-  });
+  //   $(".scrollingBody").find('tr>td:nth-child('+count+')').outerWidth(thWdith);       
+  //   count++;
+  // });
 });
 
-function show_alert() {
-  alert("Run Successful!");
-}
+// function checkStatus($event) { 
+//   if ($event.value && $event.checked == true) {
+//     $event.setAttribute("checked", "checked");
+//   }
+//   else{
+//     $event.removeAttribute("checked", "checked");
+//   }
+// }
 
-$(function() {
-});
+// function stb2(job, build) {
+//   $.post("stopJob", {"Job Number":job, "Build Number":build}, function(result){
+//     location.reload();
+//   });
+// }
 
-function checkStatus($event){
- 
-    if ($event.value && $event.checked == true){
-    
-  
-      //alert($event.checked);
-      $event.setAttribute("checked", "checked");
-    }
-    else{$event.removeAttribute("checked", "checked");
-    }
-}
-function stbststus() {
-  $.getJSON("Json", function(result) {
-      $("#STBStatus").empty();
-        $.each(result, function(i, item) {
-		var status;
-          if(item.STBStatus == "1"){
-            colorclass = "available";
-            status = "";
-          }
-          if(item.STBStatus == "0"){
-            colorclass = "offline";
-            status = "disabled";
-          }
-          if(item.STBStatus == "2"){
-            colorclass = "In use";
-            status = "";
-          }
-            $("#STBStatus").append("<label class='checkbox'><input type='checkbox' name='check1' "+status+" value='"+item.STBLabel+"'>" +item.STBLabel +"   <i class='fa fa-circle pull-right  "+colorclass+"' aria-hidden='true'></i></label> <hr>");
-        });
-    });
-}
+// function stb1(job1, build1){
+//     $.get("stopJob",{ job: job1, build: build1 },function(result){
+//      });
+// }
 
-function stb2(job, build) {
-  $.post("stopJob", {"Job Number":job, "Build Number":build}, function(result){
-    location.reload();
-  });
-}
-
-function stb1(job1, build1){
-    alert (job1);
-    alert (build1);
-    $.get("stopJob",{ job: job1, build: build1 },function(result){
-     });
-}
-
-function stbststus1(){
-    $.getJSON("JobStatus", function(result) {
-      $("#testdataid").empty();
-        $.each(result, function(i, item){    
-		    var status;
-        if(item.Result == "SUCCESS"){
-          resultclass = "result_available";
-		      linkclass = "";
-  		    status = "disabled";
-        }
-        if(item.Result == "FAILURE"){
-          resultclass = "result_offline";
-		      linkclass = "";
-          status = 'disabled';
-		    }
-        if(item.Result == "IN PROGRESS"){
-          resultclass = "result_progress";
-		      linkclass = "";
-          status = '';
-		    }
-        if(item.Result == "IN QUEUE"){
-          resultclass = "result_queue";
-		      linkclass = "";
-		      status = '';
-        }
-        if(item.Result == "ABORTED"){
-          resultclass = "result_aborted";
-		      linkclass = "";
-		      status = 'disabled';
-        }
+// function stbststus1(){
+//     $.getJSON("JobStatus", function(result) {
+//       $("#testdataid").empty();
+//         $.each(result, function(i, item){    
+// 		    var status;
+//         if(item.Result == "SUCCESS"){
+//           resultclass = "result_available";
+// 		      linkclass = "";
+//   		    status = "disabled";
+//         }
+//         if(item.Result == "FAILURE"){
+//           resultclass = "result_offline";
+// 		      linkclass = "";
+//           status = 'disabled';
+// 		    }
+//         if(item.Result == "IN PROGRESS"){
+//           resultclass = "result_progress";
+// 		      linkclass = "";
+//           status = '';
+// 		    }
+//         if(item.Result == "IN QUEUE"){
+//           resultclass = "result_queue";
+// 		      linkclass = "";
+// 		      status = '';
+//         }
+//         if(item.Result == "ABORTED"){
+//           resultclass = "result_aborted";
+// 		      linkclass = "";
+// 		      status = 'disabled';
+//         }
            
-			$("#testdataid").append("<tr><td style='padding:14px; width:20px; text-align:center'></td><td style='padding-left:36px; width:66px; text-align:center'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"'></td><td style='width:37px; text-align: center'><label>"+item["Job No"]+" </label></td><td class='suite-name' style='width:88px; text-align: center'>"+item["Suite Name"]+"</td><td style='width:52px; text-align: center'>"+item["Build No"]+"</td><td class = " + resultclass + " style='width:72px; text-align: center'>" + item.Result + "</td><td style='width:135px; text-align: center'>" + item.StartTime + "</td><td style='width:135px; text-align: center'>" + item.EndTime + "</td><td style='width:77px; text-align: center'>" + item.Duration +" </td><td style='width:59px; text-align: center'>" + item.UserName +" </td><td style='width:202px; text-align: center'><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td style='width:237px; text-align: center'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");
-        });
-    }) 
-}
+// 			$("#testdataid").append("<tr><td style='padding:14px; width:20px; text-align:center'></td><td style='padding-left:36px; width:66px; text-align:center'><input type='checkbox' name='check2' "+status+" value ='"+ item["Job No"] +","+item["Build No"]+"'></td><td style='width:37px; text-align: center'><label>"+item["Job No"]+" </label></td><td class='suite-name' style='width:88px; text-align: center'>"+item["Suite Name"]+"</td><td style='width:52px; text-align: center'>"+item["Build No"]+"</td><td class = " + resultclass + " style='width:72px; text-align: center'>" + item.Result + "</td><td style='width:135px; text-align: center'>" + item.StartTime + "</td><td style='width:135px; text-align: center'>" + item.EndTime + "</td><td style='width:77px; text-align: center'>" + item.Duration +" </td><td style='width:59px; text-align: center'>" + item.UserName +" </td><td style='width:202px; text-align: center'><button onclick=\"stb1('"+item["Job No"]+"',"+item["Build No"]+")\" data-role=\"button\" class=\"btn_stop btn btn-danger\">Stop</button></td><td style='width:237px; text-align: center'><a href=\"#\" onclick=\"showConsole(this)\" class="+ linkclass +">Console Output</a></td></tr>");
+//         });
+//     }) 
+// }
 
-function showConsole(that) {
-  var vals = $(that).closest("tr").find("input").val().split(",");
-  var suite_name = $(that).closest("tr").find("td[class='suite-name']").text();
-  var title = "JOB: " + vals[0] +",    SUITE NAME:  " + suite_name;
+function showConsole(job_name, build_num, suite_name) {
+  var title = "JOB: " + job_name +",    SUITE NAME:  " + suite_name;
 
   $.ajax({
-    url: "http://127.0.0.1:8000/revo/console/",
+    url: window.config.buildConsole ,
     type: "get",
-    data:{"job": vals[0], "build" : vals[1]},
+    data:{"job": job_name, "build" : build_num },
     cache: false,
     success: function(data){
       $('#revo-modal-content').text(data);
@@ -183,6 +149,7 @@ function showConsole(that) {
     }
   });
 }
+
 /****Select All Checkbox****/
 function checkAll(ele) {
      var checkboxes = document.getElementsByName('check2');
@@ -203,50 +170,48 @@ function checkAll(ele) {
  }
 
 
- function singleCheck(ele) {
-	 var checkboxes = document.getElementsByName('check2');
-	 console.log($(checkboxes+':checked').length,$(checkboxes).length,'----',ele);
+ // // function singleCheck(ele) {
+	// //  var checkboxes = document.getElementsByName('check2');
+	// //  console.log($(checkboxes+':checked').length,$(checkboxes).length,'----',ele);
 	
-	 if($(checkboxes+':checked').length == $(checkboxes).length){
-	 console.log('inside')
-		$('.parent_chk_job').prop("checked",true);
-	 }
-	 else{
-		$('.parent_chk_job').prop("checked",false);
-		}
+	// //  if($(checkboxes+':checked').length == $(checkboxes).length){
+	// //  console.log('inside')
+	// // 	$('.parent_chk_job').prop("checked",true);
+	// //  }
+	// //  else{
+	// // 	$('.parent_chk_job').prop("checked",false);
+	// // 	}
 	 
 	
 	 
- }
- function showMe (box) {
-        
-	var chboxs = document.getElementsByName("schedule");
-	var visible_value = "none";
-	for(var i=0;i<chboxs.length;i++) { 
-		if(chboxs[i].checked){
-		 visible_value = "block";
-			break;
-		}
-	}
-	
-	document.getElementById(box).style.display = visible_value;
-	
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-	var yyyy = today.getFullYear();
-	
-	if(dd<10) {
-		dd='0'+dd
-	} 
+ // }
 
-	if(mm<10) {
-		mm='0'+mm
-	} 
+ function showMe (box) {        
+  	var chboxs = document.getElementsByName("schedule");
+  	var visible_value = "none";
+  	for(var i=0;i<chboxs.length;i++) { 
+  		if(chboxs[i].checked){
+  		 visible_value = "block";
+  			break;
+  		}
+  	}
+  	document.getElementById(box).style.display = visible_value;
+  	
+  	var today = new Date();
+  	var dd = today.getDate();
+  	var mm = today.getMonth()+1; //January is 0!
+  	var yyyy = today.getFullYear();
+  	
+  	if(dd<10) {
+  		dd='0'+dd
+  	} 
 
-	today = yyyy+'/'+mm+'/'+dd;
-	document.getElementById("schedule_date").value = today;
-	
+  	if(mm<10) {
+  		mm='0'+mm
+  	} 
+
+  	today = yyyy+'/'+mm+'/'+dd;
+  	document.getElementById("schedule_date").value = today;
 }
 
 function disable_edit() {
@@ -282,54 +247,55 @@ function editTestCase() {
   return false;
 }
 
-$(function () {
-    $("input[type='checkbox']").change(function () {
-        $(this).siblings('ul')
-            .find("input[type='checkbox']")
-            .prop('checked', this.checked);
-    });
-});
+// $(function () {
+//     $("input[type='checkbox']").change(function () {
+//         $(this).siblings('ul')
+//             .find("input[type='checkbox']")
+//             .prop('checked', this.checked);
+//     });
+// });
 
-/*parent child checkbox*/
-$(document).ready(
-    function() {
+// /*parent child checkbox*/
+// $(document).ready(
+//     function() {
 		 
-		  $(".parentCheckBox1").on("click", function(){
+// 		  $(".parentCheckBox1").on("click", function(){
 		
-				var chkval = $(this).attr("data-chk");
+// 				var chkval = $(this).attr("data-chk");
 				
-				$(".tab-pane").removeClass('active');
-				$('.chk'+ chkval).attr('checked', this.checked);
-				$('.view_chk'+ chkval).addClass('active');/**/
+// 				$(".tab-pane").removeClass('active');
+// 				$('.chk'+ chkval).attr('checked', this.checked);
+// 				$('.view_chk'+ chkval).addClass('active');/**/
 				
-            }
-        );
-        //clicking the last unchecked or checked checkbox should check or uncheck the parent checkbox
-        $('.childCheckBox').click(
-            function() {
-                if ($(this).parents('label:eq(0)').find('.parentCheckBox').attr('checked') == true && this.checked == false)
-                    $(this).parents('label:eq(0)').find('.parentCheckBox').attr('checked', false);
-                if (this.checked == true) {
-                    var flag = true;
-                    $(this).parents('label:eq(0)').find('.childCheckBox').each(
-	                    function() {
-	                        if (this.checked == false)
-	                            flag = false;
-	                    }
-                    );
-                    $(this).parents('label:eq(0)').find('.parentCheckBox').attr('checked', flag);
-                }
-            }
-        );
+//             }
+//         );
+//         //clicking the last unchecked or checked checkbox should check or uncheck the parent checkbox
+//         $('.childCheckBox').click(
+//             function() {
+//                 if ($(this).parents('label:eq(0)').find('.parentCheckBox').attr('checked') == true && this.checked == false)
+//                     $(this).parents('label:eq(0)').find('.parentCheckBox').attr('checked', false);
+//                 if (this.checked == true) {
+//                     var flag = true;
+//                     $(this).parents('label:eq(0)').find('.childCheckBox').each(
+// 	                    function() {
+// 	                        if (this.checked == false)
+// 	                            flag = false;
+// 	                    }
+//                     );
+//                     $(this).parents('label:eq(0)').find('.parentCheckBox').attr('checked', flag);
+//                 }
+//             }
+//         );
 		
-		$('.nav-tabs a').click(function(){
+// 		$('.nav-tabs a').click(function(){
 
-		$('.nav-tabs a').parent().removeClass('selectCheckbox');
-		$(this).parent().addClass('selectCheckbox');
-	});
+// 		$('.nav-tabs a').parent().removeClass('selectCheckbox');
+// 		$(this).parent().addClass('selectCheckbox');
+// 	});
 		
-    }
-);
+//     }
+// );
+
 function parentClick(e){		
 	$(".tab-pane").removeClass('active');
 	var j = $(e.target).attr("data-chk");
@@ -348,45 +314,22 @@ function navClick(e){
   $(e.target).parent().addClass('selectCheckbox');
 }
 
-var tabsFn = (function() {
-  function init() {
-    //setHeight();
-  }
+// var tabsFn = (function() {
+//   function init() {
+//     //setHeight();
+//   }
   
-  function setHeight() {
-    var $tabPane = $('.tab-pane'),
-        tabsHeight = $('.nav-tabs').height();
+//   function setHeight() {
+//     var $tabPane = $('.tab-pane'),
+//         tabsHeight = $('.nav-tabs').height();
     
-    $tabPane.css({
-      height: tabsHeight
-    });
-  }
+//     $tabPane.css({
+//       height: tabsHeight
+//     });
+//   }
     
-  $(init);
-})();
-
-
-
-
-/* Define two custom functions (asc and desc) for string sorting */
-
-$(document).ready(function() {
-	var table = $('#example').DataTable( {
-	"order": [[ 6, "desc" ]],
-	"columnDefs": [ {
-	"orderable": false, "targets": [0,1,10,11],
-		//"orderData": [5,4], "targets": [4]
-    } ],
-	
-	responsive: true,
-	"searching": false,
-	"bLengthChange": false,
-	"scrollY": "200px",
-	"scrollCollapse": true,
-	paging: false
-	} );
-	new $.fn.dataTable.FixedHeader( table );
-} );
+//   $(init);
+// })();
 
 /*datetime*/
 	$(function() {

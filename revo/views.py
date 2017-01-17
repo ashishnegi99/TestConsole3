@@ -397,7 +397,7 @@ def GetSerialNum(request):
 def createJsonFile(fileName):
     f = open(fileName, 'r')
     jsonfile = open('app/templates/app/JobStatusFile.json', 'w')
-    reader = csv.DictReader(f, fieldnames=("Job No","Suite Name", "Build No", "Result", "StartTime", "EndTime", "Duration"))
+    reader = csv.DictReader(f, fieldnames=("jobNum","suiteName", "buildNum", "result", "startTime", "endTime", "duration"))
     out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in reader]) + "\n]"
     jsonfile.write(out)
 
@@ -408,7 +408,7 @@ def getJobStatus(request):
     logger.debug("Start")
     j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
     
-    job_status_keys = ["Job No", "Suite Name", "Build No", "Result", "StartTime", "EndTime", "Duration", "UserName"]
+    job_status_keys = ["jobNum","suiteName", "buildNum", "result", "startTime", "endTime", "duration", "userName"]
     job_status_json_file = open('app/templates/app/JobStatusFile.json', 'w')
     job_status_json_file.write("[\n\t")
     first_entry = True
@@ -511,17 +511,16 @@ def stop_job_impl(jnkns_srvr, my_job, my_build):
     except jenkins.NotFoundException:
         logger.error("NotFoundException + " + str(my_build))
 
-
-def stopJob(request):    
+@csrf_exempt
+def stopJob(request):
     assert isinstance(request, HttpRequest)
-    jnkns_srvr = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
-    stop_job_impl(jnkns_srvr, request.GET['job'], int(request.GET['build']))
+    params = json.loads(request.body)
     
-    return render(
-        request,
-        "app/JobStatusFile.json",
-        RequestContext(request,{ })
-    )
+    jnkns_srvr = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
+    if(params['job'] and params['build']):
+        stop_job_impl(jnkns_srvr, params['job'], int(params['build']))
+    
+    return HttpResponse(json.dumps({"done" : True }), content_type='application/json')
 
 
 def StopMultipleJobs(request):

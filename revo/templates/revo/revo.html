@@ -23,7 +23,7 @@
     <script src="{% static 'app/scripts/external/react-dom.js' %}"></script>
     <script src="{% static 'app/scripts/external/JSXTransformer.js' %}"></script>
     <script src="{% static 'revo/scripts/revo.jsx' %}" type="text/jsx"></script>
-
+    <script src="{% static 'revo/scripts/job_status.jsx' %}" type="text/jsx"></script>
 {% endblock %}
 
 {% block body %} 
@@ -90,38 +90,16 @@
 		</div>
 	</form>
 
+
 	<form action="{% url 'StopMultipleJobs' %}" method="post">
-        {% csrf_token %}	
-		<div class="row">
+        {% csrf_token %}
+
+        <div class="row">
             <div class="col-md-12 divsub">
-				<div class="quote-box scroller-text scroller">
-					<table id="example" class="display nowrap" width="100%" cellspacing="0">
-						<thead>
-							<tr>
-							<th style='padding:14px; width:20px; text-align:center'></th>
-								
-								<th class="job-status_checkbox">						
-									&nbsp;<input type="checkbox" onchange="checkAll(this)" name="chk[]" class="parent_chk_job" id="parent_chk_job" />
-								</th>
-								<th class="job-status_heading"> &nbsp; STB</th>
-								<th class="job-status_heading">SUITE NAME</th>
-								<th class="job-status_heading">BUILD#</th>
-								<th class="job-status_heading">RESULT</th>
-								<th class="job-status_heading">JOB START TIME</th>
-								<th class="job-status_heading">JOB END TIME</th>
-								<th class="job-status_heading">DURATION</th>
-								<th class="job-status_heading">TESTER</th>
-								<th class="job-status_heading">STOP JOB</th>
-								<th class="job-status_heading">
-									OUTPUT &nbsp; &nbsp;<i class="fa fa-refresh" aria-hidden="true" style="cursor: pointer" onclick="stbststus1()"></i>
-								</th>
-							</tr>
-						</thead>
-						<tbody id="testdataid"/>
-					</table>
-			    </div>
-		    </div>
-		</div>
+                <div class="quote-box scroller-text scroller" id="job-status-table"></div>
+            </div>
+        </div>
+
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-4 divsub"></div>
@@ -135,6 +113,9 @@
         config.stbStatusUrl = "{% url 'Set_Top_Box' %}";
         config.revo_run = "{% url 'revo_run' %}";
         config.revo = "{% url 'revo' %}";
+        config.jobStatusUrl = "{% url 'JobStatus' %}";
+        config.buildConsole = "{% url 'consolelink' %}";
+        config.stopJob = "{% url 'stopJob' %}";
         window.config = config;
 
         window.runRevoJson = {}
