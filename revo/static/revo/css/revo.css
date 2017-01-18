@@ -1,10 +1,7 @@
 .scrollingBody{
     position:absolute;
     overflow:auto;
-	
-    /*height:350px;*/
-	height: 400px;
-	
+	  height: 400px;	
     width:93%;
 }
 .progress.active .progress-bar {
@@ -475,4 +472,9 @@ thead .table-head {
    pointer-events: none;
    cursor: default;
    color: grey;
+}
+
+.filter-icon {
+  color: #337ab7;
+  padding: 3px;
 }

@@ -45,7 +45,7 @@ class JRow extends React.Component {
     return (
       <tr>
           <td className={tdClass}>
-            <input disabled={status} type="checkbox" name="stbs" checked={ this.props.value.checked } onChange={() => this.props.onChange(this.props.key) }/> 
+            <input disabled={status} type="checkbox" name="stbs" checked={ this.props.value.checked } onChange={() => this.props.onChange(this.props.index) }/> 
           </td>
           <td style={this.props.fields["jobNum"]['style']}>
             <span> {this.props.value["jobNum"]} </span>
@@ -74,41 +74,49 @@ class JTable extends React.Component {
 
     const fields = {
       "jobNum"    : { "sorting" : 'none',
+                      "filterText" : "",
                       "style" : {
                         width : '80px'
                       }
                     },
       "suiteName" : { "sorting" : 'none',
+                      "filterText" : "",
                       "style" : {
                         width : '120px'
                       }
                     },
       "buildNum"  : { "sorting" : 'none',
+                      "filterText" : "",
                       "style" : {
                         width : '80px'
                       }
                     }, 
       "result"    : { "sorting" : 'none',
+                      "filterText" : "",
                       "style" : {
                         width : '80px'
                       }
                     },
       "startTime" : { "sorting" : 'none',
+                      "filterText" : "",
                       "style" : {
                         width : '140px'
                       }
                     }, 
       "endTime"   : { "sorting" : 'none',
+                      "filterText" : "",
                       "style" : {
                         width : '140px'
                       }
                     },
       "duration"  : { "sorting" : 'none',
+                      "filterText" : "",
                       "style" : {
                         width : '90px'
                       }
                     }, 
       "userName"  : { "sorting" : 'none',
+                      "filterText" : "",
                       "style" : {
                         width : '90px'
                       }
@@ -116,6 +124,7 @@ class JTable extends React.Component {
     };
 
     this.state = {
+      initialRows: [],
       rows: [],
       fetching: true,
       fields: fields
@@ -135,18 +144,20 @@ class JTable extends React.Component {
       for (var i=0; i < res.data.length; i++) {
         res.data[i]['checked'] = false;
       }
-      const rows = res.data;
+      const rows = res.data.slice();
 
       this.setState({
+        initialRows: rows,
         rows: rows,
         fetching: false,
+        showFilter: false
       });
     });
   }
 
   onChange(i) {
-    const newData = update(this.state.rows, {
-                    i : { 'checked' : {$set: !this.state.rows[i]['checked']}}
+    const newData = React.addons.update(this.state.rows, {
+                    [i] : { 'checked' : {$set: !this.state.rows[i]['checked']}}
                   });
     this.setState({
       rows: newData
@@ -155,26 +166,27 @@ class JTable extends React.Component {
 
   renderRow(i) {
     return (      
-        <JRow key={i} value={ this.state.rows[i]} onChange={(i) => this.onChange(i) }  fields={this.state.fields } />
+        <JRow key={i} value={ this.state.rows[i]} onChange={(i) => this.onChange(i) }  fields={this.state.fields} index={i}/>
     );
   }
 
-  checkAll() {
-    var rows = this.state.rows;
+  checkAll(e) {
+    var rows = this.state.rows.slice();
+
     for (var i=0; i < rows.length; i++) {
       if(rows[i].result == "IN PROGRESS" || rows[i].result == "IN QUEUE") {
-        rows[i]['checked'] = !rows[i]['checked'];
+        rows[i]['checked'] = e.target.checked;
       }
     }
-    const newData = rows;
     this.setState( {
-      rows : newData
+      rows : rows
     })
   }
 
   sortData(type, field) {
-    var rows = this.state.rows;
+    var rows = this.state.rows.slice();
     var fields = this.state.fields;
+
     var asc = true;
     if(fields[field]['sorting'] === 'asc') {
       asc = false; 
@@ -200,12 +212,52 @@ class JTable extends React.Component {
       }
     });
 
-    const newData = rows;
     this.setState( {
-      rows : newData,
+      rows : rows,
       fields: fields
     }) 
   }
+
+  handleFilter(evt) {
+    if(this._timeout){
+        clearTimeout(this._timeout);
+    }
+    const val = evt.target.value;
+    const field = evt.target.name;
+
+    this._timeout = setTimeout( ()=>{
+       this._timeout = null;
+       this.filterObjets(field, val);
+    },500);
+  }
+
+  filterObjets(field, val) {
+    const newField = React.addons.update(this.state.fields, { [field] :  { "filterText" : { $set: val }}});
+    var newData = this.state.initialRows.slice();
+
+    newData = newData.filter(function(value) {
+      
+      if( (value['jobNum'].toLowerCase().indexOf(newField['jobNum']['filterText'].toLowerCase()) != -1)
+          && (value['suiteName'].toLowerCase().indexOf(newField['suiteName']['filterText'].toLowerCase()) != -1)
+          && (value['buildNum'].toLowerCase().indexOf(newField['buildNum']['filterText'].toLowerCase()) != -1)
+          && (value['userName'].toLowerCase().indexOf(newField['userName']['filterText'].toLowerCase()) != -1 )) {
+            return true;
+      } else {
+        return false;
+      }
+    });
+
+    this.setState( {
+      rows : newData,
+      fields: newField
+    });     
+  }
+
+  toggleFilter() {
+    this.setState( {
+      showFilter : !this.state.showFilter,
+    });
+  } 
 
   render() {
     var rows = [];
@@ -218,12 +270,17 @@ class JTable extends React.Component {
       classVal = "fa fa-refresh fa-spin";
     }
     
+    var filterCell = "hidden";
+    if(this.state.showFilter) {
+      filterCell = "";
+    };
+
     return (
       <table className="react-table table table-striped">
         <thead>
           <tr>
               <th className="quotation-mark fixed-width">
-                <input type="checkbox" name="chk[]" className="parent_chk_job" id="parent_chk_job" onChange={ this.checkAll.bind(this) }/>
+              <input type="checkbox" name="chk[]" className="parent_chk_job" id="parent_chk_job" onChange={ this.checkAll.bind(this) }/>
               </th>
               <th className="quotation-mark" style={this.state.fields["jobNum"]['style']}>
                 <i className="fa fa-sort" aria-hidden="true" onClick={() => this.sortData('String','jobNum')}></i>
@@ -249,6 +306,30 @@ class JTable extends React.Component {
               </th>
               <th className="quotation-mark" style={{ 'width' : '80px' }}>STOP</th>
               <th className="quotation-mark" style={{ 'width' : '70px' }}>OUTPUT</th>
+              <th className="quotation-mark" style={{ 'width' : '10px' }}>
+                <i className="fa fa-filter filter-icon" aria-hidden="true" onClick={this.toggleFilter.bind(this)}></i>
+              </th>
+          </tr>
+          <tr className={ filterCell }>
+              <th className="quotation-mark fixed-width"></th>
+              <th className="quotation-mark" style={this.state.fields["jobNum"]['style']}>
+                <input type="text" style={{ 'width' : '80%'}} name="jobNum" onChange={this.handleFilter.bind(this)}/>
+              </th>
+              <th className="quotation-mark " style={this.state.fields["suiteName"]['style']}>
+                <input type="text" style={{ 'width' : '80%'}} name="suiteName" onChange={this.handleFilter.bind(this)}/>
+              </th>
+              <th className="quotation-mark" style={this.state.fields["buildNum"]['style']}>
+                <input type="text" style={{ 'width' : '80%'}} name="buildNum" onChange={this.handleFilter.bind(this)} />
+              </th>
+              <th className="quotation-mark" style={this.state.fields["result"]['style']}></th>
+              <th className="quotation-mark" style={this.state.fields["startTime"]['style']}></th>
+              <th className="quotation-mark" style={this.state.fields["endTime"]['style']}></th>
+              <th className="quotation-mark" style={this.state.fields["duration"]['style']}></th>
+              <th className="quotation-mark" style={this.state.fields["userName"]['style']}>
+                  <input type="text" style={{ 'width' : '80%'}} name="userName" onChange={this.handleFilter.bind(this)} />
+              </th>
+              <th className="quotation-mark" style={{ 'width' : '80px' }}></th>
+              <th className="quotation-mark" style={{ 'width' : '70px' }}></th>
           </tr>
         </thead>
         <tbody>
