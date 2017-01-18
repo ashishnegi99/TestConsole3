@@ -28,7 +28,7 @@
 
 {% block body %} 
     
-        <form action="{% url 'revo_run' %}" method="post">
+        <form id="run-job" action="{% url 'revo_run' %}" method="post">
 		<div class="row">
             {% csrf_token %}
 
@@ -103,7 +103,9 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="col-md-4 divsub"></div>
-				<div class="col-md-4 text-center"><input type="image" name="submit" img="" src="/static/app/images/Stop.png" alt="Submit"></div>
+				<div class="col-md-4 text-center">
+                    <input type="image" name="submit" img src="{% static 'app/images/Stop.png' %}" alt="Submit">
+                </div>
 				<div class="col-md-4 divsub"></div>
 			</div>
 		</div>

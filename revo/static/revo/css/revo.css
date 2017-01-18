@@ -453,7 +453,7 @@ thead .table-head {
 }
 
 .react-table>tbody {
-    height: 180px;
+    max-height: 250px;
     overflow-y: auto;
 }
 

@@ -437,7 +437,7 @@ $.fn.serializeObject = function() {
     };
 
 $(function() {
-  $('form').submit(function() {
+  $('#run-job').submit(function() {
     event.preventDefault();
     $('form').serializeObject();
 

@@ -20,10 +20,6 @@ urlpatterns = [
     url(r"^JobStatus", views.getJobStatus, name="JobStatus"),
 # StopStatus's
     url(r"^stopJob", views.stopJob, name="stopJob"),
-# Json's
-    url(r"^Json", views.Json, name="Json"),
-# Json2's
-    url(r"^Json2", views.Json2, name="Json2"),
 
 # Test Suite and Cases
     url(r"^test-suite-cases", views.test_suite_cases, name="test_suite_with_cases"),

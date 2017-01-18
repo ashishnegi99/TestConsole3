@@ -4,8 +4,10 @@ class JRow extends React.Component {
   }
 
   stopJob(value) {
+    var that = this;
     axios.post(window.config.stopJob, { job: value.jobNum, build: value.buildNum })
     .then(function(response) {
+      that.props.handleRefresh();
     });
   }
 
@@ -42,10 +44,11 @@ class JRow extends React.Component {
       tdClass += " half_opaque";
     }
 
+    var form_val = this.props.value.jobNum + "," + this.props.value.buildNum;
     return (
       <tr>
           <td className={tdClass}>
-            <input disabled={status} type="checkbox" name="stbs" checked={ this.props.value.checked } onChange={() => this.props.onChange(this.props.index) }/> 
+            <input disabled={status} type="checkbox" value={form_val} name="builds" checked={ this.props.value.checked } onChange={() => this.props.onChange(this.props.index) }/> 
           </td>
           <td style={this.props.fields["jobNum"]['style']}>
             <span> {this.props.value["jobNum"]} </span>
@@ -71,8 +74,16 @@ class JRow extends React.Component {
 class JTable extends React.Component {
   constructor() {
     super();
+    this.state = {
+      initialRows: [],
+      rows: [],
+      fetching: true,
+      fields: this.getField()
+    };
+  }
 
-    const fields = {
+  getField() {
+    return {
       "jobNum"    : { "sorting" : 'none',
                       "filterText" : "",
                       "style" : {
@@ -122,23 +133,20 @@ class JTable extends React.Component {
                       }
                     }
     };
-
-    this.state = {
-      initialRows: [],
-      rows: [],
-      fetching: true,
-      fields: fields
-    }
-
   }
 
   componentDidMount() {
-    this.handleRefresh();  
+    this.handleRefresh();
   }
   
   handleRefresh() {
-    this.setState({ fetching: true });
-    
+    this.setState ({
+      initialRows: [],
+      rows: [],
+      fetching: true,
+      fields: this.getField()
+    });
+
     axios.get(window.config.jobStatusUrl)
     .then( res => {
       for (var i=0; i < res.data.length; i++) {
@@ -166,7 +174,7 @@ class JTable extends React.Component {
 
   renderRow(i) {
     return (      
-        <JRow key={i} value={ this.state.rows[i]} onChange={(i) => this.onChange(i) }  fields={this.state.fields} index={i}/>
+        <JRow key={i} value={ this.state.rows[i]} onChange={(i) => this.onChange(i) }  fields={this.state.fields} index={i} handleRefresh={ this.handleRefresh.bind(this)}/>
     );
   }
 
@@ -285,7 +293,7 @@ class JTable extends React.Component {
               <th className="quotation-mark" style={this.state.fields["jobNum"]['style']}>
                 <i className="fa fa-sort" aria-hidden="true" onClick={() => this.sortData('String','jobNum')}></i>
                   STB &nbsp;
-                <i className={ classVal}  aria-hidden="true"></i>
+                <i className={ classVal}  aria-hidden="true" onClick={this.handleRefresh.bind(this)} ></i>
               </th>
               <th className="quotation-mark " style={this.state.fields["suiteName"]['style']}>SUITE NAME
                   <i className="fa fa-sort" aria-hidden="true" onClick={() => this.sortData('String','suiteName')}></i>

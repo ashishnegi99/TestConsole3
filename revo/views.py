@@ -526,7 +526,7 @@ def stopJob(request):
 def StopMultipleJobs(request):
     assert isinstance(request, HttpRequest)
 
-    my_stb = request.POST.getlist('check2')
+    my_stb = request.POST.getlist('builds')
     logger.debug("my_stb: " + str(my_stb))
     loop_counter = len(my_stb) - 1
     jnkns_srvr = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
@@ -539,28 +539,6 @@ def StopMultipleJobs(request):
         loop_counter -= 1
 
     return HttpResponseRedirect("/revo")
-
-
-def Json(request):
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        "app/temp1.json",
-        RequestContext(request, {
-        })
-    )
-
-def Json2(request):
-    getJobStatus(request)
-    time.sleep(6)
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        "app/JobStatusFile.json",
-        RequestContext(request,
-        {
-        })
-    )
 
 @login_required
 def test_suites_add_view(request):
