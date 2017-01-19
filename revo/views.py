@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpRequest, HttpResponseRedirect, HttpResponse
 from django.template import RequestContext
 from django.db.models import Sum, Avg, Count
@@ -144,7 +143,6 @@ def revo_view(request):
 ########################
 ## End: Revo Views  ##
 ########################
-@csrf_exempt
 def run_job(request):
     post_data = json.loads(request.body)
     
@@ -511,7 +509,6 @@ def stop_job_impl(jnkns_srvr, my_job, my_build):
     except jenkins.NotFoundException:
         logger.error("NotFoundException + " + str(my_build))
 
-@csrf_exempt
 def stopJob(request):
     assert isinstance(request, HttpRequest)
     params = json.loads(request.body)

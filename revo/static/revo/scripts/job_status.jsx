@@ -5,7 +5,11 @@ class JRow extends React.Component {
 
   stopJob(value) {
     var that = this;
-    axios.post(window.config.stopJob, { job: value.jobNum, build: value.buildNum })
+    var config = {
+      headers: {"X-CSRFToken": window.getCookie('csrftoken') }
+    };
+
+    axios.post(window.config.stopJob, { job: value.jobNum, build: value.buildNum }, config)
     .then(function(response) {
       that.props.handleRefresh();
     });

@@ -50,24 +50,9 @@
 
 $(function() {
 
-  //Utility Functionality added to Array
-  Array.prototype.contains = function(element){
-    return this.indexOf(element) > -1;
-  };
-
-  Array.prototype.remove = function(elem, all) {
-    for (var i=this.length-1; i>=0; i--) {
-      if (this[i] === elem) {
-          this.splice(i, 1);
-          if(!all)
-            break;
-      }
-    }
-    return this;
-  };
-
-  //stbststus1();
+  
   populateTestSuite();
+  runJobForm();
   
   // var count=1;
   // $(".scrollingHead").find('tr>th').each(function( event ) {        
@@ -77,6 +62,38 @@ $(function() {
   //   count++;
   // });
 });
+
+//Utility Functionality added to Array
+Array.prototype.contains = function(element){
+  return this.indexOf(element) > -1;
+};
+
+Array.prototype.remove = function(elem, all) {
+  for (var i=this.length-1; i>=0; i--) {
+    if (this[i] === elem) {
+        this.splice(i, 1);
+        if(!all)
+          break;
+    }
+  }
+  return this;
+};
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 
 // function checkStatus($event) { 
 //   if ($event.value && $event.checked == true) {
@@ -388,55 +405,55 @@ $.fn.serializeObject = function() {
     runRevoJson['suites']=[];
     
     var count=0;
-      var o = {};
-      var a = this.serializeArray();
-      var scheduled = [];
-      var suite = [];
-      var casesarry = [];
-      var date='';
-      
-      $.each(a, function(key,values) {
-        if(values.name=='schedule'){
-          scheduled = values.value;
-        }
-        if(values.name=='date'){
-          date=values.value;
-        }        
-        if(values.name=='time'){
-          runRevoJson['time'] = date+' '+values.value;
-        }
-        if(values.name=='stbs'){        
-          var x=values.value;
-          suite.push(x);
-        }
-        if(values.name=='cases'){
-          casesarry.push(values.value);
-        }         
-        if(values.name=='suites'){
-          runRevoJson['suites'].push({'name':values.value,'cases':null});
-          count++;
-        }
-      });
-      runRevoJson['stbs'] = suite;
-      
-      var all=0, count=0;
-      $('.parentCheckBox:checked').each(function(){
-        var len=$(this).attr('data-len');
-        var arrycases=[];
-        len=parseInt(len)+ parseInt(all);
-        
-        for(var i=all; i<len; i++) {
-          arrycases.push(casesarry[i]);
-        }
-        all=parseInt(arrycases.length)+parseInt(all);
-        runRevoJson['suites'][count].cases=arrycases;
+    var o = {};
+    var a = this.serializeArray();
+    var scheduled = [];
+    var suite = [];
+    var casesarry = [];
+    var date='';
+    
+    $.each(a, function(key,values) {
+      if(values.name=='schedule'){
+        scheduled = values.value;
+      }
+      if(values.name=='date'){
+        date=values.value;
+      }        
+      if(values.name=='time'){
+        runRevoJson['time'] = date+' '+values.value;
+      }
+      if(values.name=='stbs'){        
+        var x=values.value;
+        suite.push(x);
+      }
+      if(values.name=='cases'){
+        casesarry.push(values.value);
+      }         
+      if(values.name=='suites'){
+        runRevoJson['suites'].push({'name':values.value,'cases':null});
         count++;
-      });
+      }
+    });
+    runRevoJson['stbs'] = suite;
+    
+    var all=0, count=0;
+    $('.parentCheckBox:checked').each(function(){
+      var len=$(this).attr('data-len');
+      var arrycases=[];
+      len=parseInt(len)+ parseInt(all);
+      
+      for(var i=all; i<len; i++) {
+        arrycases.push(casesarry[i]);
+      }
+      all=parseInt(arrycases.length)+parseInt(all);
+      runRevoJson['suites'][count].cases=arrycases;
+      count++;
+    });
 
-      window.runRevoJson = runRevoJson;
-    };
+    window.runRevoJson = runRevoJson;
+}
 
-$(function() {
+function runJobForm() {
   $('#run-job').submit(function() {
     event.preventDefault();
     $('form').serializeObject();
@@ -445,6 +462,7 @@ $(function() {
       type: "POST",
       url: window.config.revo_run,
       data: JSON.stringify(window.runRevoJson),
+      headers: { "X-CSRFToken":  getCookie('csrftoken') },
       success: function(response) {
       },
       dataType: "json",
@@ -453,4 +471,4 @@ $(function() {
     window.location.href = window.config.revo;
     return false;
   });
-});
+}
