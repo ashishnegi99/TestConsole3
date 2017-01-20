@@ -1,0 +1,25 @@
+{% extends "revo/element_list.html" %}
+{% load staticfiles%}
+{% load widget_tweaks %}
+
+{% block form_title %} Test Suites {% endblock %}
+{% block delete_url %} {% url 'test_suite_delete' %} {% endblock %}
+
+{% block form_elem %} 
+    <tr>
+        <th>Select</th>
+        <th>Name</th>
+        <th>Total Cases</th>
+    </tr>
+    {% for suite in test_suites %}
+        <tr>
+            <td>
+                <input type='checkbox' name='suite' value='{{ suite.id }}' id="{{ suite.name }}" data-edit= '{% url "test_suite_edit" suite.id %}' onchange="disable_edit_test('Edit_Button', '.list_table tr td')" /> 
+            </td>
+            <td> {{ suite.name }} </td>
+            <td> {{ suite.cases.all.count }} </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block add_url %} {% url 'test_suite_new' %} {% endblock %}

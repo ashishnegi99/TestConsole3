@@ -19,6 +19,7 @@ class Config(models.Model):
 
 class TestCase(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    mapping_name = models.CharField(max_length=255)
 
     def get_absolute_url(self):
         return reverse_lazy('test_case_list')
@@ -30,6 +31,13 @@ class TestCase(models.Model):
 class TestSuite(models.Model):
     name = models.CharField(max_length=255)
     cases = models.ManyToManyField(TestCase, related_name="testsuites")
+
+    def get_absolute_url(self):
+        return reverse_lazy('test_suite_list')
+
+    def __unicode__(self):
+        return self.name
+
 
 
 class device(models.Model):

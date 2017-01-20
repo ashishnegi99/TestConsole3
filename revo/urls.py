@@ -20,17 +20,20 @@ urlpatterns = [
     url(r"^JobStatus", views.getJobStatus, name="JobStatus"),
 # StopStatus's
     url(r"^stopJob", views.stopJob, name="stopJob"),
+# SetTopBox 
+    url(r"^Set_Top_Box", views.GetSerialNum, name="Set_Top_Box"),
 
 # Test Suite and Cases
     url(r"^test-suite-cases", views.test_suite_cases, name="test_suite_with_cases"),
-# SetTopBox 
-    url(r"^Set_Top_Box", views.GetSerialNum, name="Set_Top_Box"),
-    
+
 # testsuite
-    url(r"^test_suites/list_view", views.test_suites_list, name="test_suite_list"),
+    url(r"^test_suites/$", views.TestSuiteList.as_view(), name="test_suite_list"),
+    url(r'^test-suite/new$', views.TestSuiteCreate.as_view(), name='test_suite_new'),
+    url(r'^test-suite/edit/(?P<pk>\d+)/$', views.TestSuiteUpdate.as_view(), name='test_suite_edit'),
     url(r"^test_suite/add_view", views.test_suites_add_view, name="test_suites_add_view"),
-    url(r"^testsuite/new", views.add_test_suite, name="test_suite_new"),
-    url(r"^testsuite/delete", views.delete_test_suite, name="test_suite_delete"),
+    #url(r"^testsuite/new", views.add_test_suite, name="test_suite_new"),
+    url(r"^test-suite/delete", views.delete_test_suite, name="test_suite_delete"),
+
 # device
     url(r"^devices", views.DeviceList.as_view(), name="device_list"),
     url(r"^device/new$", views.DeviceCreate.as_view(), name="device_new"),
@@ -42,7 +45,6 @@ urlpatterns = [
     url(r"^config/new$", views.ConfigCreate.as_view(), name="config_new"),
     url(r"^config/delete", views.delete_config, name="config_delete"),
     url(r'^config/edit/(?P<pk>\d+)/$', views.ConfigUpdate.as_view(), name='config_edit'),
-
     
 # TestCase
     url(r'^test-case/$', views.TestCaseList.as_view(), name='test_case_list'),
