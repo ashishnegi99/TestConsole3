@@ -2,7 +2,13 @@
 {% load staticfiles%}
 
 {% load widget_tweaks %}
-{% block form_title %} Test Suite {% endblock %}
+{% block form_title %}
+    {% if object %}
+        Edit Test Suite 
+    {% else %}
+        Add Test Suite
+    {% endif %}
+{% endblock %}
 
 {% block head %} 
     <script src="{% static 'revo/scripts/revo.js' %}"></script>
