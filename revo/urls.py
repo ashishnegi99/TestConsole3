@@ -30,8 +30,6 @@ urlpatterns = [
     url(r"^test_suites/$", views.TestSuiteList.as_view(), name="test_suite_list"),
     url(r'^test-suite/new$', views.TestSuiteCreate.as_view(), name='test_suite_new'),
     url(r'^test-suite/edit/(?P<pk>\d+)/$', views.TestSuiteUpdate.as_view(), name='test_suite_edit'),
-    url(r"^test_suite/add_view", views.test_suites_add_view, name="test_suites_add_view"),
-    #url(r"^testsuite/new", views.add_test_suite, name="test_suite_new"),
     url(r"^test-suite/delete", views.delete_test_suite, name="test_suite_delete"),
 
 # device

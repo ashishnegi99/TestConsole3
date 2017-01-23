@@ -543,43 +543,6 @@ from django.core.urlresolvers import reverse
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-@login_required
-def test_suites_add_view(request):
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        "revo/test_suite_add.html",
-        RequestContext(request, {
-            
-        })
-    )
-
-# @login_required
-# def test_suites_list(request):
-#     assert isinstance(request, HttpRequest)
-#     suite = [ { "name": row.name} for row in TestSuite.objects.all()]
-#     return render(
-#         request,
-#         "revo/test_suite_list.html",
-#         RequestContext(request, {
-#             "suite" : suite,
-#         })
-#     )
-
-
-# def add_test_suite(request) :
-#     assert isinstance(request, HttpRequest)
-#     names = request.POST.getlist('names')
-#     mappings = request.POST.getlist('mappings')
-
-#     for index in range(0, len(names)):
-#         if str(names[index]) and str(mappings[index]):
-#             test_suite = TestSuite(name = str(names[index]))
-#             test_suite.save()
-#             # print "ADDED TEST SUITE name: " + str(names[index]) + "  mapping_name: " + str(mappings[index])
-
-#     return HttpResponseRedirect("/revo/test_suites/list_view")
-
 class TestSuiteCreate(CreateView):
     model = TestSuite
     fields = '__all__'
