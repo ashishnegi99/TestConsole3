@@ -73,7 +73,8 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<div class="quote-box runquote" style="text-align:center">
-						<input type="checkbox" name="schedule" onclick="showMe('div1')"> enable test scheduling
+							
+						<input type="checkbox" name="schedule" id="enable_schedule" onclick="showMe('div1')" value="true"> enable test scheduling
 						<div id="div1" class="hideme">
 							<span id="schedule_timestamp">
 								<input type="text" id="schedule_date" name="date" class="form-control" placeholder="yy/mm/dd">
@@ -89,7 +90,7 @@
 			</div>
 		</div>
 	</form>
-
+<div id="result"></div>
 
 	<form action="{% url 'StopMultipleJobs' %}" method="post">
         {% csrf_token %}

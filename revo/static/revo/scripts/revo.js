@@ -399,7 +399,7 @@ function populateTestSuite() {
 
 $.fn.serializeObject = function() {
     var runRevoJson = {};
-    runRevoJson['scheduled']= false;
+    runRevoJson['schedule']= '';
     runRevoJson['time']='';
     runRevoJson['stbs']=[];
     runRevoJson['suites']=[];
@@ -407,17 +407,20 @@ $.fn.serializeObject = function() {
     var count=0;
     var o = {};
     var a = this.serializeArray();
-    var scheduled = [];
+    var schedule = [];
     var suite = [];
     var casesarry = [];
     var date='';
     
     $.each(a, function(key,values) {
-      if(values.name=='schedule'){
-        scheduled = values.value;
-      }
+	  
+	  if(values.name=='schedule'){
+	   runRevoJson['schedule'] = values.value;
+	  }
+	
       if(values.name=='date'){
-        date=values.value;
+       
+		date=values.value;
       }        
       if(values.name=='time'){
         runRevoJson['time'] = date+' '+values.value;
@@ -449,7 +452,15 @@ $.fn.serializeObject = function() {
       runRevoJson['suites'][count].cases=arrycases;
       count++;
     });
+	$('#result').text(JSON.stringify(runRevoJson));
+	
 
+			$(function() {
+				$('form').submit(function() {
+					$('#result').text(JSON.stringify($('form').serializeObject()));
+					return false;
+				});
+			});
     window.runRevoJson = runRevoJson;
 }
 
@@ -472,3 +483,72 @@ function runJobForm() {
     return false;
   });
 }
+ (function () {
+                handleTestSuiteCases();
+				
+            }(jQuery));
+                            function handleTestSuiteCases() {
+						
+                    var allOpts = $('#lstBoxMain option');
+                    $('#lstBox1').append($(allOpts).clone());
+                    var selectedOpts = $('#lstBox1 option:selected');
+                    $('#lstBox2').append($(selectedOpts).clone());
+                    $(selectedOpts).remove();
+
+                    $('#btnRight').click(function (e) {
+                        var selectedOpts = $('#lstBox1 option:selected');
+                        if (selectedOpts.length == 0) {
+                            alert("Nothing to move.");
+                            e.preventDefault();
+                        }
+							
+                        $('#lstBox2').append($(selectedOpts).clone());
+                        $(selectedOpts).remove();
+
+                        selectedOpts.each(function(key,opt) {
+                            $('#lstBoxMain option[value="' + opt.value + '"]').prop('selected', true)
+                        });
+                        e.preventDefault();
+                    });
+					
+                    $('#btnAllRight').click(function (e) {
+                        var selectedOpts = $('#lstBox1 option');
+                        if (selectedOpts.length == 0) {
+                            alert("Nothing to move.");
+                            e.preventDefault();
+                        }
+                        $('#lstBox2').append($(selectedOpts).clone());
+                        $(selectedOpts).remove();
+                        selectedOpts.each(function(key,opt) {
+                            $('#lstBoxMain option[value="' + opt.value + '"]').prop('selected', true )
+                        });
+                        e.preventDefault();
+                    });
+                    $('#btnLeft').click(function (e) {
+                        var selectedOpts = $('#lstBox2 option:selected');
+                        if (selectedOpts.length == 0) {
+                            alert("Nothing to move.");
+                            e.preventDefault();
+                        }
+                        $('#lstBox1').append($(selectedOpts).clone());
+                        $(selectedOpts).remove();
+                        selectedOpts.each(function(key,opt) {
+                            $('#lstBoxMain option[value="' + opt.value + '"]').prop('selected', false)
+                        });
+                        e.preventDefault();
+                    });
+                    $('#btnAllLeft').click(function (e) {
+                        var selectedOpts = $('#lstBox2 option');
+                        if (selectedOpts.length == 0) {
+                            alert("Nothing to move.");
+                            e.preventDefault();
+                        }
+                        $('#lstBox1').append($(selectedOpts).clone());
+                        $(selectedOpts).remove();
+                        selectedOpts.each(function(key,opt) {
+                            $('#lstBoxMain option[value="' + opt.value + '"]').prop('selected', false)
+                        });
+                        e.preventDefault();
+                    });
+					
+                }

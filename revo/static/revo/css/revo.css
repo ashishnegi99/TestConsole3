@@ -478,3 +478,63 @@ thead .table-head {
   color: #337ab7;
   padding: 3px;
 }
+
+ /********** Test Suite Add/Edit ********/
+#id_cases {
+    display: none !important;
+}
+.subject-info-box-1,
+.subject-info-box-2 {
+	float: left;
+	width: 100%;
+	select{
+		height: 200px;
+		padding: 0;
+		option {
+			padding: 4px 10px 4px 10px;
+		}
+		option:hover {
+			background: #EEEEEE;
+		}
+	}
+}
+.subject-info-arrows {
+	float: left;
+	width: 100%;
+	input {
+		width: 70%;
+		margin-bottom: 5px;
+	}
+}
+select[multiple], select[size] {
+	height: 153px;
+	padding:10px;
+	overflow:auto;
+}
+.btn:not(.btn-link):not(.btn-circle) {
+	box-shadow: 0px !important;
+	border:0px;
+}
+.btn-default{
+	width: 30px;
+	padding: 5px;
+}
+p.device-title{
+	margin-top:15px;
+}
+
+.btn-All{
+background-color:#ea121b !important;
+border:0px;
+color: #fff;
+margin:1px;
+font-weight: bold;
+}
+
+.btn-All:hover, .btn-All:focus, .btn-All:active{
+background-color:#ea121b !important;
+box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+border:0px;
+color: #fff;
+margin:1px;
+}
