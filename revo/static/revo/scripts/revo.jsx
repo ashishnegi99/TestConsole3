@@ -4,9 +4,9 @@ class TableHeader extends React.Component {
     if(this.props.fetching) {
       classVal = "fa fa-refresh" + " fa-spin";
     }
-
+	
     return (
-      <thead className="table-head">
+      <thead className="table-head fixed_head resize_table">
         <tr>
           <th className="table-header job-status_heading" onClick={ () => this.props.onClick() }>
             STB &nbsp;
@@ -23,10 +23,13 @@ class TableHeader extends React.Component {
 
 class TableRow extends React.Component {
   render() {
-    var classVal = "fa fa-circle pull-right";
+    var classVal = "fa fa-circle";
     var tdClass = "";
     var st = parseInt(this.props.value.STBStatus, 10);
     var disabled = false;
+    var set_td = stb_table();
+    // var x=set_td[0];
+
 
     switch(st) {
       case 1:
@@ -41,24 +44,25 @@ class TableRow extends React.Component {
             disabled = true;
             break;
     }
-    return (
-      <tr key={i} className= "stb-row">
-        <td className={tdClass}>
+		return (
+      <tr className= "stb-row">
+        <td className={tdClass} width={set_td[0]}>
           <input disabled={disabled} type="checkbox" name="stbs" value={this.props.value.STBLabel} onChange={ (event) => this.props.onClick(this.props.value.STBLabel, event) }/> 
           <span> {this.props.value.STBLabel} </span>
         </td>
-        <td>
+        <td  width={set_td[1]}>
           <i className= {classVal} aria-hidden="true"></i>
         </td>
-        <td>
+        <td width={set_td[2]}>
           {this.props.value.UnitAdd}
         </td>
-        <td>
+        <td  width={set_td[3]}>
           {this.props.value.Env}
         </td>
       </tr>
     );
   }
+  
 }
 
 class Table extends React.Component {
@@ -110,11 +114,12 @@ class Table extends React.Component {
     return (
         <table id="example" className="table-class display nowrap dataTable collapsed">
           <TableHeader onClick={ () => this.handleRefresh() }  fetching= { this.state.fetching }/>
-          <tbody id="stb-body">
+          <tbody id="stb-body" className="stb_tbody resize_tbody">
             {rows}
           </tbody>
         </table>
     );
+	
   }
 }
 

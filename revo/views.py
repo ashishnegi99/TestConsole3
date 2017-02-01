@@ -145,9 +145,8 @@ def revo_view(request):
 ########################
 def run_job(request):
     post_data = json.loads(request.body)
-    
     #parsing data
-    scheduled = post_data['scheduled']
+    scheduled = True if (post_data['scheduled'] == 'true') else False
     stbs = post_data['stbs']
     test_suites = post_data['suites']
     test_suite_names = [ suite["name"] for suite in test_suites]
@@ -188,10 +187,8 @@ def run_job(request):
                                 + "%param1%" + " " + stb_name + " True " + config["report_loc"] + " " + config["run_path"] + " " 
                                 + config["json_path"] + " " + config["env_var"] + "\n" + config["build_path"] )
 
-                jnkns_app.create_job(stb_name, REVO_FOLDER_NAME, False, stb_details.host, jnknscommand, scheduled, test_suite["name"], user_name)
-
                 if scheduled: 
-                    scheduled_time = datetime.strptime(post_data['time'], "%Y-%m-%d %H:%M:%S")
+                    scheduled_time = datetime.strptime(post_data['time'], "%m/%d/%Y %H:%M %p")
                     time_diff = scheduled_time - datetime.now()
                     time_diff_in_sec = int(time_diff.total_seconds())
 
@@ -200,6 +197,8 @@ def run_job(request):
                         jobs_scheduled.append(jnkns_app.create_groovy_job(stb_name, time_diff_in_sec, param1=test_suite["name"], param2=user_name))
                         jstr = json.dumps(jobs_scheduled)
                         jnkns_app.schedule_job(jstr)
+                else:
+                    jnkns_app.create_job(stb_name, REVO_FOLDER_NAME, False, stb_details.host, jnknscommand, scheduled, test_suite["name"], user_name)
             else:
                 pass
 

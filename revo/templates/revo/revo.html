@@ -2,6 +2,7 @@
 {% load staticfiles%}
 
 {% block head %}
+
     <script src="{% static 'revo/scripts/revo.js' %}"></script>
     <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>
 	
@@ -12,13 +13,17 @@
 	<link rel="stylesheet" href="{% static 'revo/css/jquery.dataTables.min.css' %}"/>
 	<link rel="stylesheet" href="{% static 'revo/css/responsive.dataTables.min.css' %}"/>
 	<link rel="stylesheet" href="{% static 'revo/css/fixedHeader.dataTables.min.css' %}"/>
-
-    <script src="{% static 'app/scripts/jquery-ui.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'revo/css/bootstrap-datetimepicker.css' %}"/>
+	<script src="{% static 'revo/scripts/moment-with-locales.js' %}"></script>
+	<script src="{% static 'revo/scripts/bootstrap-datetimepicker.js' %}"></script>
+    
+	<!--<script src="{% static 'app/scripts/jquery-ui.js' %}"></script>
 	<link rel="stylesheet" type="text/css" href="{% static 'app/content/jquery-ui2.css' %}" />
 	<script src="{% static 'revo/scripts/jquery.ui.timepicker.js' %}"></script>
-	<link rel="stylesheet" href="{% static 'revo/css/jquery.ui.timepicker.css' %}"/>
-
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="{% static 'revo/css/jquery.ui.timepicker.css' %}"/>-->
+	<!--<script src="{% static 'app/scripts/jquery-ui.js' %}"></script>-->
+	
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{% static 'app/scripts/external/react-with-addons.js' %}"></script>
     <script src="{% static 'app/scripts/external/react-dom.js' %}"></script>
     <script src="{% static 'app/scripts/external/JSXTransformer.js' %}"></script>
@@ -68,29 +73,30 @@
 				</div>
 			</div>
 		</div>
+		<hr>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<div class="quote-box runquote" style="text-align:center">
-							
-						<input type="checkbox" name="schedule" id="enable_schedule" onclick="showMe('div1')" value="true"> enable test scheduling
-						<div id="div1" class="hideme">
-							<span id="schedule_timestamp">
-								<input type="text" id="schedule_date" name="date" class="form-control" placeholder="yy/mm/dd">
-								<input type="text" id="schedule_time" name="time" class="form-control" style="margin-top:5px" placeholder="hh:mm">
-							</span>
-						</div>
+				<div class="col-md-8">
+					<div class="schedule_txt">
+						<input type="checkbox" name="schedule" id="enable_schedule" onclick="showMe('div1')" value="true"> Enable Test Scheduling
 					</div>
-					<div class="quote-box runquote" style="text-align:center">
-                        <input type="image" name="submit" img src="{% static 'app/images/run.png' %}" alt="Submit" />
+					<div class="hideme" id="div1">
+						<div class="quote-box runquote" style="text-align:center">						
+							<div class="input-group form-control date_time">		
+								<input type="text" name="time" id="datetimepicker1" >
+							</div>		
+            			</div>
 					</div>
 				</div>
-				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="quote-box runquote run_button">
+							<input type="image" name="submit" img="" src="/static/app/images/run.png" alt="Submit">
+					</div>
+				</div>
 			</div>
 		</div>
 	</form>
-<div id="result"></div>
+
 
 	<form action="{% url 'StopMultipleJobs' %}" method="post">
         {% csrf_token %}
@@ -112,16 +118,17 @@
 		</div>
     </form>
 	<script>
+	
         var config = {};
         config.stbStatusUrl = "{% url 'Set_Top_Box' %}";
-        config.revo_run = "{% url 'revo_run' %}";
+		config.revo_run = "{% url 'revo_run' %}";
         config.revo = "{% url 'revo' %}";
         config.jobStatusUrl = "{% url 'JobStatus' %}";
         config.buildConsole = "{% url 'consolelink' %}";
         config.stopJob = "{% url 'stopJob' %}";
         window.config = config;
 
-        window.runRevoJson = {}
+        //window.runRevoJson = {}
         //Use this object to fill the state of different widgets. In the end WHEN WE CLICK RUN("/revo/run/“) we have to send this json as parameter.
         // {
         //   "scheduled": true,
@@ -150,8 +157,6 @@
         //     }
         //   ]
         // }
-       
-
 	</script>
 	
 	{% include "revo/console_modal.html" %}

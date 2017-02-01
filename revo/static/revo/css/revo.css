@@ -51,7 +51,8 @@
 	width: 100%;
 }
 .hideme{
-display:none}
+display:none;
+float: left}
 .job-status_heading{
 	color:#cd040b;text-align:center;
 }
@@ -259,13 +260,28 @@ tbody.scroller.testsum>tr>td.col-xs-8>p{
    overflow-y: auto;
 }
 .suite-text{
-	max-height: 228px;
+	max-height: 125px;
    overflow-y: auto;
 }
 
+.bar-content {
+  /*margin-left: 45px;*/
+  max-height:125px;
+  height:auto;
+  overflow:auto;
+}
+.bar-content .tab-pane {
+  display: none;
+ 
+  /*padding: 1.6rem;*/
+  overflow-y: auto;
+}
+.bar-content .active {
+  display: block;
+
+}
 #stb-body
 {
-	max-height: 228px;
    overflow-y: auto;
 }
 .runquote{
@@ -538,3 +554,29 @@ border:0px;
 color: #fff;
 margin:1px;
 }
+.stb_tbody
+{margin-top: 1px;
+   overflow:auto;
+    width: 100%;
+	float: left;
+    display: table-cell;
+    height: 125px;}
+.fixed_head{
+  display: block;
+
+}
+#stb-table tr>td{padding:5px 10px 5px 18px !important}
+#ui-timepicker-div{
+	z-index:9999 !important;
+}
+
+.schedule_txt{
+	float: left;
+	padding-right: 15px;
+	margin-top: 15px;
+}
+.date_time{
+	padding-left:2px; text-align:left
+}
+.run_button{
+float: right;}
