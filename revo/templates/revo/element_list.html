@@ -2,7 +2,18 @@
 {% load staticfiles%}
 {% block head %}
     <script src="{% static 'revo/scripts/revo.js' %}"></script>
-    <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>     
+    <link href="{% static 'revo/css/revo.css' %}" rel="stylesheet"/>  
+    <script>
+        var config = {};
+        config.stbStatusUrl = "{% url 'Set_Top_Box' %}";
+        config.revo_run = "{% url 'revo_run' %}";
+        config.revo = "{% url 'revo' %}";
+        config.jobStatusUrl = "{% url 'JobStatus' %}";
+        config.buildConsole = "{% url 'consolelink' %}";
+        config.stopJob = "{% url 'stopJob' %}";
+        config.testSuiteWithCases = "{% url 'test_suite_with_cases' %}";
+        window.config = config;
+    </script>   
 {% endblock %}
 {% block body %} 
 

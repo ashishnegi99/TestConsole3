@@ -32,14 +32,10 @@
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     
     <script src="{% static 'app/scripts/shell.js' %}"></script>
-
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-   <!-- <script src="{% static 'app/scripts/jquery.min.js' %}"></script>-->
+	<script src="{% static 'app/scripts/jquery-2.2.4.min.js' %}"></script>
     <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
     <script src="{% static 'app/scripts/waves.js' %}"></script>
-    <script src="{% static 'app/scripts/admin.js' %}"></script>
-	
-	
+    <script src="{% static 'app/scripts/admin.js' %}"></script>	
 
     {% block head %} {% endblock %}
 </head>
@@ -81,7 +77,6 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    
                     <li>
                         <img src="{% static 'app/images/verizon.png' %}" class="img-right img-reponsive pull-right">
                     </li>
@@ -118,12 +113,8 @@
 
                             <span>Reports</span>
                         </a>
-                        
                     </li>
-                    
-            
                     <li>
-                        
                         <a href="{% url 'revo' %}">
                            <i class="fa fa-bookmark font-awesome-icon" aria-hidden="true"></i>
                             <span>Revo</span>

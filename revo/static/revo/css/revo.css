@@ -260,14 +260,14 @@ tbody.scroller.testsum>tr>td.col-xs-8>p{
    overflow-y: auto;
 }
 .suite-text{
-	max-height: 125px;
+	max-height: 136px;
    overflow-y: auto;
 }
 
 .bar-content {
   /*margin-left: 45px;*/
-  max-height:125px;
-  height:auto;
+  max-height:136px;
+  height:136px;
   overflow:auto;
 }
 .bar-content .tab-pane {

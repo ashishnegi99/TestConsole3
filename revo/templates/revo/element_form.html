@@ -2,7 +2,18 @@
 {% load staticfiles%}
 {% load widget_tweaks %}
 
-{% block body %} 
+{% block body %}
+    <script>
+        var config = {};
+        config.stbStatusUrl = "{% url 'Set_Top_Box' %}";
+        config.revo_run = "{% url 'revo_run' %}";
+        config.revo = "{% url 'revo' %}";
+        config.jobStatusUrl = "{% url 'JobStatus' %}";
+        config.buildConsole = "{% url 'consolelink' %}";
+        config.stopJob = "{% url 'stopJob' %}";
+        config.testSuiteWithCases = "{% url 'test_suite_with_cases' %}";
+        window.config = config;
+    </script>
     <div class="panel panel-primary device">
         <div class="panel-heading device-heading">
             <h3 class="device-title">{% block form_title %} {% endblock %}</h3>

@@ -16,12 +16,6 @@
 	<link rel="stylesheet" href="{% static 'revo/css/bootstrap-datetimepicker.css' %}"/>
 	<script src="{% static 'revo/scripts/moment-with-locales.js' %}"></script>
 	<script src="{% static 'revo/scripts/bootstrap-datetimepicker.js' %}"></script>
-    
-	<!--<script src="{% static 'app/scripts/jquery-ui.js' %}"></script>
-	<link rel="stylesheet" type="text/css" href="{% static 'app/content/jquery-ui2.css' %}" />
-	<script src="{% static 'revo/scripts/jquery.ui.timepicker.js' %}"></script>
-	<link rel="stylesheet" href="{% static 'revo/css/jquery.ui.timepicker.css' %}"/>-->
-	<!--<script src="{% static 'app/scripts/jquery-ui.js' %}"></script>-->
 	
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="{% static 'app/scripts/external/react-with-addons.js' %}"></script>
@@ -81,7 +75,7 @@
 						<input type="checkbox" name="schedule" id="enable_schedule" onclick="showMe('div1')" value="true"> Enable Test Scheduling
 					</div>
 					<div class="hideme" id="div1">
-						<div class="quote-box runquote" style="text-align:center">						
+						<div class="quote-box runquote">						
 							<div class="input-group form-control date_time">		
 								<input type="text" name="time" id="datetimepicker1" >
 							</div>		
@@ -126,8 +120,17 @@
         config.jobStatusUrl = "{% url 'JobStatus' %}";
         config.buildConsole = "{% url 'consolelink' %}";
         config.stopJob = "{% url 'stopJob' %}";
+        config.testSuiteWithCases = "{% url 'test_suite_with_cases' %}";
         window.config = config;
 
+        function datetimepickerInit() {
+            $('#datetimepicker1').datetimepicker({
+                minDate: moment()
+            });
+        }
+        $(function() {
+            datetimepickerInit();
+        });
         //window.runRevoJson = {}
         //Use this object to fill the state of different widgets. In the end WHEN WE CLICK RUN("/revo/run/“) we have to send this json as parameter.
         // {
