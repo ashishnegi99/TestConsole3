@@ -26,13 +26,12 @@
  
     <!-- Custom Css -->
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/style.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/my_style.css' %}" />
+
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/theme-red.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     
-    <script src="{% static 'app/scripts/shell.js' %}"></script>
 	<script src="{% static 'app/scripts/jquery-2.2.4.min.js' %}"></script>
+	<script src="{% static 'app/scripts/shell.js' %}"></script>
     <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
     <script src="{% static 'app/scripts/waves.js' %}"></script>
     <script src="{% static 'app/scripts/admin.js' %}"></script>	
@@ -99,58 +98,100 @@
             </div>
             <!-- #User Info -->
             <!-- Menu -->
-            <div class="menu">
-                <ul class="list">
-                    <li>
-                        <a href="{% url 'home' %}">
-                            <i class="fa fa-home font-awesome-icon" aria-hidden="true"></i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'Reports' %}">
-                           <i class="fa fa-file-text font-awesome-icon" aria-hidden="true"></i>
+            <div id="accordion" class="panel-grp" role="tablist" aria-multiselectable="true">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title sidemenu">
+							<a href="{% url 'home' %}">
+								<span class="glyphicon glyphicon-home">
+                            </span>Home
+							</a>
+						</h4>
+					</div>
+				</div>
 
-                            <span>Reports</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'revo' %}">
-                           <i class="fa fa-bookmark font-awesome-icon" aria-hidden="true"></i>
-                            <span>Revo</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'Storm' %}">
-                           <i class="fa fa-picture-o font-awesome-icon" aria-hidden="true"></i>
-                            <span>Storm</span>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <a href="{% url 'Appium' %}">
-                           <i class="fa fa-map font-awesome-icon" aria-hidden="true"></i>
-                            <span>Appium</span>
-                        </a>
-                        
-                    </li>
-                    <li>
-                        <nav id="primary_nav_wrap">
-                            <ul>
-                                <li><a href="#"> <i class="fa fa-cog font-awesome-icon" aria-hidden="true"></i><span>Configuration</span></a>
-                                    <ul>
-                                        <li class="revo-config">&nbsp &nbsp Revo >> </li>
-                                        <li><a href="{% url 'device_list' %}">Devices</a></li>
-                                        <li><a href="{% url 'test_suite_list' %}">Test Suites</a></li>
-                                        <li><a href="{% url 'test_case_list' %}">Test Cases</a></li>
-                                        <li><a href="{% url 'config_list' %}">Slave Cofigurations</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </nav>
-                    </li>
-                </ul>
-            </div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title sidemenu">
+							<a href="{% url 'Reports' %}">
+								<span class="glyphicon glyphicon-list-alt">
+                            </span>Reports
+							</a>
+						</h4>
+					</div>
+				</div>
+		
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title sidemenu">
+							<a href="{% url 'revo' %}">
+								<span class="glyphicon glyphicon-th">
+                            </span>Revo
+							</a>
+						</h4>
+					</div>
+				</div>
+		
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title sidemenu">
+							<a href="{% url 'Storm' %}">
+								<span class="glyphicon glyphicon-picture">
+                            </span>Storm
+							</a>
+						</h4>
+					</div>
+				</div>
+		
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title sidemenu">
+							<a href="{% url 'Appium' %}">
+								<span class="glyphicon glyphicon-check">
+                            </span>
+									Appium
+							</a>
+						</h4>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading" role="tab" id="headingThree">
+						<h4 class="panel-title sidemenu">
+							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								<span class="glyphicon glyphicon-cog"></span>
+								<i class="more-less glyphicon glyphicon-chevron-right"></i>
+								Configuration
+							</a>
+						</h4>
+					</div>
+					<div id="collapseThree" class="panel-collapse collapse scroller" role="tabpanel" aria-labelledby="headingThree">
+						<table class="table">
+							<tr class="sidemenu">
+								<td>
+								   <a href="{% url 'device_list' %}">Devices</a>
+								</td>
+							</tr>
+							<tr class="sidemenu">
+								<td>
+								   <a href="{% url 'test_suite_list' %}">Test Suites</a>
+								</td>
+							</tr>
+							<tr class="sidemenu">
+								<td>
+								   <a href="{% url 'test_case_list' %}">Test Cases</a>
+								</td>
+							</tr>
+							<tr class="sidemenu">
+								<td>
+									<a href="{% url 'config_list' %}">Slave Cofigurations</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+			</div><!-- panel-group -->
             <!-- #Menu -->
             <!-- Footer -->
             <div class="legal col-sm-12 text-center">   
