@@ -391,7 +391,7 @@ def get_revo_configs():
 
 def GetSerialNum(request):
     assert isinstance(request, HttpRequest)
-    if request.method == 'GET':
+    # if request.method == 'GET':
         # get_serial_num_impl()
         # createActiveSTBList()
     
