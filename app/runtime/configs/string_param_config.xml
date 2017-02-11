@@ -1,0 +1,5 @@
+<hudson.model.StringParameterDefinition>
+    <name>param</name>
+    <description></description>
+    <defaultValue></defaultValue>
+</hudson.model.StringParameterDefinition>

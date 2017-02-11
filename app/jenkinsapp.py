@@ -23,22 +23,30 @@ class JenkinsApp:
         #self.new_job_config = XMLDom.parse('app/runtime/configs/new_job_config.xml')
 
 
-    def create_jnkns_cron_job(self, job_path, slave_name, command, *params):
+    def create_jnkns_cron_job(self, job_path, slave_name, command):
         self.create_folder(job_path)
         new_job_config = XMLDom.parse('app/runtime/configs/new_cron_job_config.xml')
         self.update_node_val(new_job_config, "assignedNode", slave_name)
         self.update_node_val(new_job_config, "command", command)
 
-        param_config = '<hudson.model.StringParameterDefinition><name>param</name><description></description><defaultValue></defaultValue></hudson.model.StringParameterDefinition>'
-        suffix = 1
-        param_dict = {}
-        for param in params:
-            param_node = XMLDom.parseString(param_config)
-            param_name = "param" + str(suffix)
-            self.update_node_val(param_node, "name", param_name)
-            self.update_node_child(new_job_config, "parameterDefinitions", param_node.firstChild)
-            param_dict[param_name] =  param
-            suffix += 1
+        # HOW TO ADD FILE PARAM
+        # param = {}
+        # param['name'] = "test_stb.py"
+        # param['value'] = param['name'] 
+        # param['type'] =  "File"
+        # # param_dict = {}
+        # for param in params:
+        #     param_node = None
+        #     if(param['type'] == 'String'):
+        #         param_node = XMLDom.parse('app/runtime/configs/string_param_config.xml')
+        #     elif(param['type'] == 'File'):
+        #         param_node = XMLDom.parse('app/runtime/configs/file_param_config.xml')
+
+        #     param_name = param['name']
+        #     self.update_node_val(param_node, "name", param_name)
+        #     self.update_node_child(new_job_config, "parameterDefinitions", param_node.firstChild)
+        #     param_dict[param_name] =  param['value']
+
 
         job_path +=  "/" + slave_name
         if not self.srvr.job_exists(job_path):
@@ -47,7 +55,7 @@ class JenkinsApp:
             self.srvr.reconfig_job(job_path, new_job_config.toxml())
 
         self.srvr.enable_job(job_path)
-        self.srvr.build_job(job_path, param_dict)
+        self.srvr.build_job(job_path)
 
 
     def create_job(self, name, path, check_path, slave_name, command, nobuild, *params):
@@ -112,3 +120,12 @@ class JenkinsApp:
 
         content = "def jobsToRunStr = '" + jobs_as_json_str + "'\n" + content
         info = self.srvr.run_script(content)
+
+    def get_jobs_list(self, folder_path):
+        job_list = [x for x in self.srvr.get_all_jobs() if folder_path in x['url']]    
+        return job_list
+
+    def delete_job(self, name, path):
+        job_path = path + "/" + name
+        if self.srvr.job_exists(job_path):
+            self.srvr.delete_job(job_path)

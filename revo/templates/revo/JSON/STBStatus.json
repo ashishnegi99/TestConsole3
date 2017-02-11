@@ -2,6 +2,5 @@
 	{"UnitAdd": "M11435TDS144", "STBStatus": 0, "STBLabel": "VMS_01", "Env": "SIT"},
 	{"UnitAdd": "M11543TH4292", "STBStatus": 1, "STBLabel": "IPC2_01", "Env": "PROD"},
 	{"UnitAdd": "SN005", "STBStatus": 0, "STBLabel": "STB 3", "Env": "PROD"},
-	{"UnitAdd": "M11509TD9937", "STBStatus": 1, "STBLabel": "STB 4", "Env": "PROD"},
-	{"UnitAdd": "M11543TH4258", "STBStatus": 1, "STBLabel": "STB 6.1", "Env": "SIT"}
+	{"UnitAdd": "M11509TD9937", "STBStatus": 0, "STBLabel": "STB 4", "Env": "PROD"}
 ]

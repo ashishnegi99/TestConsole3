@@ -58,9 +58,7 @@ def  consolelink(request):
     output = server.get_build_console_output(get_full_job_name(job), build)
     return HttpResponse(output)
 
-########################
-## Start: Revo Views  ##
-########################
+
 def revo_view(request):
     my_stb = request.POST.getlist('check1')
     my_test_suite = request.POST.getlist('checks')
@@ -140,9 +138,7 @@ def revo_view(request):
  
     return HttpResponseRedirect("/revo")
  
-########################
-## End: Revo Views  ##
-########################
+
 def run_job(request):
     post_data = json.loads(request.body)
     #parsing data
@@ -223,173 +219,189 @@ def get_revo_configs():
     
     return slave_configs
 
-def create_jnkns_cron_job(host_name):
-    jnkns_obj = JenkinsApp('http://localhost:8080', 'jenkins', 'jenkins123')
-    with open("revo_configs.txt") as revo_config:
-        content = revo_config.read().splitlines()
+# from sets import Set
+# def daemon_job():
+#     slaves = Set([])
+#     device_list = stb_devices.objects.all()
+#     for device in device_list:
+#         slaves.add(device.host)
+
+#     jnkns_server = JenkinsApp('http://localhost:8080', 'jenkins', 'jenkins123')
+#     job_list = jnkns_app.get_jobs_list("/job/revo/job/cron/job/")
+#     slave_job_list = Set([job[u'fullname'] for job in job_list])
     
-    test_runner_path = content[1]
-    report_location = content[2]
-    run_path = content[3]
-    json_path = content[4]
+#     #For all slaves in DB but no cronjob
+#     for slave in (slaves - slave_job_list):
+#         create_jnkns_cron_job(jnkns_server, slave)
+
+#     #Delete cron job if exists for all slaves not in DB
+#     for slave in (slave_job_list - slaves):
+#         jnkns_server.delete_job('slave', "revo/cron")
     
-    mycommand = "cd " + run_path + "\n" + "python test_stb.py " + "%param1%" + "%param2"
-    jnkns_obj.create_jnkns_cron_job("revo/cron", host_name, mycommand, host_name, "ftplocation")
+# def create_jnkns_cron_job(jnkns_obj, host_name):
+#     mycommand = "python test_stb.py " + "%WORKSPACE%"
+#     param['name'] = "test_stb.py"
+#     param['value'] = param['name'] 
+#     param['type'] =  "File"
+#     jnkns_obj.create_jnkns_cron_job("revo/cron", host_name, mycommand, param)
 
 
-def daemon_get_serial_num_via_ftp():
-    #TODO: to be decided - how to pass these values to the slaves. Via jenkins is very unsafe. Hardcoded is very update unfriendly
-    FTP_SERVER_ADDRESS = "localhost"
-    FTP_USERNAME = "sid"
-    FTP_PASSWORD = "password"
-    FTP_CWD = "verizon/FTPServer"
-    FILE_NAME_STARTS_WITH = "OnlineSTBList_"
+# def daemon_get_serial_num_via_ftp():
+#     #TODO: to be decided - how to pass these values to the slaves. Via jenkins is very unsafe. Hardcoded is very update unfriendly
+#     FTP_SERVER_ADDRESS = "localhost"
+#     FTP_USERNAME = "sid"
+#     FTP_PASSWORD = "password"
+#     FTP_CWD = "verizon/FTPServer"
+#     FILE_NAME_STARTS_WITH = "OnlineSTBList_"
 
-    ftp = FTP(FTP_SERVER_ADDRESS)
-    ftp.login(user=FTP_USERNAME, passwd = FTP_PASSWORD)
-    ftp.cwd(FTP_CWD)
+#     ftp = FTP(FTP_SERVER_ADDRESS)
+#     ftp.login(user=FTP_USERNAME, passwd = FTP_PASSWORD)
+#     ftp.cwd(FTP_CWD)
 
-    filenames = ftp.nlst() #get filenames within the directory
-    print filenames
+#     filenames = ftp.nlst() #get filenames within the directory
+#     print filenames
 
-    try:
-        os.remove('serialnumbers.txt')
-    except OSError:
-        pass
+#     try:
+#         os.remove('serialnumbers.txt')
+#     except OSError:
+#         pass
 
-    def writeFunc(s):
-        localfile = open("serialnumbers.txt", 'wb')
-        localfile.write(s)
+#     def writeFunc(s):
+#         localfile = open("serialnumbers.txt", 'wb')
+#         localfile.write(s)
 
-    for filename in filenames:
-        if filename.startswith("OnlineSTBList_"):
-            metadata = ftp.sendcmd('MDTM ' + filename)
-            #print datetime.strptime(metadata[4:], "%Y%m%d%H%M%S").strftime("%d %B %Y %H:%M:%S")
-            modified_time = datetime.strptime(metadata[4:], "%Y%m%d%H%M%S")
-            elapsed_time = datetime.now() - modified_time
-            #use the data only if it was updated in the last hour, rest of the data is stale
-            if divmod(elapsed_time.total_seconds())/ (60*60) > 1: #TODO: check for timezone issues
-                ftp.retrbinary('RETR %s' % filename, open("serialnumbers.txt", 'ab').write)
+#     for filename in filenames:
+#         if filename.startswith("OnlineSTBList_"):
+#             metadata = ftp.sendcmd('MDTM ' + filename)
+#             #print datetime.strptime(metadata[4:], "%Y%m%d%H%M%S").strftime("%d %B %Y %H:%M:%S")
+#             modified_time = datetime.strptime(metadata[4:], "%Y%m%d%H%M%S")
+#             elapsed_time = datetime.now() - modified_time
+#             #use the data only if it was updated in the last hour, rest of the data is stale
+#             if divmod(elapsed_time.total_seconds())/ (60*60) > 1: #TODO: check for timezone issues
+#                 ftp.retrbinary('RETR %s' % filename, open("serialnumbers.txt", 'ab').write)
 
-    ftp.quit()
+#     ftp.quit()
 
-    with open("serialnumbers.txt") as stb_name:
-        device_serial_num_list = stb_name.readlines()
+#     with open("serialnumbers.txt") as stb_name:
+#         device_serial_num_list = stb_name.readlines()
 
-    logger.debug("Devices from socket: " + str(device_serial_num_list))
-    device_list = stb_devices.objects.all()
-    logger.debug("Devices from database: " + str(device_list))
-    matched_device = set([row.serial_id for row in device_list]).intersection(device_serial_num_list)
-    logger.debug("Matched Devices: " + str(matched_device))
+#     logger.debug("Devices from socket: " + str(device_serial_num_list))
+#     device_list = stb_devices.objects.all()
+#     logger.debug("Devices from database: " + str(device_list))
+#     matched_device = set([row.serial_id for row in device_list]).intersection(device_serial_num_list)
+#     logger.debug("Matched Devices: " + str(matched_device))
 
-    sample_list = []
-    for device in device_list:
-        sample_dict = {}
+#     sample_list = []
+#     for device in device_list:
+#         sample_dict = {}
 
-        if device.serial_id in matched_device:
-            sample_dict["STBStatus"] = 1
-        else:
-            sample_dict["STBStatus"] = 0
+#         if device.serial_id in matched_device:
+#             sample_dict["STBStatus"] = 1
+#         else:
+#             sample_dict["STBStatus"] = 0
 
-        sample_dict["RouterSNo"] = device.router
-        sample_dict["STBLabel"] = device.name
-        sample_dict["STBSno"] = device.serial_id
-        sample_list.append(sample_dict)
+#         sample_dict["RouterSNo"] = device.router
+#         sample_dict["STBLabel"] = device.name
+#         sample_dict["STBSno"] = device.serial_id
+#         sample_list.append(sample_dict)
 
-    jsonfile = open('app/templates/app/temp1.json', 'w')
-    out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in sample_list]) + "\n]"
-    jsonfile.write(out)
+#     jsonfile = open('app/templates/app/temp1.json', 'w')
+#     out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in sample_list]) + "\n]"
+#     jsonfile.write(out)
 
 
-def get_serial_num_impl():
-    print 'calling SETTOPBOX function'
-    i = 0
+# def get_serial_num_impl():
+#     print 'calling SETTOPBOX function'
+#     i = 0
 
-    msg = \
-        'M-SEARCH * HTTP/1.1\r\n' \
-        'HOST:239.255.255.250:1900\r\n' \
-        'MX:2\r\n' \
-        'MAN:ssdp:discover\r\n' \
-        'ST:urn:schemas-upnp-org:device:ManageableDevice:2\r\n'
+#     msg = \
+#         'M-SEARCH * HTTP/1.1\r\n' \
+#         'HOST:239.255.255.250:1900\r\n' \
+#         'MX:2\r\n' \
+#         'MAN:ssdp:discover\r\n' \
+#         'ST:urn:schemas-upnp-org:device:ManageableDevice:2\r\n'
 
-    # Set up UDP socket
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
-    s.settimeout(5)
-    s.sendto(msg, ('239.255.255.250', 1900))
+#     # Set up UDP socket
+#     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+#     s.settimeout(5)
+#     s.sendto(msg, ('239.255.255.250', 1900))
 
-    device_serial_num_list = []
-    count = 0
-    try:
-        while True:
-            count = count + 1
-            data, addr = s.recvfrom(65507)
+#     device_serial_num_list = []
+#     count = 0
+#     try:
+#         while True:
+#             count = count + 1
+#             data, addr = s.recvfrom(65507)
 
-            mylist = data.split('\r')
-            url = re.findall('http?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', data)
-            print "URL: " + url[0]
-            response = urllib2.urlopen(url[0])
-            the_page = response.read()
+#             mylist = data.split('\r')
+#             url = re.findall('http?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', data)
+#             print "URL: " + url[0]
+#             response = urllib2.urlopen(url[0])
+#             the_page = response.read()
 
-            tree = ET.XML(the_page)
-            with open("temp.xml", "w") as f:
-                f.write(ET.tostring(tree))
+#             tree = ET.XML(the_page)
+#             with open("temp.xml", "w") as f:
+#                 f.write(ET.tostring(tree))
 
-            document = parse('temp.xml')
-            actors = document.getElementsByTagName("ns0:serialNumber")
-            for act in actors:
-                for node in act.childNodes:
-                    if node.nodeType == node.TEXT_NODE:
-                        r = "{}".format(node.data)
-                        device_serial_num_list.append(str(r))
-                        i += 1
-    except socket.timeout:
-        print "I was in the except block!"
-        pass
+#             document = parse('temp.xml')
+#             actors = document.getElementsByTagName("ns0:serialNumber")
+#             for act in actors:
+#                 for node in act.childNodes:
+#                     if node.nodeType == node.TEXT_NODE:
+#                         r = "{}".format(node.data)
+#                         device_serial_num_list.append(str(r))
+#                         i += 1
+#     except socket.timeout:
+#         print "I was in the except block!"
+#         pass
 
-    logger.debug("Devices from socket: " + str(device_serial_num_list))
-    device_list = stb_devices.objects.all()
-    logger.debug("Devices from database: " + str(device_list))
-    matched_device = set([row.unit_address for row in device_list]).intersection(device_serial_num_list)
-    logger.debug("Matched Devices: " + str(matched_device))
+#     device_serial_num_list = ["M11543TH4292", "M11543TH4258", "M11509TD9937"]
+#     logger.debug("Devices from socket: " + str(device_serial_num_list))
+#     device_list = stb_devices.objects.all()
+#     logger.debug("Devices from database: " + str(device_list))
+#     matched_device = set([row.unit_address for row in device_list]).intersection(device_serial_num_list)
+#     logger.debug("Matched Devices: " + str(matched_device))
 
-    j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
-    running_builds = j.get_running_builds()
-    running_builds_path = [ urlparse(build['url']).path for build in running_builds if REVO_FOLDER_PATH in build['url']]
+#     j = jenkins.Jenkins('http://localhost:8080', 'jenkins', 'jenkins123')
+#     running_builds = j.get_running_builds()
+#     running_builds_path = [ urlparse(build['url']).path for build in running_builds if REVO_FOLDER_PATH in build['url']]
     
-    sample_list = []
-    for device in device_list:
-        sample_dict = {}
+#     sample_list = []
+#     for device in device_list:
+#         sample_dict = {}
 
-        if device.unit_address in matched_device:
-            full_path = REVO_FOLDER_PATH + device.name
-            if any( path.startswith(full_path) for path in running_builds_path):
-                sample_dict["STBStatus"] = 2
-            else:
-                sample_dict["STBStatus"] = 1
-        else:
-            sample_dict["STBStatus"] = 0
+#         if device.unit_address in matched_device:
+#             full_path = REVO_FOLDER_PATH + device.name
+#             if any( path.startswith(full_path) for path in running_builds_path):
+#                 sample_dict["STBStatus"] = 2
+#             else:
+#                 sample_dict["STBStatus"] = 1
+#         else:
+#             sample_dict["STBStatus"] = 0
 
-        sample_dict["Env"] = device.environment.name
-        sample_dict["STBLabel"] = device.name
-        sample_dict["UnitAdd"] = device.unit_address
-        sample_list.append(sample_dict)
+#         sample_dict["Env"] = device.environment.name
+#         sample_dict["STBLabel"] = device.name
+#         sample_dict["UnitAdd"] = device.unit_address
+#         sample_list.append(sample_dict)
 
-    jsonfile = open('app/templates/app/temp1.json', 'w')
-    out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in sample_list]) + "\n]"
-    jsonfile.write(out)
+#     jsonfile = open('app/templates/app/temp1.json', 'w')
+#     out = "[\n\t" + ",\n\t".join([json.dumps(row) for row in sample_list]) + "\n]"
+#     jsonfile.write(out)
 
 
 def GetSerialNum(request):
     assert isinstance(request, HttpRequest)
     if request.method == 'GET':
-        get_serial_num_impl()
+        # get_serial_num_impl()
+        # createActiveSTBList()
     
     return render(
         request,
-        "app/temp1.json",
+        "revo/JSON/STBStatus.json",
         RequestContext(request, {
         })
     )
+
 
 def createJsonFile(fileName):
     f = open(fileName, 'r')
@@ -399,7 +411,6 @@ def createJsonFile(fileName):
     jsonfile.write(out)
 
 
-########Ashish(Start): new func to get job status##############
 def getJobStatus(request):
     assert isinstance(request, HttpRequest)
     logger.debug("Start")
@@ -488,6 +499,7 @@ def getJobStatus(request):
         {}
     )
 
+
 def get_full_job_name(job_name):
     return REVO_FOLDER_NAME + '/' + job_name
 
@@ -507,6 +519,7 @@ def stop_job_impl(jnkns_srvr, my_job, my_build):
                 logger.debug("JOB NEITHER IN QUEUE NOR RUNNING:  " + "my_job: " + my_job + "  my_build: " + str(my_build))
     except jenkins.NotFoundException:
         logger.error("NotFoundException + " + str(my_build))
+
 
 def stopJob(request):
     assert isinstance(request, HttpRequest)
