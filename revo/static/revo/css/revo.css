@@ -230,7 +230,7 @@ background-image: url(../../images/highlight.png)!important;
 	font-size: 16px;
  }
  .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
-  padding: 0px;
+  /*padding: 0px;*/
  }
  
  .testhead>p{
@@ -306,7 +306,7 @@ tbody.scroller.testsum>tr>td.col-xs-8>p{
   cursor: pointer; 
 }
 input:checked :parent { 
-   background-image: url(../../images/highlight.png);  
+	background-image: url(../../images/highlight.png);  
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat; 
@@ -317,7 +317,7 @@ input:checked :parent {
 }
 input[type=radio]:checked< div.radio { background: #cdcdcd; }
  .panel{
-  border: none;
+  /*border: none;*/
   background: none;
  }
 .table-fixed tbody {
@@ -325,8 +325,6 @@ input[type=radio]:checked< div.radio { background: #cdcdcd; }
   overflow-y: auto;
   width: 100%;
 }
- 
-
 
 .testhead{
   background: #dfdfdf;

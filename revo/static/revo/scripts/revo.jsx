@@ -51,7 +51,7 @@ class TableRow extends React.Component {
           <span> {this.props.value.STBLabel} </span>
         </td>
         <td  width={set_td[1]}>
-          <i className= {classVal} aria-hidden="true"></i>
+          <i className= {classVal} aria-hidden="false"></i>
         </td>
         <td width={set_td[2]}>
           {this.props.value.UnitAdd}
