@@ -28,21 +28,21 @@ urlpatterns = [
 
 # testsuite
     url(r"^test_suites/$", views.TestSuiteList.as_view(), name="test_suite_list"),
-    url(r'^test-suite/new$', views.TestSuiteCreate.as_view(), name='test_suite_new'),
-    url(r'^test-suite/edit/(?P<pk>\d+)/$', views.TestSuiteUpdate.as_view(), name='test_suite_edit'),
-    url(r"^test-suite/delete", views.delete_test_suite, name="test_suite_delete"),
+    url(r'^test_suites/new$', views.TestSuiteCreate.as_view(), name='test_suite_new'),
+    url(r'^test_suites/edit/(?P<pk>\d+)/$', views.TestSuiteUpdate.as_view(), name='test_suite_edit'),
+    url(r"^test_suites/delete", views.delete_test_suite, name="test_suite_delete"),
 
 # device
-    url(r"^devices", views.DeviceList.as_view(), name="device_list"),
-    url(r"^device/new$", views.DeviceCreate.as_view(), name="device_new"),
-    url(r"^device/delete", views.delete_device, name="device_delete"),
-    url(r'^device/edit/(?P<pk>\d+)/$', views.DeviceUpdate.as_view(), name='device_edit'),
+    url(r"^devices$", views.DeviceList.as_view(), name="device_list"),
+    url(r"^devices/new$", views.DeviceCreate.as_view(), name="device_new"),
+    url(r"^devices/delete", views.delete_device, name="device_delete"),
+    url(r'^devices/edit/(?P<pk>\d+)/$', views.DeviceUpdate.as_view(), name='device_edit'),
 
 # configs
-    url(r"^configs", views.ConfigList.as_view(), name="config_list"),
-    url(r"^config/new$", views.ConfigCreate.as_view(), name="config_new"),
-    url(r"^config/delete", views.delete_config, name="config_delete"),
-    url(r'^config/edit/(?P<pk>\d+)/$', views.ConfigUpdate.as_view(), name='config_edit'),
+    url(r"^configs$", views.ConfigList.as_view(), name="config_list"),
+    url(r"^configs/new$", views.ConfigCreate.as_view(), name="config_new"),
+    url(r"^configs/delete", views.delete_config, name="config_delete"),
+    url(r'^configs/edit/(?P<pk>\d+)/$', views.ConfigUpdate.as_view(), name='config_edit'),
     
 # TestCase
     url(r'^test-case/$', views.TestCaseList.as_view(), name='test_case_list'),

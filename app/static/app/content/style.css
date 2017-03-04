@@ -2394,9 +2394,7 @@ a {
   animation: none !important; }
 
 section.content {
-  /*margin: 100px 15px 0 315px;*/
   margin: 100px 15px 0 250px;
-  /*margin: 100px 15px 0 0px;*/
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
   -webkit-transition: 0.5s;
@@ -7223,12 +7221,14 @@ fieldset[disabled] .form-control {
     position: relative;
     border-bottom: 1px solid #e9e9e9;
     background: url("../../images/bg.png") no-repeat no-repeat;
-    height: 135px; 
+    height: 110px; 
     color: #333;
     }
     .sidebar .user-info .image {
       margin-right: 12px;
-      display: inline-block; }
+      display: inline-block;
+		float: left;
+	  }
       .sidebar .user-info .image img {
         -webkit-border-radius: 50%;
         -moz-border-radius: 50%;
@@ -7239,7 +7239,7 @@ fieldset[disabled] .form-control {
       cursor: default;
       display: block;
       position: relative;
-      top: 25px; }
+	}
       .sidebar .user-info .info-container .name {
         white-space: nowrap;
         -ms-text-overflow: ellipsis;
@@ -7260,7 +7260,7 @@ fieldset[disabled] .form-control {
         max-width: 200px; }
       .sidebar .user-info .info-container .user-helper-dropdown {
         position: absolute;
-        right: -3px;
+        right: 3px;
         bottom: 0px;
         -webkit-box-shadow: none;
         -moz-box-shadow: none;
@@ -7740,4 +7740,3 @@ html.ie11 .bs-searchbox .form-control {
 {
 background: #ea121b;
 }
-

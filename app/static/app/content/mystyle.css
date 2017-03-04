@@ -1,3 +1,4 @@
+
 /* Login Page ================================== */
 body{
 	background: url("../images/bg.png") no-repeat no-repeat;
@@ -393,6 +394,10 @@ margin-left:-13px !important;}
 .panel-title a{
 	color: white !important;
 }
+.device-form{
+	background-color: #fff!important;
+}
+
 .device-title{
 	font-size: 16px;
 	text-align: center;
@@ -730,6 +735,7 @@ input[type="text"].test_suites{
 }
 .glyphicon {
 	margin-right:10px; 
+	color: transparent;
 }
 .config-open{
 	top:0px; margin-right: 0px;
@@ -755,7 +761,12 @@ tr.sidemenu a{
 .sidemenu td{
 	padding:0px !important;
 }
+.revo_link{
+border-bottom:1px solid #fff;
+}
 .config_link{
+	
+	border-bottom:1px solid #fff;
 	pointer-events: none;
 	cursor: default;
 	background: #C30909 !important;/* For browsers that do not support gradients */
@@ -764,6 +775,10 @@ tr.sidemenu a{
     background: -moz-linear-gradient(#C30909, #890707) !important; /* For Firefox 3.6 to 15 */
     background: linear-gradient(#C30909, #890707) !important; /* Standard syntax */
 }
+.config a{
+	padding-left:20px !important;
+}
+
 .sidemenu.config:hover{
 	background: #C30909 !important;/* For browsers that do not support gradients */
     background: -webkit-linear-gradient(#C30909, #890707) !important; /* For Safari 5.1 to 6.0 */
@@ -869,4 +884,7 @@ input[type="checkbox"].input-validation-error {
 }
 .validation-summary-valid {
     display: none;
+}
+#RevoCollapse ul li{
+	padding: 0px 0px 0px 15px;
 }
