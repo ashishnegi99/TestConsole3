@@ -408,7 +408,7 @@ margin-left:-13px !important;}
 }
 .glyphicon
 {
-    font-size: 12px;
+    /*font-size: 12px;*/
 }
 
 /* Table ================================== */
@@ -735,7 +735,7 @@ input[type="text"].test_suites{
 }
 .glyphicon {
 	margin-right:10px; 
-	color: transparent;
+	/*color: transparent;*/
 }
 .config-open{
 	top:0px; margin-right: 0px;
@@ -886,5 +886,12 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 #RevoCollapse ul li{
-	padding: 0px 0px 0px 15px;
+	padding: 0px 0px 0px 50px;
 }
+.menu_icon{
+	float:left;height:26px;width:26px;margin:5px 5px 0px 35px; border:2px solid;
+	
+	
+}
+.menu_icon2{
+float:left;height:26px;width:26px;margin:5px 5px 0px 5px; border:2px solid}

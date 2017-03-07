@@ -1,7 +1,7 @@
 {% load staticfiles %}
 
 {% if user.is_authenticated %}
-    
+    <form id="logoutForm" action="/logout" method="post">
         {% csrf_token %}
         <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hello {{ user.username }}</div>
         <div class="email">{{ user.email }}</div>
@@ -13,7 +13,7 @@
                     <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="material-icons">input</i>Log off</a></li>
                 </ul>
         </div>
-    
+    </form>
 {% else %}
 
     <ul class="nav navbar-nav navbar-right">

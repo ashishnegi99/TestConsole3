@@ -19,11 +19,11 @@
             <td>
                 <input type='checkbox' name='config' value='{{ config.id }}' data-edit= '{% url "config_edit" config.id %}' id="{{ config.name }}" onchange="disable_edit_test('Edit_Button', '.list_table tr td')"/> 
             </td>
-            <td> {{ config.name }} </td>
-            <td> {{ config.loc_fix }} </td>
-            <td> {{ config.test_runner_path }} </td>
-            <td> {{ config.report_location }} </td>
-            <td> {{ config.json_path }} </td>
+            <td class="table-td"> {{ config.name }} </td>
+            <td class="table-td"> {{ config.loc_fix }} </td>
+            <td class="table-td"> {{ config.test_runner_path }} </td>
+            <td class="table-td"> {{ config.report_location }} </td>
+            <td class="table-td"> {{ config.json_path }} </td>
         </tr>
     {% endfor %}
 {% endblock %}
